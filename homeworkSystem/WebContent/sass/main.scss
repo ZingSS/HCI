@@ -1,0 +1,890 @@
+$basic-color: #205081;
+$basic-hover-color: #2363A4;
+$dark-color: #081E34;
+$light-color: #AAFFFB;
+$comp-color: #FF886A;
+$comp-hover-color: #FE6B46;
+$gray: #F5F5F5;
+$nav-h: 41px;
+$a-color: #3b73af;
+$black-font: #333;
+$input-hover-color: #97B8DB;
+$file-btn-color: #815D20;
+$file-hover-color: #976d25;
+$login-sub: #3A97C5;
+
+
+@mixin left-a-default{
+  color: $a-color;
+  padding: 10px 180px 10px 5px;
+
+  &:hover{
+    background: rgba(0, 0, 0, .06);
+  }
+}
+
+@mixin left-highlight-btn{
+  color: #fff;
+  background: $comp-color;
+  padding: 10px 5px;
+  border-radius: 5px;
+  box-shadow: #D4B3B3 1px 1px 1px;
+  text-shadow: 0 1px 0 #983E27;
+
+  cursor: pointer;
+
+  &:hover{
+    background: #FE6B46;
+  }
+}
+
+@mixin display-bg{
+  position: absolute;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(46, 46, 46, 0.16);
+}
+
+@mixin display-body{
+  background-color: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+@mixin display-title{
+  background: $basic-color;
+  border-bottom: 1px solid #173B61;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  top: 10px;
+  span{
+    color: #fff;
+    text-shadow: #0C2136 1px 2px 1px;
+    font-size: 16px;
+  }
+}
+
+@mixin basic-btn($btn-color, $hover-color, $f-color:#fff){
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: $f-color;
+  background: $btn-color;
+  width: 100px;
+  margin: 0 5px;
+
+  &:hover{
+    background: $hover-color;
+  }
+
+}
+
+@mixin td-a($btn:#4C87C3, $hover:#4478AC, $shadow:#748BA5, $t-shadow:#214B75){
+  background-color: $btn;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: $shadow 1px 0 1px;
+  text-shadow: 0 1px 0 $t-shadow;
+
+  cursor: pointer;
+  &:hover{
+    background-color: $hover;
+  }
+}
+
+@mixin normal-input{
+  padding: 2px 10px;
+  border: 1px solid $gray;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+
+  margin: 10px 0;
+
+  &:hover{
+    border: 1px solid $input-hover-color;
+  }
+
+  &:focus{
+    border: 1px solid $input-hover-color;
+  }
+}
+
+*{
+  padding: 0;
+  margin: 0;
+
+  font-size: 14px;
+  font-family: Verdana, Arial;
+  color: $black-font;
+}
+
+body{
+  background: $gray;
+}
+
+a{
+  text-decoration: none;
+}
+
+ul{
+  list-style-type: none;
+}
+
+input,textarea{
+  outline:none;
+}
+
+input[type="text"], input[type="password"]{
+  height: 30px;
+  width: 180px;
+  @include normal-input;
+}
+
+input[type="file"]{
+  width: 200px;
+}
+
+textarea{
+  height: 4em;
+  width: 18.5em;
+  resize: none;
+  @include normal-input;
+}
+
+button{
+  height: 30px;
+  width: 110px;
+  border: none;
+
+}
+select{
+  background: #eee;
+  border: 1px solid #c8c7bc;
+  line-height: 30px;
+  height: 30px;
+  color: #333;
+}
+
+hr{
+  border: none;
+  border-bottom: 0.05em solid #D3D3D3;
+  clear: both;
+}
+
+table {
+  *border-collapse: collapse; /* IE7 and lower */
+  border-spacing: 0;
+  margin: 0 0 20px;
+  tr {
+    height: 2em;
+  }
+  th {
+    //background: $dark-color;
+    //color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2;
+    text-align: left;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#eee));
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
+    background-image: -moz-linear-gradient(top, #f5f5f5, #eee);
+    background-image: -ms-linear-gradient(top, #f5f5f5, #eee);
+    background-image: -o-linear-gradient(top, #f5f5f5, #eee);
+    background-image: linear-gradient(top, #f5f5f5, #eee);
+  }
+
+  th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+  }
+
+  th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+  }
+
+  th:only-child {
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+  }
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #f5f5f5;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+  }
+
+  tfoot tr{
+    height: 2.8em;
+  }
+
+  tfoot td {
+    border-bottom: 0;
+    border-top: 1px solid #fff;
+    background-color: #f1f1f1;
+  }
+
+  tfoot td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+  }
+
+  tfoot td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+  }
+
+  tfoot td:only-child {
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px;
+    border-radius:0 0 6px 6px;
+  }
+
+}
+
+.update-td-a{
+  @include td-a;
+}
+
+.delete-td-a{
+  @include td-a(#aaa, #555, #797979, #333);
+}
+
+.add-td-a{
+  @include td-a($comp-color, $comp-hover-color, #ee9e91, #ee6a75);
+}
+
+.download-td-a{
+  @include td-a($file-btn-color, $file-hover-color, #422E0C, #483617);
+}
+
+.forbid-td-a{
+  @include td-a(#777, #777, #333, #333);
+}
+
+.jump-td-a{
+  color: #5588BB;
+  font-weight: 500;
+  padding: 3px 0;
+  &:hover{
+    color: #629cd7;
+    font-weight: 600;
+  }
+}
+
+.pink-font{
+  color: $comp-color;
+}
+
+.td-center{
+  text-align: center;
+}
+
+.return-a {
+  width: 90%;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.cancel-btn{
+  @include basic-btn(#aaa, #888);
+}
+
+.submit-btn{
+  @include basic-btn($comp-color, $comp-hover-color);
+}
+
+.search-btn{
+  @include basic-btn($basic-color, $basic-hover-color);
+  margin: 0;
+}
+
+.stat-btn{
+  @include basic-btn($basic-color, $basic-hover-color);
+  margin: 12px 0 0;
+}
+
+.info-title{
+  color: #AAA;
+  font-weight: 500;
+}
+
+.right-info-div{
+  width: 90%;
+  margin: 0 auto 20px;
+  padding: 0 0 0 13px;
+  border-left: 11px solid #F5F5F5;
+
+  div{
+    margin: 0 0 10px;
+  }
+
+}
+.message-info-div{
+  border-left: 11px solid #F5F5F5;
+  padding: 10px 13px;
+  margin: 0 40px 15px;
+
+  .message-title{
+    font-size: 16px;
+  }
+
+  .message-time{
+    font-size: 12px;
+    color: #797979;
+  }
+
+  .message-content{
+    margin: 5px 0;
+  }
+  .message-a{
+    @include td-a;
+  }
+}
+
+#login-page{
+
+  .login-content{
+    height: 184px;
+    width: 700px;
+    margin: 300px auto;
+    padding: 20px 0 0;
+
+    background: #72c2ea;
+    position: relative;
+
+    img{
+      position: absolute;
+      width:260px;
+      top: 41px;
+      left: 50px;
+    }
+
+    form{
+      margin: 20px 0 0 400px;
+
+      input{
+        width:180px;
+        margin: 0 0 20px;
+      }
+      button{
+        width:200px;
+        background:$login-sub;
+        color: #fff;
+      }
+    }
+
+    .login-bottom{
+      background: $login-sub;
+      height: 10px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+    }
+
+  }
+}
+
+header{
+  height: $nav-h;
+  background: $basic-color;
+  border-bottom: 1px solid #2e3d54;
+
+  z-index: 100;
+}
+nav{
+  background: $basic-color;
+  padding: 0 20px;
+
+  .logo{
+    margin: 10px;
+  }
+
+  div{
+    float: left;
+  }
+
+  li{
+    float: left;
+    margin: 0 10px;
+    line-height: $nav-h;
+    color: #fff;
+  }
+  a{
+    color: #fff;
+    line-height: 1;
+    padding: 12px 10px;
+
+    &:hover{
+      background: $dark-color;
+    }
+  }
+
+  .nav-right{
+    position: absolute;
+    right: 0;
+  }
+
+}
+
+.content{
+  height: 100%;
+  padding: 30px 0;
+  background: #fff;
+
+  form{
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  .left-sidebar{
+    width: 265px;
+
+    position: fixed;
+    bottom: 0;
+    top: 42px;
+    left: 0;
+
+    background: $gray;
+    border-right: 1px solid #ddd;
+
+    padding: 30px 10px;
+
+  }
+
+  .right-content{
+    background: #fff;
+    margin: 0 0 0 285px;
+    min-height: 600px;
+
+    padding: 30px 10px;
+
+    form{
+      width: 50%;
+      min-width: 500px;
+
+    }
+  }
+
+  table{
+    width: 90%;
+    margin: 0 auto 30px;
+  }
+
+}
+
+.left-sidebar{
+  .left-title{
+    margin: 0 0 .3em 20px;
+    float: left;
+    span{
+      font-size: 25px;
+      color: $black-font;
+    }
+  }
+  .left-btn{
+    margin: 0.6em 0 1.4em 9.4em;
+  }
+
+  .left-sub-title{
+    margin: 1.3em 0 0 20px;
+    span{
+      font-size: 18px;
+    }
+  }
+
+  li {
+    margin: 1.5em 0 .3em 20px;
+
+    a{
+      @include left-a-default;
+    }
+  }
+
+  .left-sub-list{
+    li{
+      margin: 1.2em 0 .3em 20px;
+    }
+    a{
+      border-left: 2px solid #4C87C3;
+    }
+  }
+
+  hr{
+    margin: 5px 0;
+    color: #ddd;
+  }
+}
+
+
+#to-add-user{
+  a{
+    @include left-highlight-btn;
+  }
+}
+
+#to-add-course{
+  a{
+    @include left-highlight-btn;
+  }
+}
+
+
+.radio-input{
+  margin: 0 0 10px;
+  input{
+    margin: 0 5px 0 20px;
+  }
+  label{
+    cursor: pointer;
+  }
+}
+
+#add-user-div{
+  display: none;
+  @include display-bg;
+
+  #add-user-body{
+    height: 400px;
+    width: 500px;
+    margin: 230px auto;
+    @include display-body;
+  }
+
+  #add-title{
+    @include display-title;
+  }
+
+  form{
+    margin: 40px 0;
+  }
+
+}
+
+#update-user-div{
+  display: none;
+  @include display-bg;
+
+  #update-user-body{
+    height: 350px;
+    width: 500px;
+    margin: 230px auto;
+    @include display-body;
+  }
+
+  #update-title{
+    @include display-title;
+  }
+  form{
+     margin: 40px 0;
+   }
+}
+
+#delete-user-div{
+  display: none;
+  @include display-bg;
+
+  #delete-user-body{
+    height: 170px;
+    width: 300px;
+    margin: 230px auto;
+    @include display-body;
+  }
+
+  #delete-title{
+    @include display-title;
+  }
+
+  #delete-form{
+    margin: 20px 0;
+    
+    span{
+      line-height: 4;
+    }
+  }
+
+}
+
+#add-semester-div{
+  display: none;
+  @include display-bg;
+
+  #add-semester-body{
+    height: 250px;
+    width: 350px;
+    margin: 230px auto;
+    @include display-body;
+  }
+
+  #add-semester-title{
+    @include display-title;
+  }
+
+  form{
+    margin: 10px 0;
+    button{
+      margin: 10px 0;
+    }
+  }
+}
+
+#update-semester-div{
+  display: none;
+  @include display-bg;
+
+  #update-semester-body{
+    height: 250px;
+    width: 350px;
+    margin: 230px auto;
+    @include display-body;
+  }
+
+  #update-semester-title{
+    @include display-title;
+  }
+  form{
+    margin: 10px 0;
+    button{
+      margin: 10px 0;
+    }
+  }
+}
+
+#add-homework-div{
+  display: none;
+  @include display-bg;
+
+  #add-homework-body{
+    height: 500px;
+    width: 550px;
+    margin: 140px auto;
+    @include display-body;
+  }
+
+  #add-homework-title{
+    @include display-title;
+  }
+  form{
+    margin: 30px 0;
+    button{
+      margin: 10px 0;
+    }
+  }
+}
+
+#add-example-div{
+  display: none;
+  @include display-bg;
+
+  #add-example-body{
+    height: 200px;
+    width: 300px;
+    margin: 230px auto;
+    @include display-body;
+  }
+
+  #add-example-title{
+    @include display-title;
+  }
+  form{
+    margin: 45px 0;
+    button{
+      margin: 20px 0;
+    }
+  }
+}
+
+#update-grade-div{
+  display: none;
+  @include display-bg;
+
+  #update-grade-body{
+    height: 270px;
+    width: 380px;
+    margin: 230px auto;
+    @include display-body;
+  }
+
+  #update-grade-title{
+    @include display-title;
+  }
+  form{
+    margin: 21px 0;
+    button{
+      margin: 20px 0;
+    }
+  }
+}
+
+.semester-search {
+  form {
+    width: 100%;
+    margin: 1.5em 0 1.5em 20px;
+
+  }
+  #semester-list {
+    background: #eee;
+    border: 1px solid #c8c7bc;
+    line-height: 30px;
+    height: 30px;
+    color: #333;
+
+    margin: 0 0 12px;
+  }
+
+  .search-btn {
+    margin: 0 0 20px;
+  }
+
+  #to-add-semester {
+    @include left-highlight-btn;
+  }
+
+}
+.semester-month-form{
+  form{
+    margin: 0;
+    padding: 0 0 10px 0;
+  }
+  select{
+    margin: 0 10px 0 0;
+  }
+}
+
+#add-course-form, #update-course-form{
+  div{
+    margin: 10px 0;
+  }
+
+  hr{
+    margin: 20px 0 10px;
+  }
+
+  button{
+    a{
+      color: #fff;
+    }
+  }
+  .a-btn{
+    width: 120px;
+  }
+  .course-time{
+    input{
+      width: 20px;
+      margin: 10px 2px;
+    }
+  }
+
+  .course-semester{
+    label{
+      margin: 0 0px 0 13px;
+    }
+  }
+
+  #semester{
+    margin: 0 15px;
+    width: 201px;
+    height: 35px;
+  }
+
+  .course-type select {
+    margin: 0 25px 0 0;
+  }
+
+}
+
+#add-semester-form, #update-semester-form{
+  text-align: center;
+  #add-semester-title{
+    @include display-title;
+  }
+  input{
+    width: 50px;
+  }
+}
+
+#semester-info{
+  span{
+    margin: 0 0 0 5px;
+  }
+  a{
+    margin: 0 0 0 10px;
+  }
+}
+
+.teacher-update-td-a{
+  margin: 0 0 0 10px;
+}
+
+
+tr.semester-tr td{
+  text-align: center;
+  background: rgba(35, 99, 164, 0.57);
+  color: #fff;
+  padding: 5px;
+}
+
+#export-form{
+  margin: 0 0 20px;
+}
+
+.fuzzy-form{
+  input{
+    width: 100px;
+    margin-right: 10px;
+  }
+}
+
+.second-span{
+  margin-left: 30px;
+}
+
+.short-input-div{
+  input{
+    width: 50px;
+  }
+}
+
+.description-div{
+  position: relative;
+  label{
+    position: relative;
+    top: -36px;
+  }
+  textarea{
+
+  }
+}
+
+
+#message-tip{
+  background: $comp-color;
+  border-radius: 50%;
+  height: 16px;
+  text-align: center;
+  line-height: 15px;
+  width: 16px;
+  font-size: 12px;
+  color: #fff;
+  display: inline-block;
+}
