@@ -13,20 +13,7 @@
 <body>
 	<s:include value="../teacher/header.jsp"></s:include>
 	<div class="content">
-		<div class="left-sidebar">
-			<div class="left-title"><span>我的课程</span></div>	
-			<hr/>
-			<div>
-            <ul class="left-list">
-            	<li><a href="showTeacherCourseList.action">所有课程</a></li>
-            </ul>
-            <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
-	            <ul class="left-sub-list">
-	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程学生</a></li>
-	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程作业</a></li>
-	            </ul>
-        	</div>
-		</div>
+		<s:include value="../teacher/courseSide.jsp"></s:include>
 		<div class="right-content">
 			<%-- <div><a href="exportCourseExcel.action?courseId=<s:property value="course.id"/>">生成课程Excel文件</a></div> --%>
         <div class="course-info right-info-div">

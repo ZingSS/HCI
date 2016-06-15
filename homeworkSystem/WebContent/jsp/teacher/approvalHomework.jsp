@@ -14,20 +14,7 @@
 <body>
 	<s:include value="../teacher/header.jsp"></s:include>
 	<div class="content">
-		<div class="left-sidebar">
-			<div class="left-title"><span>我的课程</span></div>	
-			<hr/>
-			<div>
-            <ul class="left-list">
-            	<li><a href="showTeacherCourseList.action">所有课程</a></li>
-            </ul>
-            <div class="left-sub-title"><span><s:property value="courseName"/></span></div>
-	            <ul class="left-sub-list">
-	                <li><a href="teacherCourse.action?courseId=<s:property value="courseId"/>&name=<s:property value="courseName"/>">课程学生</a></li>
-	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="courseId"/>&name=<s:property value="courseName"/>">课程作业</a></li>
-	            </ul>
-        	</div>
-		</div>
+		<s:include value="../teacher/courseSide.jsp"></s:include>
 		<div class="right-content">
 		<s:hidden name="courseId" value="%{courseId}"/>
 		<div class="right-info-div">

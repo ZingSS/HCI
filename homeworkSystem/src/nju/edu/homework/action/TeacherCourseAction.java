@@ -7,6 +7,7 @@ import java.util.List;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.User;
 import nju.edu.homework.service.CourseService;
+import nju.edu.homework.vo.OnlineUserVO;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
@@ -24,6 +25,7 @@ public class TeacherCourseAction extends BaseAction{
 	private List<User> inCourseAssistantList;
 	private List<User> studentList;
 	private Course course;
+	private List<Course> courseList;
 	
 	private Date currentDate;
 	
@@ -39,11 +41,17 @@ public class TeacherCourseAction extends BaseAction{
 			})
 	public String teacherCourse() throws Exception {
 		int id = Integer.parseInt(request.getParameter("courseId"));
+		session.put("courseId", id);
 		setCourse(courseService.getCourseById(id));
 		List<User> list = new ArrayList<User>(courseService.getStudentsByCourseId(id));
 
 		setInCourseAssistantList(courseService.getAssistantByCourse(id));
 		setStudentList(list);
+		
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		cList.remove(courseService.getCourseById(id));
+		setCourseList(cList);
 		return SUCCESS;
 	}
 
@@ -76,5 +84,12 @@ public class TeacherCourseAction extends BaseAction{
 		return currentDate;
 	}
 
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
 
 }

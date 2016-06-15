@@ -9,6 +9,7 @@ import nju.edu.homework.service.CourseService;
 import nju.edu.homework.service.UserService;
 import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.CourseStudentVO;
+import nju.edu.homework.vo.OnlineUserVO;
 import nju.edu.homework.vo.StudentFuzzyVO;
 import nju.edu.homework.vo.StudentInOrAssisVO;
 
@@ -40,6 +41,7 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 	private Course course;
 	private int courseId;
 	private String courseName;
+	private List<Course> courseList;
 	
 	@Action(
 			value = "showStudentList",
@@ -47,6 +49,11 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 					@Result(name = SUCCESS, location = "/jsp/teacher/addStudent.jsp"),
 			})
 	public String showStudentList() throws Exception {
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		int id = (int) session.get("courseId");
+		cList.remove(courseService.getCourseById(id));
+		setCourseList(cList);
 		showAllStudent();
 		return SUCCESS;
 	}
@@ -57,6 +64,11 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 					@Result(name = SUCCESS, location = "/jsp/teacher/manageAssistant.jsp"),
 			})
 	public String assistantManagement() throws Exception {
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		int id = (int) session.get("courseId");
+		cList.remove(courseService.getCourseById(id));
+		setCourseList(cList);
 		showAllStudent();
 		return SUCCESS;
 	}
@@ -137,6 +149,14 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 
 	public void setStudentList(List<CourseStudentVO> studentList) {
 		this.studentList = studentList;
+	}
+	
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
 	}
 
 }

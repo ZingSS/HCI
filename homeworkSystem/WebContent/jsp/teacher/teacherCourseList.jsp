@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>课程列表</title>
 </head>
 <body>
@@ -14,6 +15,20 @@
 		<div class="left-sidebar">
 			<div class="left-title"><span>我的课程</span></div>
 			<hr/>
+			<div>
+            <ul class="left-list">
+            	<li><a href="showTeacherCourseList.action">全部课程</a></li>
+            </ul>
+            <div class="left-sub-title">
+            	<select>
+            	<option>全部学期</option>
+            	<s:iterator value="semesterCourseList" id="semesterSelect">
+            		<option><s:property value="#semesterSelect.key"/></option>
+            	</s:iterator>
+            	</select>
+            </div>
+            	
+        	</div>
 		</div>
 		<div class="right-content">
 			<table>

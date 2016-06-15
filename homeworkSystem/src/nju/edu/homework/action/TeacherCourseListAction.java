@@ -75,7 +75,6 @@ public class TeacherCourseListAction extends BaseAction{
 		}
 		// 判断当前的课是不是要导出Excel表
 		isCourseExportExcel();
-		
 		return SUCCESS;
 	}
 	

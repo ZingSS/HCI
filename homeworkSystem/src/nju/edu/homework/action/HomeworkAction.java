@@ -4,14 +4,15 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
-import nju.edu.homework.model.Course;
-import nju.edu.homework.model.Homework;
-import nju.edu.homework.service.CourseService;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import nju.edu.homework.model.Course;
+import nju.edu.homework.model.Homework;
+import nju.edu.homework.service.CourseService;
+import nju.edu.homework.vo.OnlineUserVO;
 
 @Controller
 public class HomeworkAction extends BaseAction{
@@ -29,6 +30,7 @@ public class HomeworkAction extends BaseAction{
 	private String errorMessage;
 	
 	private Timestamp currentTime;
+	private List<Course> courseList;
 	
 	private Date currentDate;
 
@@ -42,6 +44,10 @@ public class HomeworkAction extends BaseAction{
 		System.out.println(id);
 		setCourse(courseService.getCourseById(id));
 		setHomeworkList(courseService.getHomeworkByCourseId(id));
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		cList.remove(courseService.getCourseById(id));
+		setCourseList(cList);
 		return SUCCESS;
 	}
 	
@@ -108,6 +114,14 @@ public class HomeworkAction extends BaseAction{
 	public Date getCurrentDate() {
 		currentDate = new Date(System.currentTimeMillis());
 		return currentDate;
+	}
+	
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
 	}
 
 }

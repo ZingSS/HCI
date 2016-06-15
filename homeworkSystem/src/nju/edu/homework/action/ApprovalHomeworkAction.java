@@ -3,6 +3,7 @@ package nju.edu.homework.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import nju.edu.homework.model.Course;
 import nju.edu.homework.model.Grade;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.model.Message;
@@ -13,6 +14,7 @@ import nju.edu.homework.service.MessageService;
 import nju.edu.homework.service.UserService;
 import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.AssistantStudentHomworkVO;
+import nju.edu.homework.vo.OnlineUserVO;
 import nju.edu.homework.vo.StudentSubmitGradeVO;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -37,6 +39,8 @@ public class ApprovalHomeworkAction extends BaseAction{
 	private int courseId;
 	private String courseName;
 	private Homework homework;
+	private List<Course> courseList;
+	private Course course;
 	
 	private List<AssistantStudentHomworkVO> studentList;
 	
@@ -51,8 +55,13 @@ public class ApprovalHomeworkAction extends BaseAction{
 		int homeworkId = Integer.parseInt(request.getParameter("homeworkId"));
 		int courseId = Integer.parseInt(request.getParameter("courseId"));
 		setCourseId(courseId);
+		setCourse(courseService.getCourseById(courseId));
 		setCourseName(courseService.getCourseNameById(courseId));
 		setHomework(homeworkService.getHomeworkById(homeworkId));
+		OnlineUserVO uservo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(uservo.getId());
+		cList.remove(courseService.getCourseById(courseId));
+		setCourseList(cList);
 		List<User> students = new ArrayList<User>(courseService.getStudentsByCourseId(courseId));
 		studentList = new ArrayList<AssistantStudentHomworkVO>();
 		for(User student : students){
@@ -73,6 +82,8 @@ public class ApprovalHomeworkAction extends BaseAction{
 		}
 		return SUCCESS;
 	}
+	
+	
 	
 	@Action(
 			value = "passApproval",
@@ -134,4 +145,19 @@ public class ApprovalHomeworkAction extends BaseAction{
 		return studentList;
 	}
 
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 }
