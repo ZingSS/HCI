@@ -12,13 +12,12 @@
 </head>
 <body>
 	<div class="left-sidebar">
-			<div class="left-title"><span><s:property value="semester"/></span></div>	
+			<div class="left-title"><span>我的课程</span></div>	
 			<hr/>
 			<div>
             <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
 	            <ul class="left-sub-list">
-	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程学生</a></li>
-	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程作业</a></li>
+	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">作业列表</a></li>
 	            </ul>
 	            <s:iterator value="#request.courseList">
 	         	 <div class="left-sub-title">

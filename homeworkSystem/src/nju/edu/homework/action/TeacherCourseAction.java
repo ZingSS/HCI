@@ -25,6 +25,15 @@ public class TeacherCourseAction extends BaseAction{
 	private List<User> inCourseAssistantList;
 	private List<User> studentList;
 	private Course course;
+	private String semester;
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+
 	private List<Course> courseList;
 	
 	private Date currentDate;
@@ -48,10 +57,20 @@ public class TeacherCourseAction extends BaseAction{
 		setInCourseAssistantList(courseService.getAssistantByCourse(id));
 		setStudentList(list);
 		
+		String semester=request.getParameter("semester");
+		setSemester(semester);
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
-		cList.remove(courseService.getCourseById(id));
-		setCourseList(cList);
+		List<Course> semesterList = new ArrayList<Course>();
+		for(Course course : cList){
+			if (semester.equals(course.getSemester().getName())) {
+				if(!course.getName().equals(courseService.getCourseById(id).getName())){
+					semesterList.add(course);
+				}
+			}
+		}
+		semesterList.remove(courseService.getCourseById(id));
+		setCourseList(semesterList);
 		return SUCCESS;
 	}
 

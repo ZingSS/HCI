@@ -61,8 +61,8 @@
 			                	</s:iterator>
 			                </td>
 			                <td><s:property value ="%{student.size()}"/></td>
-			                <td><a class="jump-td-a" href="teacherCourse.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">进入课程</a></td>
-			                <td class="update-user"><a class="jump-td-a" href="showTeacherHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">课程作业</a></td>
+			                <td><a class="jump-td-a" href="teacherCourse.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>&semester=<s:property value="#semester.key"/>">进入课程</a></td>
+			                <td class="update-user"><a class="jump-td-a" href="showTeacherHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>&semester=<s:property value="#semester.key"/>">课程作业</a></td>
 			            </tr>
 	            	</s:iterator>
 	            </s:iterator>

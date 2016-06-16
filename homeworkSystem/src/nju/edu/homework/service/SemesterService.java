@@ -30,7 +30,6 @@ public interface SemesterService {
 	public Semester getSemester(String semester);
 
 	public List<Semester> getValidSemester();
-
 	
 
 }
