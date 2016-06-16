@@ -2,11 +2,15 @@ package nju.edu.homework.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import nju.edu.homework.model.Course;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.service.CourseService;
 import nju.edu.homework.service.FileService;
 import nju.edu.homework.service.HomeworkService;
+import nju.edu.homework.service.UserService;
 import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.OnlineUserVO;
 
@@ -37,6 +41,34 @@ public class SubmitHomeworkAction extends BaseAction{
 	
 	private String courseName;
 	private Homework homework;
+	private List<Course> courseList;
+	private String semester;
+	private Course course;
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	@Autowired
+	private UserService userService;
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+	
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
 	
 	@Action(
 			value = "toSubmitHomework",
@@ -49,7 +81,20 @@ public class SubmitHomeworkAction extends BaseAction{
 		int courseId = Integer.parseInt(request.getParameter("courseId"));
 		setCourseId(courseId);
 		setCourseName(courseService.getCourseNameById(courseId));
+		setCourse(courseService.getCourseById(courseId));
 		setHomework(homeworkService.getHomeworkById(homeworkId));
+		courseList = new ArrayList<Course>();
+		OnlineUserVO user = (OnlineUserVO)session.get("onlineUser");
+		String term =courseService.getCourseById(courseId).getSemester().getName();
+		List<Course> cList = userService.getStudentCourseBySemester(user.getId(), term);
+		session.put("semester", term);
+		setSemester(term);
+		for(Course course : cList){
+			if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
+				courseList.add(course);
+			}
+		}
+		setCourseList(courseList);
 		return SUCCESS;
 	}
 	
@@ -67,6 +112,21 @@ public class SubmitHomeworkAction extends BaseAction{
 		setCourseId(courseId);
 		// 保存上传的附件
 		saveFile(courseId, homeworkId);
+		setCourse(courseService.getCourseById(courseId));
+		setHomework(homeworkService.getHomeworkById(homeworkId));
+		courseList = new ArrayList<Course>();
+		OnlineUserVO user = (OnlineUserVO)session.get("onlineUser");
+		String term =courseService.getCourseById(courseId).getSemester().getName();
+		List<Course> cList = userService.getStudentCourseBySemester(user.getId(), term);
+		session.put("semester", term);
+		setSemester(term);
+		for(Course course : cList){
+			if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
+				courseList.add(course);
+			}
+		}
+		setCourseList(courseList);
+
 		
 		return SUCCESS;
 	}

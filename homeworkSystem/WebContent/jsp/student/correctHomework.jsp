@@ -22,9 +22,6 @@
 	            	<li><a href="showStudentCourseList.action">所有课程</a></li>
 	            </ul>
 	            <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
-		            <ul class="left-sub-list">
-		                <li><a href="showStudentsHomework.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程作业</a></li>
-		            </ul>
 	        	</div>
 			</div>
 		<div class="right-content">

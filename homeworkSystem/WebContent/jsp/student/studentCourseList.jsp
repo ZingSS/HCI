@@ -13,10 +13,24 @@
 <body>
 	<s:include value="../student/header.jsp"></s:include>
 	<div class="content">
-		<div class="left-sidebar">
-				<div class="left-title"><span>我的课程</span></div>
-				<hr/>
-			</div>
+			<div class="left-sidebar">
+			<div class="left-title"><span>我的课程</span></div>
+			<hr/>
+			<div>
+            <ul class="left-list">
+            	<li><a href="showTeacherCourseList.action">全部课程</a></li>
+            </ul>
+            <div class="left-sub-title">
+            	<select>
+            	<option>全部学期</option>
+            	<s:iterator value="semesterCourseList" id="semesterSelect">
+            		<option><s:property value="#semesterSelect.key"/></option>
+            	</s:iterator>
+            	</select>
+            </div>
+            	
+        	</div>
+		</div>
 			<div class="right-content">
 				<div class="right-info-div">
 					<span>助教课程</span>
@@ -116,7 +130,7 @@
 					                	<td>尚未开课</td>
 					                </s:if>
 					                <s:else>
-					                	<td><a class="jump-td-a" href="showStudentHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">课程作业</a></td>	
+					                	<td><a class="jump-td-a" href="showStudentHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>&semester=<s:property value="#semester.key"/>">课程作业</a></td>	
 					                </s:else>
 					            </tr>
 							</s:iterator>

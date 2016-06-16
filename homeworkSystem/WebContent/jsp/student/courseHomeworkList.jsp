@@ -13,19 +13,7 @@
 <body>
 	<s:include value="../student/header.jsp"></s:include>
 	<div class="content">
-		<div class="left-sidebar">
-			<div class="left-title"><span>我的课程</span></div>	
-			<hr/>
-			<div>
-            <ul class="left-list">
-            	<li><a href="showStudentCourseList.action">所有课程</a></li>
-            </ul>
-            <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
-	            <ul class="left-sub-list">
-	                <li><a href="showStudentHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程作业</a></li>
-	            </ul>
-        	</div>
-		</div>
+		<s:include value="../student/courseSide.jsp"></s:include>
 		<div class="right-content">
 			<div class="right-info-div">
 				<div>
@@ -103,7 +91,7 @@
 		                </td>
 		                <td class="homework-state">
 			                <s:if test="%{homework.studentDDL > currentTime}">
-			              		<a href="toSubmitHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="course.id"/>" class="add-td-a">
+			              		<a href="toSubmitHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="course.id"/>&semester=<s:property value="course.semester.name"/>" class="add-td-a">
 			              		<s:if test="%{submit}">
 			              		已提交
 			              		</s:if>

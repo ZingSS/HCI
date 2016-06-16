@@ -71,7 +71,6 @@ public class TeacherCourseAction extends BaseAction{
 				}
 			}
 		}
-		System.out.println("testCourse"+course.getSemester().getName()+courseList.size());
 		setCourseList(courseList);
 		return SUCCESS;
 	}

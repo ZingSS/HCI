@@ -10,6 +10,7 @@ import nju.edu.homework.model.Homework;
 import nju.edu.homework.service.CourseService;
 import nju.edu.homework.service.FileService;
 import nju.edu.homework.service.GradeService;
+import nju.edu.homework.service.UserService;
 import nju.edu.homework.vo.OnlineUserVO;
 import nju.edu.homework.vo.StudentHomeworkVO;
 
@@ -32,9 +33,28 @@ public class StudentHomeworkListAction extends BaseAction{
 	
 	private Course course;
 	private List<StudentHomeworkVO> homeworkList;
+	@Autowired
+	private UserService userService;
 	
 	private Timestamp currentTime;
+	private List<Course> courseList;
+	private String semester;
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
 	
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+
 	@Action(
 			value = "showStudentHomeworkList",
 			results = {
@@ -46,6 +66,18 @@ public class StudentHomeworkListAction extends BaseAction{
 		setCourse(courseService.getCourseById(courseId));
 		OnlineUserVO user = (OnlineUserVO)session.get("onlineUser");
 		List<Homework> homeworks = courseService.getHomeworkByCourseId(courseId);
+		courseList = new ArrayList<Course>();
+		String term =request.getParameter("semester");
+		List<Course> cList = userService.getStudentCourseBySemester(user.getId(), term);
+		session.put("semester", term);
+		setSemester(term);
+		for(Course course : cList){
+			if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
+				courseList.add(course);
+			}
+		}
+		System.out.println("testCourse"+course.getSemester().getName()+courseList.size());
+		setCourseList(courseList);
 		homeworkList = new ArrayList<StudentHomeworkVO>();
 		for(Homework homework: homeworks){
 			boolean submit = fileService.hasStudentSubmited(homework.getId(), user.getId());
