@@ -42,6 +42,7 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 	private int courseId;
 	private String courseName;
 	private List<Course> courseList;
+	private String semester;
 	
 	@Action(
 			value = "showStudentList",
@@ -52,8 +53,17 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
 		int id = (int) session.get("courseId");
-		cList.remove(courseService.getCourseById(id));
-		setCourseList(cList);
+		courseList= new ArrayList<Course>();
+		semester = (String) session.get("semester");
+		setSemester(semester);
+		for(Course course : cList){
+			if (semester.equals(course.getSemester().getName())) {
+				if(!course.getName().equals(courseService.getCourseById(id).getName())){
+					courseList.add(course);
+				}
+			}
+		}
+		setCourseList(courseList);
 		showAllStudent();
 		return SUCCESS;
 	}
@@ -67,8 +77,17 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
 		int id = (int) session.get("courseId");
-		cList.remove(courseService.getCourseById(id));
-		setCourseList(cList);
+		courseList= new ArrayList<Course>();
+		semester = (String) session.get("semester");
+		setSemester(semester);
+		for(Course course : cList){
+			if (semester.equals(course.getSemester().getName())) {
+				if(!course.getName().equals(courseService.getCourseById(id).getName())){
+					courseList.add(course);
+				}
+			}
+		}
+		setCourseList(courseList);
 		showAllStudent();
 		return SUCCESS;
 	}
@@ -109,6 +128,17 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 					inOrAssisVO.isIn(), inOrAssisVO.getAssistantCourseId());
 			studentList.add(vo);
 		}	
+	}
+
+	
+	public String getSemester() {
+		return semester;
+	}
+
+
+
+	public void setSemester(String semester) {
+		this.semester = semester;
 	}
 
 	public int getCourseId() {

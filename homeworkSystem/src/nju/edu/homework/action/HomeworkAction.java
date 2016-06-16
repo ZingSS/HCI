@@ -2,6 +2,7 @@ package nju.edu.homework.action;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -33,6 +34,17 @@ public class HomeworkAction extends BaseAction{
 	private List<Course> courseList;
 	
 	private Date currentDate;
+	private String semester;
+	
+	public String getSemester() {
+		return semester;
+	}
+
+
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
 
 	@Action(
 			value = "showTeacherHomeworkList",
@@ -46,8 +58,18 @@ public class HomeworkAction extends BaseAction{
 		setHomeworkList(courseService.getHomeworkByCourseId(id));
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
-		cList.remove(courseService.getCourseById(id));
-		setCourseList(cList);
+		courseList= new ArrayList<Course>();
+		semester=request.getParameter("semester");
+		session.put("semester", semester);
+		setSemester(semester);
+		for(Course course : cList){
+			if (semester.equals(course.getSemester().getName())) {
+				if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
+					courseList.add(course);
+				}
+			}
+		}
+		setCourseList(courseList);
 		return SUCCESS;
 	}
 	

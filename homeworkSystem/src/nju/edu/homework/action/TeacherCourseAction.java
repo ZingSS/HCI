@@ -57,20 +57,22 @@ public class TeacherCourseAction extends BaseAction{
 		setInCourseAssistantList(courseService.getAssistantByCourse(id));
 		setStudentList(list);
 		
-		String semester=request.getParameter("semester");
-		setSemester(semester);
+		String term =request.getParameter("semester");
+		session.put("semester", term);
+		setSemester(term);
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
-		List<Course> semesterList = new ArrayList<Course>();
+		courseList = new ArrayList<Course>();
 		for(Course course : cList){
-			if (semester.equals(course.getSemester().getName())) {
+			System.out.println(term+" "+course.getSemester().getName());
+			if (term.equals(course.getSemester().getName())) {
 				if(!course.getName().equals(courseService.getCourseById(id).getName())){
-					semesterList.add(course);
+					courseList.add(course);
 				}
 			}
 		}
-		semesterList.remove(courseService.getCourseById(id));
-		setCourseList(semesterList);
+		System.out.println("testCourse"+course.getSemester().getName()+courseList.size());
+		setCourseList(courseList);
 		return SUCCESS;
 	}
 

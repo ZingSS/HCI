@@ -36,11 +36,22 @@ public class ApprovalHomeworkAction extends BaseAction{
 	@Autowired
 	private UserService userService;
 	
+	public String getSemester() {
+		return semester;
+	}
+
+
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+
 	private int courseId;
 	private String courseName;
 	private Homework homework;
 	private List<Course> courseList;
 	private Course course;
+	private String semester;
 	
 	private List<AssistantStudentHomworkVO> studentList;
 	
@@ -60,8 +71,17 @@ public class ApprovalHomeworkAction extends BaseAction{
 		setHomework(homeworkService.getHomeworkById(homeworkId));
 		OnlineUserVO uservo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(uservo.getId());
-		cList.remove(courseService.getCourseById(courseId));
-		setCourseList(cList);
+		courseList = new ArrayList<Course>();
+		semester = (String) session.get("semester");
+		setSemester(semester);
+		for(Course course : cList){
+			if (semester.equals(course.getSemester().getName())) {
+				if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
+					courseList.add(course);
+				}
+			}
+		}
+		setCourseList(courseList);
 		List<User> students = new ArrayList<User>(courseService.getStudentsByCourseId(courseId));
 		studentList = new ArrayList<AssistantStudentHomworkVO>();
 		for(User student : students){
