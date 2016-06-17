@@ -15,15 +15,17 @@
 			<div class="left-title"><span><s:property value="course.semester.name"/></span></div>	
 			<hr/>
 			<div>
-            <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
-	            <ul class="left-sub-list">
-	                <li><a href="showStudentHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&semester=<s:property value="course.semester.name"/>">作业列表</a></li>
-	            </ul>
-	            <s:iterator value="#request.courseList">
+	         
+	            <s:iterator value="#request.courseList" id="cList">
 	         	 <div class="left-sub-title">
 	         	 <a href="showStudentHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>&semester=<s:property value="course.semester.name"/>">
 	         	 <s:property value="name"/>
 	         	 </a></div>
+	         	  <s:if test="#cList.name==#request.course.name">
+	         	    <ul class="left-sub-list">
+	                <li><a href="showStudentHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&semester=<s:property value="course.semester.name"/>">作业列表</a></li>
+	            </ul>
+	         	 </s:if>
 	            </s:iterator>
         	</div>
 		</div>

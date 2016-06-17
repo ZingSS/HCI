@@ -58,9 +58,7 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 		setSemester(semester);
 		for(Course course : cList){
 			if (semester.equals(course.getSemester().getName())) {
-				if(!course.getName().equals(courseService.getCourseById(id).getName())){
 					courseList.add(course);
-				}
 			}
 		}
 		setCourseList(courseList);
@@ -82,9 +80,7 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 		setSemester(semester);
 		for(Course course : cList){
 			if (semester.equals(course.getSemester().getName())) {
-				if(!course.getName().equals(courseService.getCourseById(id).getName())){
 					courseList.add(course);
-				}
 			}
 		}
 		setCourseList(courseList);

@@ -91,7 +91,7 @@
 		                </td>
 		                <td class="homework-state">
 			                <s:if test="%{homework.studentDDL > currentTime}">
-			              		<a href="toSubmitHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="course.id"/>&semester=<s:property value="course.semester.name"/>" class="add-td-a">
+			              		<a href="toSubmitHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="course.id"/>" class="add-td-a">
 			              		<s:if test="%{submit}">
 			              		已提交
 			              		</s:if>

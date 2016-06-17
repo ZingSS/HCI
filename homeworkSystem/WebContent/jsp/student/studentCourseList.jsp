@@ -130,7 +130,7 @@
 					                	<td>尚未开课</td>
 					                </s:if>
 					                <s:else>
-					                	<td><a class="jump-td-a" href="showStudentHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>&semester=<s:property value="#semester.key"/>">课程作业</a></td>	
+					                	<td><a class="jump-td-a" href="showStudentHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">课程作业</a></td>	
 					                </s:else>
 					            </tr>
 							</s:iterator>

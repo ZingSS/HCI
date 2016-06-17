@@ -76,9 +76,7 @@ public class ApprovalHomeworkAction extends BaseAction{
 		setSemester(semester);
 		for(Course course : cList){
 			if (semester.equals(course.getSemester().getName())) {
-				if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
 					courseList.add(course);
-				}
 			}
 		}
 		setCourseList(courseList);

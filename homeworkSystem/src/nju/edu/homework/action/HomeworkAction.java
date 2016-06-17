@@ -59,14 +59,12 @@ public class HomeworkAction extends BaseAction{
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
 		courseList= new ArrayList<Course>();
-		semester=request.getParameter("semester");
+		semester=courseService.getCourseById(id).getSemester().getName();
 		session.put("semester", semester);
 		setSemester(semester);
 		for(Course course : cList){
 			if (semester.equals(course.getSemester().getName())) {
-				if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
 					courseList.add(course);
-				}
 			}
 		}
 		setCourseList(courseList);

@@ -90,9 +90,7 @@ public class SubmitHomeworkAction extends BaseAction{
 		session.put("semester", term);
 		setSemester(term);
 		for(Course course : cList){
-			if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
 				courseList.add(course);
-			}
 		}
 		setCourseList(courseList);
 		return SUCCESS;
@@ -121,9 +119,7 @@ public class SubmitHomeworkAction extends BaseAction{
 		session.put("semester", term);
 		setSemester(term);
 		for(Course course : cList){
-			if(!course.getName().equals(courseService.getCourseById(courseId).getName())){
 				courseList.add(course);
-			}
 		}
 		setCourseList(courseList);
 

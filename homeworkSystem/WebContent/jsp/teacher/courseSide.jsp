@@ -15,16 +15,18 @@
 			<div class="left-title"><span><s:property value="course.semester.name"/></span></div>	
 			<hr/>
 			<div>
-            <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
-	            <ul class="left-sub-list">
-	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&semester=<s:property value="course.semester.name"/>">课程学生</a></li>
-	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&semester=<s:property value="course.semester.name"/>">课程作业</a></li>
-	            </ul>
-	            <s:iterator value="#request.courseList">
+	            <s:iterator value="#request.courseList" id="cList">
 	         	 <div class="left-sub-title">
-	         	 <a href="teacherCourse.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>&semester=<s:property value="course.semester.name"/>">
+	         	 <a href="teacherCourse.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">
 	         	 <s:property value="name"/>
-	         	 </a></div>
+	         	 </a>
+	         	 </div>
+	         	 <s:if test="#cList.name==#request.course.name">
+	         	  <ul class="left-sub-list">
+	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程学生</a></li>
+	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程作业</a></li>
+	            </ul>
+	         	 </s:if>
 	            </s:iterator>
         	</div>
 		</div>
