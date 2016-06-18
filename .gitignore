@@ -51,3 +51,6 @@ build
 ~*
 
 homeworkSystem/src/applicationContext.xml
+/Servers
+/RemoteSystemsTempFiles
+/.metadata
