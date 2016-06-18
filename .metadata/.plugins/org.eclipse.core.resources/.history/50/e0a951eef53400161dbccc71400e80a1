@@ -1,0 +1,39 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="nju.edu.homework.model.Course"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的课程列表</title>
+</head>
+<body>
+	<s:include value="../student/header.jsp"></s:include>
+	<div class="content">
+			<div class="left-sidebar">
+			<div class="left-title"><span>我的课程</span></div>
+			<hr/>
+			<div>
+            <ul class="left-list">
+            	<li><a href="showTeacherCourseList.action">全部课程</a></li>
+            </ul>
+            <div class="left-sub-title">
+            	<select>
+            	<option>全部学期</option>
+            	<s:iterator value="semesterCourseList" id="semesterSelect">
+            		<option><s:property value="#semesterSelect.key"/></option>
+            	</s:iterator>
+            	</select>
+            </div>
+            	
+        	</div>
+		</div>
+			
+       
+    </div>
+
+</body>
+</html>
