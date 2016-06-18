@@ -1,3 +1,0 @@
-#Tomcat publish data
-#Sat Jun 18 09:43:12 CST 2016
-org.eclipse.jst.jee.server\:/binary\:/Users/soujing/Documents/Study/Junior/HCI/HCI/homeworkSystem/WebContent/WEB-INF/lib/spring-web-4.1.4.RELEASE.jar=WEB-INF/lib/spring-web-4.1.4.RELEASE.jar
