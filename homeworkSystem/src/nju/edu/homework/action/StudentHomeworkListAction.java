@@ -68,13 +68,15 @@ public class StudentHomeworkListAction extends BaseAction{
 		List<Homework> homeworks = courseService.getHomeworkByCourseId(courseId);
 		courseList = new ArrayList<Course>();
 		String term =courseService.getCourseById(courseId).getSemester().getName();
-		List<Course> cList = userService.getStudentCourseBySemester(user.getId(), term);
+		List<Course> cList = courseService.getCourseByStudentId(user.getId());
 		session.put("semester", term);
 		setSemester(term);
 		for(Course course : cList){
+			if (term.equals(course.getSemester().getName())) {
+				System.out.println("course "+course.getName());
 				courseList.add(course);
+			}
 		}
-		System.out.println("testCourse"+course.getSemester().getName()+courseList.size());
 		setCourseList(courseList);
 		homeworkList = new ArrayList<StudentHomeworkVO>();
 		for(Homework homework: homeworks){
@@ -87,7 +89,6 @@ public class StudentHomeworkListAction extends BaseAction{
 			else{
 				vo = new StudentHomeworkVO(homework, submit, grade.getGrade(), grade.getComment());
 			}
-			System.out.println(vo.getHomework().getName() + "   " + vo.isSubmit() + "==================="); 
 			homeworkList.add(vo);
 		}
 		return SUCCESS;
