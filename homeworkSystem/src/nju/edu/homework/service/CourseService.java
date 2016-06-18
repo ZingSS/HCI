@@ -25,7 +25,7 @@ public interface CourseService {
 	public Course getCourseById(int id);
 	
 	public List<Course> getCourseByTeacherId(int teacherId);
-
+	
 	public ResultMessage addStudent(int courseId, int studentId);
 	
 	public ResultMessage addTeacher(int teacherId, int courseId);

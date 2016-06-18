@@ -86,11 +86,13 @@ public class SubmitHomeworkAction extends BaseAction{
 		courseList = new ArrayList<Course>();
 		OnlineUserVO user = (OnlineUserVO)session.get("onlineUser");
 		String term =courseService.getCourseById(courseId).getSemester().getName();
-		List<Course> cList = userService.getStudentCourseBySemester(user.getId(), term);
+		List<Course> cList = courseService.getCourseByStudentId(user.getId());
 		session.put("semester", term);
 		setSemester(term);
 		for(Course course : cList){
+			if (term.equals(course.getSemester().getName())) {
 				courseList.add(course);
+			}
 		}
 		setCourseList(courseList);
 		return SUCCESS;
@@ -115,11 +117,13 @@ public class SubmitHomeworkAction extends BaseAction{
 		courseList = new ArrayList<Course>();
 		OnlineUserVO user = (OnlineUserVO)session.get("onlineUser");
 		String term =courseService.getCourseById(courseId).getSemester().getName();
-		List<Course> cList = userService.getStudentCourseBySemester(user.getId(), term);
+		List<Course> cList = courseService.getCourseByStudentId(user.getId());
 		session.put("semester", term);
 		setSemester(term);
 		for(Course course : cList){
+			if (term.equals(course.getSemester().getName())) {
 				courseList.add(course);
+			}
 		}
 		setCourseList(courseList);
 
