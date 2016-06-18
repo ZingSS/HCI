@@ -64,7 +64,35 @@ public class TeacherCourseAction extends BaseAction{
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
 		courseList = new ArrayList<Course>();
 		for(Course course : cList){
-			System.out.println(term+" "+course.getSemester().getName());
+			if (term.equals(course.getSemester().getName())) {
+					courseList.add(course);
+			}
+		}
+		setCourseList(courseList);
+		return SUCCESS;
+	}
+	
+	@Action(
+		value = "getAnnouncement",
+				results = {
+						@Result(name = SUCCESS, location = "/jsp/teacher/announcement.jsp"),
+	})
+	public String getAnnouncement(){
+		int id = Integer.parseInt(request.getParameter("courseId"));
+		session.put("courseId", id);
+		setCourse(courseService.getCourseById(id));
+		List<User> list = new ArrayList<User>(courseService.getStudentsByCourseId(id));
+
+		setInCourseAssistantList(courseService.getAssistantByCourse(id));
+		setStudentList(list);
+		
+		String term =courseService.getCourseById(id).getSemester().getName();
+		session.put("semester", term);
+		setSemester(term);
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		courseList = new ArrayList<Course>();
+		for(Course course : cList){
 			if (term.equals(course.getSemester().getName())) {
 					courseList.add(course);
 			}

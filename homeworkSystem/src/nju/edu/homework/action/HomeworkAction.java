@@ -81,10 +81,49 @@ public class HomeworkAction extends BaseAction{
 		setCourse(courseService.getCourseById(id));
 		setCourseName(course.getName());
 		setCourseId(id);
+		String term =courseService.getCourseById(id).getSemester().getName();
+		session.put("semester", term);
+		setSemester(term);
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		courseList = new ArrayList<Course>();
+		for(Course course : cList){
+			System.out.println(term+" "+course.getSemester().getName());
+			if (term.equals(course.getSemester().getName())) {
+					courseList.add(course);
+			}
+		}
+		setCourseList(courseList);
 		
 		return SUCCESS;
 	}
 	
+	@Action(
+			value = "toAddAnnouncement",
+			results = {
+					@Result(name = SUCCESS, location = "/jsp/teacher/addAnnouncement.jsp"),
+			})
+	public String toAddAnnouncement() throws Exception {
+		int id = Integer.parseInt(request.getParameter("courseId"));
+		setCourse(courseService.getCourseById(id));
+		setCourseName(course.getName());
+		setCourseId(id);
+		String term =courseService.getCourseById(id).getSemester().getName();
+		session.put("semester", term);
+		setSemester(term);
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		courseList = new ArrayList<Course>();
+		for(Course course : cList){
+			System.out.println(term+" "+course.getSemester().getName());
+			if (term.equals(course.getSemester().getName())) {
+					courseList.add(course);
+			}
+		}
+		setCourseList(courseList);
+		
+		return SUCCESS;
+	}
 
 	public List<Homework> getHomeworkList() {
 		return homeworkList;

@@ -25,6 +25,7 @@
 	         	  <ul class="left-sub-list">
 	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程学生</a></li>
 	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程作业</a></li>
+	     			 <li><a href="getAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
 	            </ul>
 	         	 </s:if>
 	            </s:iterator>
