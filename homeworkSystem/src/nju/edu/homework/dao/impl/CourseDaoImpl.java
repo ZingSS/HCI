@@ -1,5 +1,6 @@
 package nju.edu.homework.dao.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,7 @@ public class CourseDaoImpl implements CourseDao{
 	public List<Announcement> getAnnouncement(int id) {
 		String sqlStr = "from Announcement s where s.cid=" + id;
 		List<Announcement> list = baseDao.find(sqlStr);
+		Collections.sort(list);
 		return list;
 	}
 

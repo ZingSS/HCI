@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "announcement")
-public class Announcement  implements Serializable{
+public class Announcement  implements Serializable, Comparable<Announcement>{
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -55,6 +55,9 @@ public class Announcement  implements Serializable{
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+	@Override
+	public int compareTo(Announcement o) {
+		return o.getAtime().compareTo(this.getAtime());
+	}
 
 }
