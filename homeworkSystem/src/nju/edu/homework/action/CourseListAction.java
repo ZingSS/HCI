@@ -88,12 +88,10 @@ public class CourseListAction extends BaseAction{
 	}
 
 	public String getSemester() {
-		System.out.println(semester + " !");
 		return semester;
 	}
 
 	public void setSemester(String semester) {
-		System.out.println(semester + " set");
 		this.semester = semester;
 	}
 

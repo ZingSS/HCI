@@ -4,6 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.model.Message;
 import nju.edu.homework.service.FileService;
@@ -11,12 +18,6 @@ import nju.edu.homework.service.HomeworkService;
 import nju.edu.homework.service.MessageService;
 import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.OnlineUserVO;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Result;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 @Controller
 public class AddAnnouncement extends BaseAction {
@@ -65,34 +66,25 @@ public class AddAnnouncement extends BaseAction {
 		setCourseId(id);
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		System.out.println(title+content);
-			return SUCCESS;
-	
+		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
+		Timestamp d = new Timestamp(System.currentTimeMillis()); 
+		String[] arr = d.toString().split("\\.");
+		Announcement an = new Announcement();
+		an.setCid(id);
+		an.setContent(content);
+		an.setTitle(title);
+		an.setTname(vo.getName());
+		an.setAtime(arr[0]);
+		homeworkService.addAnnouncement(an);
+		setMessage(an,id);
+		return SUCCESS;
 	}
 
-	private void setMessage(int courseId) {
-		Message message = new Message("布置了新作业", "作业标题：" + homework.getName(), Common.PUBLISH_HOMEWORK);
+	private void setMessage(Announcement an,int courseId) {
+		Message message = new Message("有了新公告", "公告标题：" + an.getTitle(), Common.NEW_ANNOUNCEMENT);
 		// 发给学生
 		messageService.saveMessage(message, courseId);
 		// 发给助教
-		Message assistantMessage = new Message("布置了新作业", "作业标题：" + homework.getName() + "。请注意按时批改",
-				Common.TO_CORRECT_HOMEWORK);
-		messageService.saveMessage(assistantMessage, courseId);
-	}
-
-	private void saveUploadFile(int courseId, int homeworkId) throws IOException {
-		String dir = Common.buildDir(courseId, homeworkId);
-		if (dir.equals("")) {
-			return;
-		}
-		String fileName = "作业附件" + Common.getExtensionName(getFileFileName());
-		File fileToCreate = new File(dir, fileName);
-		FileUtils.copyFile(getFile(), fileToCreate);
-
-		nju.edu.homework.model.File fileEntity = new nju.edu.homework.model.File(fileName, dir);
-
-		OnlineUserVO user = (OnlineUserVO) session.get("onlineUser");
-		fileService.addHomeworkFile(fileEntity, homeworkId, user.getId());
 	}
 
 	public int getCourseId() {

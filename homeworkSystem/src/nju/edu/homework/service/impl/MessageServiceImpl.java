@@ -89,6 +89,9 @@ public class MessageServiceImpl implements MessageService{
 		}
 		else if(type.equals(Common.CORRECTION_OVER)){		// 助教批改结束 要发给教师
 			users.addAll(course.getTeachers());
+		}else if(type.equals(Common.NEW_ANNOUNCEMENT)){
+			users.addAll(course.getStudent());
+			users.addAll(course.getAssistant());
 		}
 		
 		for(User user: users){

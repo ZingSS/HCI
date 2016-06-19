@@ -4,15 +4,16 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import nju.edu.homework.model.Course;
-import nju.edu.homework.model.User;
-import nju.edu.homework.service.CourseService;
-import nju.edu.homework.vo.OnlineUserVO;
-
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import nju.edu.homework.model.Announcement;
+import nju.edu.homework.model.Course;
+import nju.edu.homework.model.User;
+import nju.edu.homework.service.CourseService;
+import nju.edu.homework.vo.OnlineUserVO;
 
 @Controller
 public class TeacherCourseAction extends BaseAction{
@@ -26,6 +27,15 @@ public class TeacherCourseAction extends BaseAction{
 	private List<User> studentList;
 	private Course course;
 	private String semester;
+	private List<Announcement> announcementList;
+	public List<Announcement> getAnnouncementList() {
+		return announcementList;
+	}
+
+	public void setAnnouncementList(List<Announcement> announcementList) {
+		this.announcementList = announcementList;
+	}
+
 	public String getSemester() {
 		return semester;
 	}
@@ -81,6 +91,7 @@ public class TeacherCourseAction extends BaseAction{
 		int id = Integer.parseInt(request.getParameter("courseId"));
 		session.put("courseId", id);
 		setCourse(courseService.getCourseById(id));
+		setAnnouncementList(courseService.getAnnouncementByCid(id));
 		List<User> list = new ArrayList<User>(courseService.getStudentsByCourseId(id));
 
 		setInCourseAssistantList(courseService.getAssistantByCourse(id));

@@ -1160,5 +1160,15 @@ tr.semester-tr td {
   font-size: 12px;
   color: #fff;
   display: inline-block; }
+  
+  .announce-header-info {
+  width: 100%; }
+  .announce-header-info .announce-header-main {
+    width: 95%;
+    background: #F2F2F2;
+    border-left: 20px solid #3BB1E9;
+    float: left;
+    margin: 0 0 30px 0; }
+   
 
 /*# sourceMappingURL=main.css.map */

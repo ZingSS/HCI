@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import nju.edu.homework.dao.BaseDao;
 import nju.edu.homework.dao.HomeworkDao;
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.util.ResultMessage;
 
@@ -49,6 +50,11 @@ public class HomeworkDaoImpl implements HomeworkDao{
 	@Override
 	public Homework getHomeworkById(int id) {
 		return baseDao.getById(Homework.class, id);
+	}
+
+	@Override
+	public void saveAnnouncement(Announcement an) {
+		baseDao.save(an);
 	}
 
 }

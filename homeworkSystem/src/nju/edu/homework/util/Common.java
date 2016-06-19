@@ -42,6 +42,7 @@ public class Common {
 	public static final String PUBLISH_GRADE = "publishGrade";
 	public static final String RE_CORRECT = "reCorrect";
 	public static final String PUBLISH_EXAMPLE = "publishExample";
+	public static final String NEW_ANNOUNCEMENT="newAnnouncement";
 	
 	public static final String STAT_ALL_COURSE = "statAllCourses";
 	public static final String STAT_COURSE_HW = "statCourseHomework";

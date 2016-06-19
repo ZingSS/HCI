@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import nju.edu.homework.dao.CourseDao;
 import nju.edu.homework.dao.HomeworkDao;
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.File;
 import nju.edu.homework.model.Grade;
@@ -38,7 +39,6 @@ public class HomeworkServiceImpl implements HomeworkService{
 		homeworkDao.saveAndGetId(homework);
 		course.getHomeworks().add(homework);
 		courseDao.updateByCourseId(course);
-		System.out.println("这是新建的homework的id" + homework.getId());
 		return homework.getId();
 	}
 
@@ -138,6 +138,11 @@ public class HomeworkServiceImpl implements HomeworkService{
 			vos.add(vo);
 		}
 		return vos;
+	}
+
+	@Override
+	public void addAnnouncement(Announcement an) {
+		homeworkDao.saveAnnouncement(an);
 	}
 
 

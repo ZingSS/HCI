@@ -299,6 +299,11 @@ public class BaseDaoImpl implements BaseDao{
 		return session.createQuery(hql).list();
 	}
 
-
+	@SuppressWarnings("unchecked") 
+	public List find(String queryString) { 
+		Session session = getNewSession();
+		return session.createQuery(queryString).list();
+	
+	} 
 	
 }

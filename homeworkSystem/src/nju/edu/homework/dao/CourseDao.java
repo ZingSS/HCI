@@ -2,6 +2,7 @@ package nju.edu.homework.dao;
 
 import java.util.List;
 
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.util.ResultMessage;
 
@@ -24,5 +25,7 @@ public interface CourseDao {
 	public List<String> getAllSemesters();
 	
 	public int saveAndGetId(Course course);
+
+	public List<Announcement> getAnnouncement(int id);
 
 }

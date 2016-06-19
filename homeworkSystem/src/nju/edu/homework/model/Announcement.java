@@ -1,6 +1,7 @@
 package nju.edu.homework.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,8 +14,29 @@ public class Announcement  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	private int id;
+	public String getAtime() {
+		return atime;
+	}
+	public void setAtime(String atime) {
+		this.atime = atime;
+	}
+	public String getTname() {
+		return tname;
+	}
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
 	private String title;
 	private String content;
+	private int cid;
+	private String atime;
+	private String tname;
+	public int getCid() {
+		return cid;
+	}
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
 	public int getId() {
 		return id;
 	}

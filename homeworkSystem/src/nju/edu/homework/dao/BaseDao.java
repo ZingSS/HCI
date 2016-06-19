@@ -58,4 +58,6 @@ public interface BaseDao {
 	public <C, T> List<T> findOneColumnDesc(Class<C> c, String column, T type);
 	
 	public <T> List<T> findByTimestamp(Class<T> c, String column, Timestamp begin, Timestamp end);
+	
+	public List find(String queryString);
 }

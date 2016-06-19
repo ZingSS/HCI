@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import nju.edu.homework.dao.BaseDao;
 import nju.edu.homework.dao.CourseDao;
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.util.ResultMessage;
 
@@ -59,6 +60,13 @@ public class CourseDaoImpl implements CourseDao{
 	@Override
 	public int saveAndGetId(Course course) {
 		return baseDao.saveAndGetId(course);
+	}
+
+	@Override
+	public List<Announcement> getAnnouncement(int id) {
+		String sqlStr = "from Announcement s where s.cid=" + id;
+		List<Announcement> list = baseDao.find(sqlStr);
+		return list;
 	}
 
 }

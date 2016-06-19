@@ -73,7 +73,6 @@ public class StudentHomeworkListAction extends BaseAction{
 		setSemester(term);
 		for(Course course : cList){
 			if (term.equals(course.getSemester().getName())) {
-				System.out.println("course "+course.getName());
 				courseList.add(course);
 			}
 		}

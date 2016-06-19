@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import nju.edu.homework.dao.CourseDao;
 import nju.edu.homework.dao.SemesterDao;
 import nju.edu.homework.dao.UserDao;
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.model.Semester;
@@ -369,6 +370,11 @@ public class CourseServiceImpl implements CourseService{
 		HomeworkStateNumVO nums = new HomeworkStateNumVO(commit, over, pass);
 		HomeworkStateListVO lists = new HomeworkStateListVO(overHomeworks, passHomeworks);
 		return new StatStudentHomeworkVO(nums, lists);
+	}
+
+	@Override
+	public List<Announcement> getAnnouncementByCid(int id) {
+		return courseDao.getAnnouncement(id);
 	}
 	
 

@@ -3,6 +3,7 @@ package nju.edu.homework.service;
 import java.util.List;
 import java.util.Set;
 
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.model.User;
@@ -59,6 +60,8 @@ public interface CourseService {
 	public StatStudentHomeworkVO getStatAssisHomeworkByMonth(int courseId, String month);
 
 	public StatStudentHomeworkVO getStatStHomeworkByMonth(int courseId, String month);
+
+	public List<Announcement> getAnnouncementByCid(int id);
 
 
 

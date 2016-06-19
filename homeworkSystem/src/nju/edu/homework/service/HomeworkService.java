@@ -2,6 +2,7 @@ package nju.edu.homework.service;
 
 import java.util.List;
 
+import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.util.ResultMessage;
 import nju.edu.homework.vo.ExcelVO;
@@ -32,5 +33,7 @@ public interface HomeworkService {
 	public double getGradeByStudent(int homeworkId, int studentId);
 
 	public List<ExcelVO> getStudentGrade(int id);
+	
+	public void addAnnouncement(Announcement an);
 
 }

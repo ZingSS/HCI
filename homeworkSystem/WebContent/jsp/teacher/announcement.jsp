@@ -41,6 +41,15 @@
 						class="add-td-a">添加公告</a></li>
 				</ul>
 			</div>
+			    <s:iterator value="announcementList" >
+			    <div class="announce-header-info" style="margin-top:2%">
+					<div class="announce-header-main">
+						<span style="font-size: 25px;margin-left:1%;margin-top:2%"><s:property value="title" /></span>
+						<h3 style="font-size: 15px;margin-left:1%;margin-top:1%"><s:property value="tname" />&nbsp<s:property value="atime" /></h3>
+						<h3 style="font-size: 15px;margin-left:1%;margin-top:1%;margin-bottom: 2%">&nbsp &nbsp<s:property value="content" /></h3>
+					</div>
+				</div>
+			    </s:iterator>
 		</div>
 	</div>
 </body>
