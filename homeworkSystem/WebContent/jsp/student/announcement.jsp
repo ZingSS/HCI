@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@ page language="java" import="java.util.List"%>
+<%@ page language="java" import="nju.edu.homework.model.Announcement"%>
 <%
 	String localPath = request.getContextPath();
 %>
@@ -11,9 +13,9 @@
 <title><s:property value="course.name" /></title>
 </head>
 <body>
-	<s:include value="../teacher/header.jsp"></s:include>
+	<s:include value="../student/header.jsp"></s:include>
 	<div class="content">
-		<s:include value="../teacher/courseSide.jsp"></s:include>
+		<s:include value="../student/courseSide.jsp"></s:include>
 		<div class="right-content">
 			<%-- <div><a href="exportCourseExcel.action?courseId=<s:property value="course.id"/>">生成课程Excel文件</a></div> --%>
 			<div class="course-header-info">
@@ -33,18 +35,10 @@
                 </s:if> --%>
 				</div>
 			</div>
-
-			<div class="t-homework">
-				<ul>
-					<li><a
-						href="toAddAnnouncement.action?courseId=<s:property value="course.id"/>"
-						class="add-td-a">添加公告</a></li>
-				</ul>
-			</div>
 			<s:if test="%{announcementList.size() == 0}">
 				<div class="t-homework">暂无公告</div>
 			</s:if>
-			    <s:iterator value="announcementList" >
+			<s:iterator value="announcementList" >
 			    <div class="announce-header-info" style="margin-top:2%">
 					<div class="announce-header-main">
 						<span style="font-size: 25px;margin-left:1%;margin-top:2%"><s:property value="title" /></span>

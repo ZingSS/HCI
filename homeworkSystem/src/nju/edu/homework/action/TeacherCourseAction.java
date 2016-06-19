@@ -13,6 +13,7 @@ import nju.edu.homework.model.Announcement;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.User;
 import nju.edu.homework.service.CourseService;
+import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.OnlineUserVO;
 
 @Controller
@@ -85,7 +86,8 @@ public class TeacherCourseAction extends BaseAction{
 	@Action(
 		value = "getAnnouncement",
 				results = {
-						@Result(name = SUCCESS, location = "/jsp/teacher/announcement.jsp"),
+						@Result(name = Common.ROLE_TEACHER, location = "/jsp/teacher/announcement.jsp"),
+						@Result(name = Common.ROLE_STUDENT, location = "/jsp/student/announcement.jsp")
 	})
 	public String getAnnouncement(){
 		int id = Integer.parseInt(request.getParameter("courseId"));
@@ -101,7 +103,12 @@ public class TeacherCourseAction extends BaseAction{
 		session.put("semester", term);
 		setSemester(term);
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
-		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		List<Course> cList  = null;
+		if(vo.getRole().equals("teacher")){
+			cList = courseService.getCourseByTeacherId(vo.getId());
+		}else if(vo.getRole().equals("student")){
+			cList = courseService.getCourseByStudentId(vo.getId());
+		}
 		courseList = new ArrayList<Course>();
 		for(Course course : cList){
 			if (term.equals(course.getSemester().getName())) {
@@ -109,7 +116,7 @@ public class TeacherCourseAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
-		return SUCCESS;
+		return vo.getRole();
 	}
 
 	public List<User> getInCourseAssistantList() {
