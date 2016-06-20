@@ -47,7 +47,6 @@ Temporary Items
 .apdisk
 
 build
-*.jar
 ~*
 
 homeworkSystem/src/applicationContext.xml
