@@ -20,23 +20,7 @@
 		<s:include value="../teacher/courseSide.jsp"></s:include>
 		
 		<div class="right-content">
-			<div class="course-header-info">
-	        	<div class="course-header-main">
-	        		<span id="course-header-name"><s:property value="course.name"/></span>
-	        		<br/>
-	        		<span id="course-header-id"><s:property value="course.courseId"/></span>
-	        	</div>
-	        	<div class="course-header-left">
-	        		<span><s:property value="course.time"/></span>
-	        		<br/>
-	        		<span><s:property value="course.location"/></span>
-	         		<br/>
-	         		<s:iterator value="%{course.assistant}" >
-		                <span>${ name }</span>
-		            </s:iterator>
-	        	</div>
-	                <%-- <span><s:property value="course.semester.name"/></span> --%>
-	        </div>
+			<s:include value="../teacher/courseHeader.jsp"></s:include>
 
         <div class="search-student">
         	<form action="getStudentList.action" method="post" id="fuzzy-form">
@@ -46,7 +30,7 @@
 		            <input type="text" id="student-userId" name="studentId">
 		            <label>学生姓名</label>
 		            <input type="text" id="student-name" name="name" >
-		            <button type="submit" class="submit-btn">查找</button>
+		            <button type="submit" class="a-btn-confirm">查找</button>
             </form>
             <div class="add-assistant">
             	<table class="main-table">
@@ -85,7 +69,7 @@
                 
         	</table>
             <div class="add-stu-btns sel-btns">
-            	<a id="add-all-assi">添加当前所有</a>
+            	<a id="add-all-assi" class="a-button">添加当前所有</a>
             </div>
             </div>
             
@@ -118,11 +102,14 @@
                 
         	</table>
         	<div class="remove-stu-btns sel-btns">
-            	<a id="remove-all-assi">移除当前所有</a>
+            	<a id="remove-all-assi" class="a-button">移除当前所有</a>
         	</div>
         </div>
 		</div>
     </div>
+    
+    <div id="move-right"><span> >> </span></div>
+    <div id="move-left"><span> << </span></div>
     
     <div id="add-success" class="tip-div">
     	<span>添加成功</span>
@@ -130,23 +117,7 @@
     <div id="remove-success" class="tip-div">
     	<span>移除成功</span>
     </div>
-    
-    
-    
-		<div class="right-content">
-        <div>
-            <form action="getStudentList.action" method="post" class="left-form fuzzy-form">
-            	<s:hidden name="courseId" value="%{courseId}"/>
-            	<s:hidden name="page" value="manageAssistant" /> 
-            	<label>学生学号</label>
-	            <input type="text" id="student-userId" name="studentId">
-	            <label>学生姓名</label>
-	            <input type="text" id="student-name" name="name" >
-	            <button type="submit" class="submit-btn">查找</button>
-            </form>
-        </div>
 
-		</div>
 		
 <script type="text/javascript" src="<%=localPath %>/js/jquery.js" charset="utf-8"></script>
 <script type="text/javascript" src="<%=localPath %>/js/student.js" charset="utf-8"></script>

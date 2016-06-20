@@ -50,7 +50,7 @@
 		<s:if test="%{homework.studentDDL > currentTime}">
 			<div class="homework-commit-state">
 				<span>正在提交中</span>
-				<a>修改作业</a>
+				<a href="toModifyHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="courseId"/>" class="a-button">修改作业</a>
 			</div>
 		</s:if>
 		<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state=='commit'}">

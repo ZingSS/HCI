@@ -21,7 +21,11 @@
 	            <ul class="left-list">
 	            	<li><a href="showStudentCourseList.action">所有课程</a></li>
 	            </ul>
-	            <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
+	            <div class="left-sub-title">
+	            	<a href="showStudentsHomework.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">
+	            		<span><s:property value="course.name"/></span>
+	            	</a>
+	            </div>
 	        	</div>
 			</div>
 		<div class="right-content">
@@ -46,7 +50,7 @@
 						<span>作业提交格式：<s:property value="homework.fileType"/></span>
 	                	<span id="h-title-attach">
 		                	<s:if test="%{homework.fileId != 0}">
-				            	<a href="downloadAttachment.action?fileId=${ homework.fileId }" class="download-td-a">下载附件</a>
+				            	<a href="downloadAttachment.action?fileId=${ homework.fileId }" id="download-file"><img alt="下载" src="../../image/down-white.png"> 附件</a>
 				            </s:if>
 				            <s:else>
 				            	无附件
@@ -58,11 +62,7 @@
 		<div>
 			<div id="a-h-excel">
 				<div id="a-h-output">
-	            	<span>
-			            <a href="exportStudentListExcel.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="update-td-a">
-			            	导出学生名单
-			            </a>
-	            	</span>
+	            	<a href="exportStudentListExcel.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-button">导出名单</a>
 	            </div>
 				<div id="a-h-input">
 					<s:if test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state == 'commit'}">
@@ -70,53 +70,67 @@
 			        		<s:hidden name="courseId" value="%{course.id}"/>
 			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
 			         		<span class="info-title">选择文件：</span><input type="file" id="dofile" name="file"/>
-			         		<button type="submit" class="submit-btn">导入学生成绩</button>
+			         		<button type="submit" class="a-button">导入成绩</button>
 			    		 </form> 
 		            </s:if>
 				</div>
             
 			</div>
            
-            <table id="a-student-table">
+            <table id="a-student-table" class="main-table">
                 <tr>
                     <!-- <th>编号</th> -->
-                    <th>学生学号</th>
-                    <th>学生姓名</th>
-                    <th>作业</th>
-                    <th>成绩</th>
-                    <th>点评</th>
-                    <th>修改</th>
+                    <th class="a-s-id">学号</th>
+                    <th class="a-s-name">姓名</th>
+                    <th class="a-s-hw">作业</th>
+                    <th class="a-s-grade">成绩</th>
+                    <th class="a-s-comment">点评</th>
                 </tr>
-                <s:iterator value="studentList" >
-		            <tr class="homework-line">
-		                <%-- <td class="hidden-id">${ id }</td> --%>
-		                <td class="user-userId">${ studentId }</td>
-		                <td class="user-name">${ name }</td>
-		                <td>
-			               	<s:if test="%{submit}">
-			                	<a href="downloadHomework.action?studentId=<s:property value="id"/>&homeworkId=<s:property value="homework.id"/>" class="download-td-a">
-			                	下载作业
-			                	</a>
-			                </s:if>
-			                <s:else>
-			                	未提交
-			                </s:else>
-		                </td>
-		                <td class="grade">${ grade }</td>
-		                <td class="comment">${ comment }</td>
-		                <s:if test="%{homework.studentDDL < currentTime && homework.state =='commit'}">
-		                	<td class="update-one-grade"><a class="update-td-a">修改</a></td>
-		                </s:if>
-		                <s:else><td></td></s:else>
-		            </tr>
-			</s:iterator>
+                <tr class="scroll-tr">
+				<td colspan="5" class="inner-td">
+					<div class="scorll-table">
+					<table class="inner-table"><tbody>
+						<s:iterator value="studentList" >
+				            <tr class="homework-line">
+				                <%-- <td class="hidden-id">${ id }</td> --%>
+				                <td class="a-s-id">${ studentId }</td>
+				                <td class="a-s-name">${ name }</td>
+				                <td class="download-td a-s-hw">
+					               	<s:if test="%{submit}">
+					                	<a href="downloadHomework.action?studentId=<s:property value="id"/>&homeworkId=<s:property value="homework.id"/>">
+					                	<img alt="下载" src="../../image/down-black.png">
+					                	</a>
+					                </s:if>
+					                <s:else>
+					                	未提交
+					                </s:else>
+				                </td>
+				                <td class="a-s-grade">
+				                <s:if test="%{grade == ''}">0</s:if>
+				                <s:else>${ grade }</s:else>
+				                </td>
+				                <td class="a-s-comment">
+				                <s:if test="%{comment == ''}">暂无</s:if>
+				                <s:else>${ comment }</s:else>
+				                </td>
+				            </tr>
+						</s:iterator>
+						</tbody>
+						</table>
+					</div>
+				</td>
+				</tr>
+                
             </table>
             <div class="a-result-btns">
             	<s:if test="%{course.semester.startTime.after(currentDate) || course.semester.endTime.before(currentDate)}">
             	</s:if>
             	<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state == 'commit'}">
+            		<a href="informTeacher.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-confirm">
+						保存
+					</a>
 					<span>
-					<a href="informTeacher.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="add-td-a">
+					<a href="informTeacher.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-confirm">
 						提交批改结果
 					</a>
 					</span>

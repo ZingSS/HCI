@@ -17,30 +17,16 @@
 	            <ul class="left-list">
 	            	<li><a href="showStudentCourseList.action">所有课程</a></li>
 	            </ul>
-	            <div class="left-sub-title"><span><s:property value="course.name"/></span></div>
+	            <div class="left-sub-title">
+	            	<a href="showStudentsHomework.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">
+	            		<span><s:property value="course.name"/></span>
+	            	</a>
+	            	
+	            </div>
 	        	</div>
 			</div>
 		<div class="right-content">
-			<div class="course-header-info">
-	        	<div class="course-header-main" id="s-course-header-main">
-	        		<span id="course-header-name"><s:property value="course.name"/></span>
-	        		<br/>
-	        		<span id="course-header-id"><s:property value="course.courseId"/></span>
-	        	</div>
-	        	<div class="course-header-left" id="s-course-header-left">
-	        		<span><img alt="上课时间" src="../../image/cal-white.png" class="cal-img"><s:property value="course.time"/></span>
-	        		<br/>
-	        		<span><img alt="上课地点" src="../../image/map-white.png" class="map-img"><s:property value="course.location"/></span>
-	         		<br/>
-	         		<span><img alt="上课教师" src="../../image/tea-white.png" class="tea-img"><s:iterator value="course.teachers" >${ name }  </s:iterator></span>
-	                <br/>
-	                <span><img alt="上课助教" src="../../image/assi-white.png" class="assi-img"><s:iterator value="%{course.assistant}" >${ name }  </s:iterator></span>
-	                <%-- <s:if test="%{course.semester.startTime.after(currentDate)}">
-	                	<a href="assistantManagement.action?courseId=<s:property value="course.id"/>" class="add-td-a">管理助教</a>
-	                </s:if> --%>
-	        	</div>
-	                <%-- <span><s:property value="course.semester.name"/></span> --%>
-	       </div>
+			<s:include value="../student/courseHeader.jsp"></s:include>
         <div>
         
         <s:if test="%{course.semester.startTime.after(currentDate)}">
@@ -77,19 +63,19 @@
 	        			<div class="homework-card-footer">
 	        				<hr/>
 	        				<s:if test="%{studentDDL > currentTime}">
-			                	<span class="homework-undo">距提交截止 xx天xx小时</span>
+			                	<span class="h-commit-span">距提交截止 xx天xx小时</span>
 			            	</s:if>
 	        				<s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
-			               		<span class="homework-active">距批改截止 xx天xx小时</span>
+			               		<span class="h-active-span">距批改截止 xx天xx小时</span>
 			            	</s:elseif>
 			            	<s:elseif test="%{assistantDDL > currentTime && state=='approval'}">
-			            		<span class="homework-done">待审批</span>
+			            		<span class="h-done-span">待审批</span>
 			                </s:elseif>
 			                <s:elseif test="%{state=='pass'}">
-			                	<span class="homework-done">已公布</span>
+			                	<span class="h-done-span">已公布</span>
 			                </s:elseif>
 			                <s:else>
-			                	<span class="homework-done">已过期</span>
+			                	<span class="h-done-span">已过期</span>
 			                </s:else>
 	        				<%-- <span>${ studentDDL }</span><span>${ assistantDDL }</span> --%>
 	        			</div>

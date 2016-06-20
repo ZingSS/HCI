@@ -433,6 +433,8 @@ header{
   border-bottom: 1px solid #2e3d54;
 
   z-index: 100;
+  position: fixed;
+  width: 100%;
 }
 nav{
   background: $basic-color;
@@ -471,7 +473,7 @@ nav{
 
 .content{
   height: 100%;
-  padding: 30px 0;
+  padding: 60px 0;
   background: #fff;
 
   form{
@@ -676,7 +678,7 @@ $course-header-h: 90px;
 }
 
 #s-course-header-main{
-  height: 105px;
+  height: 110px;
 
   #course-header-name{
     margin: 22px 0 0;
@@ -684,7 +686,7 @@ $course-header-h: 90px;
 }
 
 #s-course-header-left{
-  height: 105px;
+  height: 110px;
 
   img{
     width: 16px;
@@ -775,6 +777,7 @@ $course-header-h: 90px;
 
   .inner-table{
     margin: 0;
+    width: 100%;
 
     tbody tr:nth-child(even) {
       background: #fff;
@@ -803,6 +806,15 @@ $course-header-h: 90px;
   float:right;
 }
 
+
+#download-file{
+  img{
+    width: 16px;
+    position: relative;
+    top: 3px;
+  }
+  color: #fff;
+}
 
 .t-homework{
   clear: both;
@@ -1020,6 +1032,28 @@ $h-title-border: 10px solid $course-header-color;
   }
 }
 
+.download-td{
+  img{
+    width: 16px;
+  }
+}
+
+.a-s-id{
+  width: 10%;
+}
+.a-s-name{
+  width:10%;
+}
+.a-s-hw{
+  width: 10%;
+}
+.a-s-grade{
+  width: 10%
+}
+.a-s-comment{
+  width: 60%;
+}
+
 #add-h-form{
   clear: both;
 
@@ -1087,20 +1121,20 @@ div#add-h-ddl{
   float: right;
 }
 
-$a-course-height: 60px;
+$a-course-height: 50px;
 
 #assistant-course{
   width: 100%;
   height: $a-course-height;
-  margin:0 0 30px;
+  margin:0 0 20px;
 
   #a-course-title{
     height: $a-course-height;
     line-height: $a-course-height;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     width: 12%;
-    background-color: #983E27;
+    background-color: $main-pink;
     color: #fff;
     font-weight: 100;
     float: left;
@@ -1115,7 +1149,7 @@ $a-course-height: 60px;
       width: 20%;
       padding: 0 15px;
       height: $a-course-height;
-      background: $course-header-color;
+      background: $light-blue;
 
       span{
         display: block;
@@ -1124,17 +1158,17 @@ $a-course-height: 60px;
       }
       #a-course-id{
         font-size: 12px;
-        margin: 5px 0 0;
+        margin: 4px 0 0;
       }
       #a-course-name{
-        font-size: 20px;
+        font-size: 17px;
       }
     }
     #a-course-body{
       height: $a-course-height;
       background: $course-body-color;
       padding: 0 15px;
-      line-height: $a-course-height;
+      line-height: 55px;
       span{
         margin: 0 15px 0 15px;
       }
@@ -1167,7 +1201,7 @@ $a-course-height: 60px;
   margin: 0 0 20px 0;
   #a-h-output{
     float: left;
-    margin: 5px 20px 0 0;
+    margin: 0 20px 0 0;
   }
 
   #a-h-input{
@@ -1234,9 +1268,20 @@ $a-course-height: 60px;
   border: 1px solid $color;
   color: $color;
   background: none;
+
+  cursor: pointer;
 }
 
 .a-button{
+  @include new-a($a-btn);
+
+  &:hover{
+    border: 1px solid $a-btn-hover;
+    color: $a-btn-hover;
+  }
+}
+
+.a-margin-button{
   @include new-a($a-btn);
   margin: 0 0 0 12px;
 
@@ -1621,4 +1666,17 @@ tr.semester-tr td{
   font-size: 12px;
   color: #fff;
   display: inline-block;
+}
+
+
+#move-right{
+  position: absolute;
+  top: 388px;
+  left: 788px;
+}
+
+#move-left{
+  position: absolute;
+  top: 466px;
+  left: 788px;
 }

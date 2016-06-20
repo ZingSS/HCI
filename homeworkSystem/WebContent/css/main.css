@@ -309,7 +309,9 @@ header {
   height: 41px;
   background: #205081;
   border-bottom: 1px solid #2e3d54;
-  z-index: 100; }
+  z-index: 100;
+  position: fixed;
+  width: 100%; }
 
 nav {
   background: #205081;
@@ -335,7 +337,7 @@ nav {
 
 .content {
   height: 100%;
-  padding: 30px 0;
+  padding: 60px 0;
   background: #fff; }
   .content form {
     width: 40%;
@@ -466,12 +468,12 @@ nav {
       margin-top: 7px; }
 
 #s-course-header-main {
-  height: 105px; }
+  height: 110px; }
   #s-course-header-main #course-header-name {
     margin: 22px 0 0; }
 
 #s-course-header-left {
-  height: 105px; }
+  height: 110px; }
   #s-course-header-left img {
     width: 16px;
     margin: 0 10px 0 0; }
@@ -527,7 +529,8 @@ nav {
     overflow-x: hidden;
     overflow-y: auto; }
   .main-table .inner-table {
-    margin: 0; }
+    margin: 0;
+    width: 100%; }
     .main-table .inner-table tbody tr:nth-child(even) {
       background: #fff;
       -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
@@ -549,6 +552,13 @@ nav {
 
 .sel-btns {
   float: right; }
+
+#download-file {
+  color: #fff; }
+  #download-file img {
+    width: 16px;
+    position: relative;
+    top: 3px; }
 
 .t-homework {
   clear: both;
@@ -690,6 +700,24 @@ nav {
   .homework-scores table {
     width: 100%; }
 
+.download-td img {
+  width: 16px; }
+
+.a-s-id {
+  width: 10%; }
+
+.a-s-name {
+  width: 10%; }
+
+.a-s-hw {
+  width: 10%; }
+
+.a-s-grade {
+  width: 10%; }
+
+.a-s-comment {
+  width: 60%; }
+
 #add-h-form {
   clear: both;
   width: 70%;
@@ -737,15 +765,15 @@ div#add-h-ddl {
 
 #assistant-course {
   width: 100%;
-  height: 60px;
-  margin: 0 0 30px; }
+  height: 50px;
+  margin: 0 0 20px; }
   #assistant-course #a-course-title {
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     width: 12%;
-    background-color: #983E27;
+    background-color: #F96241;
     color: #fff;
     font-weight: 100;
     float: left; }
@@ -756,22 +784,22 @@ div#add-h-ddl {
       float: left;
       width: 20%;
       padding: 0 15px;
-      height: 60px;
-      background: #F77A5F; }
+      height: 50px;
+      background: #57b5e8; }
       #assistant-course #a-course-info #a-course-header span {
         display: block;
         color: #fff;
         font-weight: 100; }
       #assistant-course #a-course-info #a-course-header #a-course-id {
         font-size: 12px;
-        margin: 5px 0 0; }
+        margin: 4px 0 0; }
       #assistant-course #a-course-info #a-course-header #a-course-name {
-        font-size: 20px; }
+        font-size: 17px; }
     #assistant-course #a-course-info #a-course-body {
-      height: 60px;
+      height: 50px;
       background: #F2F2F2;
       padding: 0 15px;
-      line-height: 60px; }
+      line-height: 55px; }
       #assistant-course #a-course-info #a-course-body span {
         margin: 0 15px 0 15px; }
       #assistant-course #a-course-info #a-course-body img {
@@ -793,7 +821,7 @@ div#add-h-ddl {
   margin: 0 0 20px 0; }
   #a-h-excel #a-h-output {
     float: left;
-    margin: 5px 20px 0 0; }
+    margin: 0 20px 0 0; }
   #a-h-excel #a-h-input form {
     width: 100%; }
 
@@ -833,8 +861,23 @@ div#add-h-ddl {
   border: 1px solid #FFAE30;
   color: #FFAE30;
   background: none;
-  margin: 0 0 0 12px; }
+  cursor: pointer; }
   .a-button:hover {
+    border: 1px solid #eea32d;
+    color: #eea32d; }
+
+.a-margin-button {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #FFAE30;
+  color: #FFAE30;
+  background: none;
+  cursor: pointer;
+  margin: 0 0 0 12px; }
+  .a-margin-button:hover {
     border: 1px solid #eea32d;
     color: #eea32d; }
 
@@ -858,7 +901,8 @@ div#add-h-ddl {
   display: inline-block;
   border: 1px solid #FFAE30;
   color: #FFAE30;
-  background: none; }
+  background: none;
+  cursor: pointer; }
   .a-btn-cancel:hover {
     border: 1px solid #eea32d;
     color: #eea32d; }
@@ -1263,5 +1307,15 @@ tr.semester-tr td {
   font-size: 12px;
   color: #fff;
   display: inline-block; }
+
+#move-right {
+  position: absolute;
+  top: 388px;
+  left: 788px; }
+
+#move-left {
+  position: absolute;
+  top: 466px;
+  left: 788px; }
 
 /*# sourceMappingURL=main.css.map */

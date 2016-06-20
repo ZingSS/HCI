@@ -18,23 +18,7 @@
 	<div class="content">
 			<s:include value="../teacher/courseSide.jsp"></s:include>
 		<div class="right-content">
-			<div class="course-header-info">
-	        	<div class="course-header-main">
-	        		<span id="course-header-name"><s:property value="course.name"/></span>
-	        		<br/>
-	        		<span id="course-header-id"><s:property value="course.courseId"/></span>
-	        	</div>
-	        	<div class="course-header-left">
-	        		<span><s:property value="course.time"/></span>
-	        		<br/>
-	        		<span><s:property value="course.location"/></span>
-	         		<br/>
-	         		<s:iterator value="%{course.assistant}" >
-		                <span>${ name }</span>
-		            </s:iterator>
-	        	</div>
-	                <%-- <span><s:property value="course.semester.name"/></span> --%>
-	        </div>
+			<s:include value="../teacher/courseHeader.jsp"></s:include>
 
         <div class="search-student">
         	<form action="getStudentList.action" method="post" id="fuzzy-form">
@@ -84,7 +68,7 @@
                 
         	</table>
             <div class="add-stu-btns sel-btns">
-            	<a id="add-all-stu">添加当前所有</a>
+            	<a id="add-all-stu" class="a-button">添加当前所有</a>
             </div>
             </div>
             
@@ -117,11 +101,14 @@
                 
         	</table>
         	<div class="remove-stu-btns sel-btns">
-            	<a id="remove-all-stu">移除当前所有</a>
+            	<a id="remove-all-stu" class="a-button">移除当前所有</a>
         	</div>
         </div>
 		</div>
     </div>
+    
+    <div id="move-right"><span> >> </span></div>
+    <div id="move-left"><span> << </span></div>
     
     <div id="add-success" class="tip-div">
     	<span>添加成功</span>

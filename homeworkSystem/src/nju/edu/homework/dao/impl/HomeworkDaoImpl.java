@@ -34,6 +34,8 @@ public class HomeworkDaoImpl implements HomeworkDao{
 
 	@Override
 	public ResultMessage updateHomeworkById(Homework homework) {
+		Homework oldHomework = getHomeworkById(homework.getId());
+		homework.setCourse(oldHomework.getCourse());
 		return baseDao.update(homework);
 	}
 

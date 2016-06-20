@@ -2,23 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3196ee0c-1b6c-4da2-a6fe-9f1a41978176" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" afterPath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css.map" afterPath="$PROJECT_DIR$/css/main.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/student.js" afterPath="$PROJECT_DIR$/js/student.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/addAnnouncement.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/addAnnouncement.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/announcement.jsp" afterPath="$PROJECT_DIR$/jsp/student/announcement.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/assistantHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/assistantHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/courseHomeworkList.jsp" afterPath="$PROJECT_DIR$/jsp/student/courseHomeworkList.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/addHomework.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/addHomework.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/addStudent.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/addStudent.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/announcement.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/announcement.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/courseHomeworkList.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/courseHomeworkList.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/courseSide.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/courseSide.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/manageAssistant.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/manageAssistant.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/teacherCourse.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/teacherCourse.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/teacherCourseList.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/teacherCourseList.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/main.scss" afterPath="$PROJECT_DIR$/sass/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/nju/edu/homework/action/TeacherCourseAction.java" afterPath="$PROJECT_DIR$/../src/nju/edu/homework/action/TeacherCourseAction.java" />
     </list>
     <ignored path="WebContent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +41,8 @@
       <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="667" column="25" selection-start-line="667" selection-start-column="25" selection-end-line="667" selection-end-column="25" />
+            <state relative-caret-position="385">
+              <caret line="813" column="13" selection-start-line="813" selection-start-column="13" selection-end-line="813" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -202,12 +201,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457686981400</updated>
-      <workItem from="1466390194388" duration="8708000" />
+      <workItem from="1466390194388" duration="13138000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8708000" />
+    <option name="totallyTimeSpent" value="13138000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -289,8 +288,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="667" column="25" selection-start-line="667" selection-start-column="25" selection-end-line="667" selection-end-column="25" />
+        <state relative-caret-position="385">
+          <caret line="813" column="13" selection-start-line="813" selection-start-column="13" selection-end-line="813" selection-end-column="13" />
           <folding />
         </state>
       </provider>

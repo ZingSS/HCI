@@ -18,23 +18,7 @@
 		<s:include value="../student/courseSide.jsp"></s:include>
 		<div class="right-content">
 			<%-- <div><a href="exportCourseExcel.action?courseId=<s:property value="course.id"/>">生成课程Excel文件</a></div> --%>
-			<div class="course-header-info">
-				<div class="course-header-main">
-					<span id="course-header-name"><s:property
-							value="course.name" /></span> <br /> <span id="course-header-id"><s:property
-							value="course.courseId" /></span>
-				</div>
-				<div class="course-header-left">
-					<span><s:property value="course.time" /></span> <br /> <span><s:property
-							value="course.location" /></span> <br />
-					<s:iterator value="%{course.assistant}">
-						<span>${ name }</span>
-					</s:iterator>
-					<%-- <s:if test="%{course.semester.startTime.after(currentDate)}">
-                	<a href="assistantManagement.action?courseId=<s:property value="course.id"/>" class="add-td-a">管理助教</a>
-                </s:if> --%>
-				</div>
-			</div>
+			<s:include value="../student/courseHeader.jsp"></s:include>
 			<s:if test="%{announcementList.size() == 0}">
 				<div class="t-homework">暂无公告</div>
 			</s:if>

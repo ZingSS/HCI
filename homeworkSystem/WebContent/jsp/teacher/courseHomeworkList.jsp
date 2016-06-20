@@ -13,35 +13,19 @@
 	<div class="content">
 		<s:include value="../teacher/courseSide.jsp"></s:include>
 		<div class="right-content">
-		<div class="course-header-info">
-        	<div class="course-header-main">
-        		<s:hidden value=" %{course.id}" id="course-id"/>
-        		<span id="course-header-name"><s:property value="course.name"/></span>
-        		<br/>
-        		<span id="course-header-id"><s:property value="course.courseId"/></span>
-        	</div>
-        	<div class="course-header-left">
-        		<span><img alt="上课时间" src="../../image/cal-white.png" class="cal-img"><s:property value="course.time"/></span>
-        		<br/>
-        		<span><img alt="上课地点" src="../../image/map-white.png" class="map-img"><s:property value="course.location"/></span>
-         		<br/>
-        		<span><img alt="上课助教" src="../../image/assi-white.png" class="assi-img"><s:iterator value="%{course.assistant}" >${ name }  
-                </s:iterator></span>
-                <%-- <s:if test="%{course.semester.startTime.after(currentDate)}">
-                	<a href="assistantManagement.action?courseId=<s:property value="course.id"/>" class="add-td-a">管理助教</a>
-                </s:if> --%>
-        	</div>
-                <%-- <span><s:property value="course.semester.name"/></span> --%>
-        </div>
+		<s:include value="../teacher/courseHeader.jsp"></s:include>
        
         <s:if test="%{course.semester.startTime.after(currentDate)}">
-        	<div class="t-homework"><span>学期尚未开始，无法布置作业</span></div>
+        	<div class="t-homework">
+        	<span>学期尚未开始，无法布置作业，前去管理学生</span>
+        	<a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>" class="a-margin-button">管理学生</a>
+        	</div>
         </s:if>
         <s:else>
         	<div class="t-homework">
 	        	<ul>
 	        		<s:if test="%{course.semester.endTime.after(currentDate)}">
-	        			<li><a href="toAddHomework.action?courseId=<s:property value="course.id"/>" class="a-button">添加作业</a></li>
+	        			<li><a href="toAddHomework.action?courseId=<s:property value="course.id"/>" class="a-margin-button">添加作业</a></li>
 	        			<!-- <li><a class="add-td-a" id="to-add-homework">添加作业</a></li> -->
         			</s:if>       
 <!-- 	                <li><a href="">所有作业</a></li>
