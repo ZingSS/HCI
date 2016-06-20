@@ -21,13 +21,12 @@
         		<span id="course-header-id"><s:property value="course.courseId"/></span>
         	</div>
         	<div class="course-header-left">
-        		<span><s:property value="course.time"/></span>
+        		<span><img alt="上课时间" src="../../image/cal-white.png" class="cal-img"><s:property value="course.time"/></span>
         		<br/>
-        		<span><s:property value="course.location"/></span>
+        		<span><img alt="上课地点" src="../../image/map-white.png" class="map-img"><s:property value="course.location"/></span>
          		<br/>
-        		<s:iterator value="%{course.assistant}" >
-                <span>${ name }</span>
-                </s:iterator>
+        		<span><img alt="上课助教" src="../../image/assi-white.png" class="assi-img"><s:iterator value="%{course.assistant}" >${ name }  
+                </s:iterator></span>
                 <%-- <s:if test="%{course.semester.startTime.after(currentDate)}">
                 	<a href="assistantManagement.action?courseId=<s:property value="course.id"/>" class="add-td-a">管理助教</a>
                 </s:if> --%>
@@ -42,7 +41,7 @@
         	<div class="t-homework">
 	        	<ul>
 	        		<s:if test="%{course.semester.endTime.after(currentDate)}">
-	        			<li><a href="toAddHomework.action?courseId=<s:property value="course.id"/>" class="add-td-a">添加作业</a></li>
+	        			<li><a href="toAddHomework.action?courseId=<s:property value="course.id"/>" class="a-button">添加作业</a></li>
 	        			<!-- <li><a class="add-td-a" id="to-add-homework">添加作业</a></li> -->
         			</s:if>       
 <!-- 	                <li><a href="">所有作业</a></li>
@@ -73,19 +72,19 @@
 	        			<div class="homework-card-footer">
 	        				<hr/>
 	        				<s:if test="%{studentDDL > currentTime}">
-			                	<span>距提交截止 xx天xx小时</span>
+			                	<span class="h-commit-span">距提交截止 3天12小时</span>
 			            	</s:if>
 	        				<s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
-			               		<span>距批改截止 xx天xx小时</span>
+			               		<span class="h-commit-span">距批改截止 4天14小时</span>
 			            	</s:elseif>
 			            	<s:elseif test="%{assistantDDL > currentTime && state=='approval'}">
-			            		<span>待审批</span>
+			            		<span class="h-active-span">待审批</span>
 			                </s:elseif>
 			                <s:elseif test="%{state=='pass'}">
-			                	<span>已公布</span>
+			                	<span class="h-done-span">已公布</span>
 			                </s:elseif>
 			                <s:else>
-			                	<span>已过期</span>
+			                	<span class="h-done-span">已过期</span>
 			                </s:else>
 	        				<%-- <span>${ studentDDL }</span><span>${ assistantDDL }</span> --%>
 	        			</div>

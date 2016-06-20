@@ -23,7 +23,7 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "user")
-public class User implements Serializable{
+public class User implements Serializable, Comparable<User>{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -146,6 +146,9 @@ public class User implements Serializable{
 		this.files = files;
 	}
 	
-	
+	@Override
+	public int compareTo(User o) {
+		return Integer.parseInt(this.getUserId())-Integer.parseInt(o.getUserId());
+	}
 
 }

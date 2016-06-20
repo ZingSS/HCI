@@ -1,71 +1,101 @@
 window.onload= function () {
-	$(".student-line").on("click",".add-student-btn", function(){
-		var studentId = $(this).parent().children(".hidden-id").val();
-		var courseId = $("#courseId").val();
+
+	var lineBGColor;
+
+	$(".add-student").on("mouseover", ".student-line", function(){
+		lineBGColor = $(this).css("background-color");
+		mouseOverTR($(this));
+	})
+
+	$(".add-student").on("mouseout", ".student-line", function(){
+		mouseOutTR($(this), lineBGColor);
+	})
+
+	$(".added-student").on("mouseover", ".student-line", function(){
+		lineBGColor = $(this).css("background-color");
+		mouseOverTR($(this));
+	})
+
+	$(".added-student").on("mouseout", ".student-line", function(){
+		mouseOutTR($(this),lineBGColor);
+	})
+
+	$(".add-student").on("click", ".student-line", function(){
 		var $this = $(this);
+		addStudent($this);
+	})
+
+	$(".added-student").on("click", ".student-line", function(){
+		var $this = $(this);
+		removeStudent($this);
+	})
+
+	$("#add-all-stu").click(function(){
+		var number = $(".add-student .inner-table tbody").children(".student-line").size();
+		for(var i=0; i<number; i++){
+			var $tr = $(".add-student .inner-table tbody").children(".student-line").eq(i);
+			addStudent($tr);
+		}
+	})
+
+	$("#remove-all-stu").click(function(){
+		var number = $(".added-student .inner-table tbody").children(".student-line").size();
+		for(var i=0; i<number; i++){
+			var $tr = $(".added-student .inner-table tbody").children(".student-line").eq(i);
+			removeStudent($tr);
+		}
+	})
+}
+
+
+function addStudent($this){
+	var studentId = $this.children(".hidden-id").val();
+		var courseId = $("#courseId").val();
+		var studentUserId = $this.children("td").eq(0).text();
+		var studentName = $this.children("td").eq(1).text();
+		
+		if($this.children("td").eq(2).text() == "助教"){
+			return;
+		}
 		$.post(
 			"teacherAddStudent.action", 
 			{studentId : studentId, courseId : courseId}, 
 			function(){
-				var moveA = "<a class='delete-td-a'>移除</a>";
-				$this.children().remove();
-				$this.append(moveA);
-				$this.removeClass("add-student-btn");
-				$this.addClass("remove-student-btn");
-			}
-			)
-	})
+				$this.remove();
+				var addStudnet = '<tr class="student-line"><input type="hidden" value="'
+				+ studentId +'" class="hidden-id"><td class="s-t-id">' 
+				+ studentUserId + '</td><td class="s-t-name">'
+				+ studentName + '</td><td class="s-t-op"><img class="td-img" alt="remove" src="../../image/remove.png"></td></tr>';
+				$(".added-student .inner-table tbody").prepend(addStudnet);
+			})
+}
 
-	$(".student-line").on("click",".remove-student-btn", function(){
-		var studentId = $(this).parent().children(".hidden-id").val();
+function removeStudent($this){
+	var studentId = $this.children(".hidden-id").val();
 		var courseId = $("#courseId").val();
-		var $this = $(this);
+		var studentUserId = $this.children("td").eq(0).text();
+		var studentName = $this.children("td").eq(1).text();
+		
 		$.post(
 			"teacherRemoveStudent.action", 
 			{studentId : studentId, courseId : courseId}, 
 			function(){
-				var addA = "<a class='add-td-a'>添加</a>";
-				$this.children().remove();
-				$this.append(addA);
-				$this.removeClass("remove-student-btn");
-				$this.addClass("add-student-btn");
-			}
-			)
-	})
+				$this.remove();
+				var addStudnet = '<tr class="student-line"><input type="hidden" value="'
+				+ studentId +'" class="hidden-id"><td class="s-t-id">' 
+				+ studentUserId + '</td><td class="s-t-name">'
+				+ studentName + '</td><td class="s-t-op"><img class="td-img" alt="add" src="../../image/add.png"></td></tr>';
+				$(".add-student .inner-table tbody").prepend(addStudnet);
+			})
+}
 
-	$(".student-line").on("click", ".add-assistant-btn", function(){
-		var studentId = $(this).parent().children(".hidden-id").val();
-		var courseId = $("#courseId").val();
-		var $this = $(this);
-		$.post(
-			"teacherAddAssistant.action", 
-			{studentId : studentId, courseId : courseId}, 
-			function(){
-				var moveA = "<a class='delete-td-a'>移除</a>";
-                $this.children().remove();
-                $this.append(moveA);
-				$this.removeClass("add-assistant-btn");
-				$this.addClass("remove-assistant-btn");
-				
-			}
-			)
-	})
 
-	$(".student-line").on("click", ".remove-assistant-btn", function(){
-		var studentId = $(this).parent().children(".hidden-id").val();
-		var courseId = $("#courseId").val();
-		var $this = $(this);
-		$.post(
-			"teacherRemoveAssistant.action", 
-			{studentId : studentId, courseId : courseId}, 
-			function(){
-				var addA = "<a class='add-td-a'>添加</a>";
-				$this.children().remove();
-				$this.append(addA);
-				$this.removeClass("remove-assistant-btn");
-				$this.addClass("add-assistant-btn");
-				
-			}
-			)
-	})
+function mouseOverTR($this){
+	$this.css("background", "#92CADC");
+	$this.children().children("img").css("display", "inline-block");
+}
+
+function mouseOutTR($this, color){
+	$this.css("background-color", color);
+	$this.children().children("img").css("display", "none");
 }

@@ -26,6 +26,7 @@ public class TeacherCourseAction extends BaseAction{
 
 	private List<User> inCourseAssistantList;
 	private List<User> studentList;
+	private List<User> studentListRight;
 	private Course course;
 	private String semester;
 	private List<Announcement> announcementList;
@@ -64,9 +65,19 @@ public class TeacherCourseAction extends BaseAction{
 		session.put("courseId", id);
 		setCourse(courseService.getCourseById(id));
 		List<User> list = new ArrayList<User>(courseService.getStudentsByCourseId(id));
-
+		
 		setInCourseAssistantList(courseService.getAssistantByCourse(id));
-		setStudentList(list);
+		List<User> leftList = new ArrayList<User>();
+		List<User> rightList = new ArrayList<User>();
+		int mid = (list.size()%2==0)?(list.size()/2):(list.size()/2+1);
+		for (int i = 0; i < mid; i++) {
+			leftList.add(list.get(i));
+		}
+		setStudentList(leftList);
+		for (int i = mid; i < list.size(); i++) {
+			rightList.add(list.get(i));
+		}
+		setStudentListRight(rightList);
 		
 		String term =courseService.getCourseById(id).getSemester().getName();
 		session.put("semester", term);
@@ -154,6 +165,14 @@ public class TeacherCourseAction extends BaseAction{
 
 	public void setCourseList(List<Course> courseList) {
 		this.courseList = courseList;
+	}
+
+	public List<User> getStudentListRight() {
+		return studentListRight;
+	}
+
+	public void setStudentListRight(List<User> studentListRight) {
+		this.studentListRight = studentListRight;
 	}
 
 }

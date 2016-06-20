@@ -98,7 +98,7 @@
 		            	</tr>
 		            </tfoot>
 		            <tbody>
-		            	<s:iterator value="studentList" >
+		            	<s:iterator value="studentListRight" >
 			            <tr>
 			                <td>${ userId }</td>
 			                <td>${ name }</td>

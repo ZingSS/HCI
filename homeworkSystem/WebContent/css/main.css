@@ -52,8 +52,9 @@ textarea {
 
 button {
   height: 30px;
-  width: 110px;
-  border: none; }
+  width: 100px;
+  border: none;
+  background: none; }
 
 select {
   background: #eee;
@@ -351,7 +352,7 @@ nav {
   .content .right-content {
     background: #fff;
     margin: 0 0 0 285px;
-    min-height: 600px;
+    min-height: 650px;
     padding: 0 30px; }
     .content .right-content form {
       width: 50%;
@@ -364,7 +365,7 @@ nav {
   margin: 0 0 .3em 20px;
   float: left; }
   .left-sidebar .left-title span {
-    font-size: 25px;
+    font-size: 20px;
     color: #333; }
 .left-sidebar .left-btn {
   margin: 0.6em 0 1.4em 9.4em; }
@@ -391,7 +392,7 @@ nav {
   width: 100%;
   height: 35px;
   line-height: 35px;
-  border-left: 10px solid #939598;
+  border-left: 10px solid #F96241;
   color: #333;
   font-size: 18px;
   padding: 0 0 0 10px;
@@ -399,16 +400,17 @@ nav {
 
 .t-course-a {
   height: 146px;
-  width: 215px; }
+  width: 195px; }
   .t-course-a:hover {
     background-color: #555555; }
 
 .t-course {
-  width: 215px;
+  width: 195px;
   float: left;
-  margin: 15px 20px 30px; }
+  margin: 15px 20px 30px;
+  box-shadow: 1px 1px 1px #b3b3b3; }
   .t-course .t-course-header {
-    background-color: #F77A5F;
+    background-color: #57b5e8;
     padding: 5px 20px; }
     .t-course .t-course-header span {
       color: #fff;
@@ -452,8 +454,14 @@ nav {
     .course-header-info .course-header-left span {
       color: #fff;
       display: inline-block;
-      line-height: 1.6;
+      line-height: 1.8;
       margin-left: 20px; }
+    .course-header-info .course-header-left img {
+      width: 16px;
+      margin: 0 5px 0 0; }
+    .course-header-info .course-header-left .map-img {
+      width: 14px;
+      margin: 0 7px 0 0; }
     .course-header-info .course-header-left span:first-child {
       margin-top: 7px; }
 
@@ -466,7 +474,7 @@ nav {
   height: 105px; }
   #s-course-header-left img {
     width: 16px;
-    margin: 0 10px 0 0 ""; }
+    margin: 0 10px 0 0; }
 
 .course-assistant {
   clear: both; }
@@ -490,24 +498,54 @@ nav {
 
 .search-student {
   clear: both; }
-  .search-student .fuzzy-form {
-    margin: 0; }
+  .search-student #fuzzy-form {
+    margin: 0;
+    width: 90%; }
 
-.add-left {
+.add-student, .add-assistant {
   width: 45%;
   float: left; }
-  .add-left table {
+  .add-student table, .add-assistant table {
     width: 100%;
-    height: 400px;
     margin: 20px 0; }
 
-.added-student {
+.added-student, .added-assistant {
   width: 45%;
   float: right; }
-  .added-student table {
+  .added-student table, .added-assistant table {
     width: 100%;
-    height: 400px;
     margin: 20px 0; }
+
+.main-table {
+  width: 100%;
+  margin: 20px 0; }
+  .main-table .inner-td {
+    padding: 0; }
+  .main-table .scorll-table {
+    width: 100%;
+    height: 360px;
+    overflow-x: hidden;
+    overflow-y: auto; }
+  .main-table .inner-table {
+    margin: 0; }
+    .main-table .inner-table tbody tr:nth-child(even) {
+      background: #fff;
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset; }
+
+.td-img {
+  height: 15px;
+  display: none; }
+
+.s-t-id {
+  width: 35%; }
+
+.s-t-name {
+  width: 35%; }
+
+.s-t-op {
+  width: 30%; }
 
 .sel-btns {
   float: right; }
@@ -521,11 +559,11 @@ nav {
   float: left;
   margin: 20px 12px; }
   .homework-card .h-submit {
-    background-color: #F77A5F; }
+    background-color: #57b5e8; }
   .homework-card .h-commit {
-    background-color: #FE6B46; }
+    background-color: #136997; }
   .homework-card .h-done {
-    background-color: #0C2136; }
+    background-color: #082B3D; }
   .homework-card .homework-card-header {
     padding: 5px 15px; }
     .homework-card .homework-card-header span {
@@ -543,6 +581,7 @@ nav {
     .homework-card .homework-card-body .homework-des {
       display: block;
       height: 70px;
+      line-height: 1.7;
       font-size: 13px;
       color: #666;
       overflow: scroll; }
@@ -552,6 +591,12 @@ nav {
     text-align: center;
     line-height: 40px;
     background-color: #F2F2F2; }
+    .homework-card .homework-card-footer .h-active-span {
+      color: #57b5e8; }
+    .homework-card .homework-card-footer .h-commit-span {
+      color: #aaa; }
+    .homework-card .homework-card-footer .h-done-span {
+      color: #082B3D; }
 
 .homework-title {
   width: 100%;
@@ -759,6 +804,64 @@ div#add-h-ddl {
 
 .a-result-btns {
   float: right; }
+
+.announcement {
+  width: 90%;
+  background: #F2F2F2;
+  border-left: 15px solid #57b5e8;
+  padding: 10px;
+  margin: 25px 0 5px; }
+  .announcement .announce-header {
+    margin: 0 0 10px 0; }
+    .announcement .announce-header span {
+      display: block;
+      margin: 0 0 5px 0; }
+    .announcement .announce-header .announce-title {
+      font-size: 22px; }
+    .announcement .announce-header .announce-time {
+      font-size: 12px;
+      color: #aaa; }
+  .announcement .announce-body span {
+    color: #666; }
+
+.a-button {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #FFAE30;
+  color: #FFAE30;
+  background: none;
+  margin: 0 0 0 12px; }
+  .a-button:hover {
+    border: 1px solid #eea32d;
+    color: #eea32d; }
+
+.a-btn-confirm {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  background-color: #FFAE30;
+  color: #fff;
+  margin: 0 0 0 15px; }
+  .a-btn-confirm:hover {
+    background: #eea32d; }
+
+.a-btn-cancel {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #FFAE30;
+  color: #FFAE30;
+  background: none; }
+  .a-btn-cancel:hover {
+    border: 1px solid #eea32d;
+    color: #eea32d; }
 
 #to-add-user a {
   color: #fff;
@@ -1134,7 +1237,7 @@ tr.semester-tr td {
 #export-form {
   margin: 0 0 20px; }
 
-.fuzzy-form input {
+#fuzzy-form input {
   width: 100px;
   margin-right: 10px; }
 
@@ -1160,15 +1263,5 @@ tr.semester-tr td {
   font-size: 12px;
   color: #fff;
   display: inline-block; }
-  
-  .announce-header-info {
-  width: 100%; }
-  .announce-header-info .announce-header-main {
-    width: 95%;
-    background: #F2F2F2;
-    border-left: 20px solid #3BB1E9;
-    float: left;
-    margin: 0 0 30px 0; }
-   
 
 /*# sourceMappingURL=main.css.map */

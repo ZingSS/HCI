@@ -44,7 +44,7 @@
           
             
             <div id="add-h-btns">
-            	<button type="button">取消</button>
+            	<button type="button"><a href="getAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">取消</a></button>
             	<button type="submit">添加</button>
             </div>
         </form>

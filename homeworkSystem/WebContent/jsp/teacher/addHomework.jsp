@@ -23,6 +23,9 @@
 	        		<br/>
 	        		<span><s:property value="course.location"/></span>
 	         		<br/>
+	         		<s:iterator value="%{course.assistant}" >
+		                <span>${ name }</span>
+		            </s:iterator>
 	                <%-- <s:if test="%{course.semester.startTime.after(currentDate)}">
 	                	<a href="assistantManagement.action?courseId=<s:property value="course.id"/>" class="add-td-a">管理助教</a>
 	                </s:if> --%>
@@ -73,8 +76,8 @@
 	        </div>
             
             <div id="add-h-btns">
-            	<button type="button">取消</button>
-            	<button type="submit">添加</button>
+            	<button type="button"><a class="a-btn-cancel">取消</a></button>
+            	<button type="submit"><a class="a-btn-confirm">添加</a></button>
             </div>
         </form>
 		</div>

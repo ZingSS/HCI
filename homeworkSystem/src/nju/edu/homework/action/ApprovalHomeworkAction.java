@@ -1,5 +1,7 @@
 package nju.edu.homework.action;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +55,16 @@ public class ApprovalHomeworkAction extends BaseAction{
 	private Course course;
 	private String semester;
 	
+	private Timestamp currentTime;
+	public Timestamp getCurrentTime() {
+		currentTime = new Timestamp(System.currentTimeMillis());
+		return currentTime;
+	}
+	private Date currentDate;
+	public Date getCurrentDate() {
+		currentDate = new Date(System.currentTimeMillis());
+		return currentDate;
+	}
 	private List<AssistantStudentHomworkVO> studentList;
 	
 

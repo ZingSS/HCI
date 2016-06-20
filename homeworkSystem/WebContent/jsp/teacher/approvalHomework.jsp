@@ -47,11 +47,17 @@
 				</div>
 			</div>
 		</div>
-		<s:if test="%{homework.state == 'commit'}">
+		<s:if test="%{homework.studentDDL > currentTime}">
 			<div class="homework-commit-state">
 				<span>正在提交中</span>
+				<a>修改作业</a>
 			</div>
 		</s:if>
+		<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state=='commit'}">
+			<div class="homework-commit-state">
+				<span>正在批改中</span>
+			</div>
+			</s:elseif>
 		<s:else>
 			<div class="homework-example">
 	            <s:if test="%{homework.state == 'pass'}">

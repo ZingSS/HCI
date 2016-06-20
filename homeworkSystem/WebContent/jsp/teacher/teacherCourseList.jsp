@@ -37,7 +37,8 @@
                 	<div class="semester-no-course">该学期没有课程</div>
                 </s:if>
 	            <s:iterator value="#semester.value">
-	            <a class="t-course-a" href="teacherCourse.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">
+	            <%-- <a class="t-course-a" href="teacherCourse.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>"> --%>
+	            <a class="t-course-a" href="showTeacherHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">
 	            	<div class="t-course">
 						<div class="t-course-header">
 						<%-- <span>${ id }</span> --%>
@@ -50,7 +51,7 @@
 							<br/>
 							<span><img alt="上课地点" src="../../image/map-black.png" class="map-img">${ location }</span>
 							<br/>
-			                <img alt="教师" src="../../image/tea-black.png" class="tea-img"><span>学生人数：<s:property value ="%{student.size()}"/></span>
+			                <img alt="教师" src="../../image/group-black.png" class="tea-img"><span>学生人数：<s:property value ="%{student.size()}"/></span>
 						</div>
 					</div>
 					</a>

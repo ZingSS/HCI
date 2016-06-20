@@ -19,6 +19,13 @@ $semester-title-color: #939598;
 $course-header-color: #F77A5F;
 $course-body-color: #F2F2F2;
 
+$light-blue: #57b5e8;
+$mid-blue: #136997;
+$dark-blue: #082B3D;
+$main-pink: #F96241;
+$light-gray-font: #aaa;
+$a-btn: #FFAE30;
+$a-btn-hover: #eea32d;
 
 @mixin left-a-default{
   color: $a-color;
@@ -169,8 +176,9 @@ textarea{
 
 button{
   height: 30px;
-  width: 110px;
+  width: 100px;
   border: none;
+  background: none;
 
 }
 select{
@@ -489,7 +497,7 @@ nav{
   .right-content{
     background: #fff;
     margin: 0 0 0 285px;
-    min-height: 600px;
+    min-height: 650px;
 
     padding: 0 30px;
 
@@ -512,7 +520,7 @@ nav{
     margin: 0 0 .3em 20px;
     float: left;
     span{
-      font-size: 25px;
+      font-size: 20px;
       color: $black-font;
     }
   }
@@ -555,7 +563,7 @@ nav{
   height: 35px;
   line-height: 35px;
 
-  border-left: 10px solid $semester-title-color;
+  border-left: 10px solid $main-pink;
   color: $black-font;
   font-size: 18px;
 
@@ -566,19 +574,20 @@ nav{
 
 .t-course-a{
   height: 146px;
-  width: 215px;
+  width: 195px;
   &:hover{
     background-color: #555555;
   }
 }
 .t-course{
-  width: 215px;
+  width: 195px;
 
   float: left;
   margin: 15px 20px 30px;
+  box-shadow: 1px 1px 1px #b3b3b3;
 
   .t-course-header{
-    background-color: $course-header-color;
+    background-color: $light-blue;
     padding: 5px 20px;
 
     span{
@@ -646,8 +655,17 @@ $course-header-h: 90px;
     span{
       color: #fff;
       display: inline-block;
-      line-height: 1.6;
+      line-height: 1.8;
       margin-left: 20px;
+    }
+
+    img{
+      width: 16px;
+      margin: 0 5px 0 0;
+    }
+    .map-img{
+      width: 14px;
+      margin: 0 7px 0 0 ;
     }
 
     span:first-child{
@@ -708,18 +726,18 @@ $course-header-h: 90px;
 .search-student{
   clear:both;
 
-  .fuzzy-form{
+  #fuzzy-form{
     margin: 0;
+    width: 90%;
   }
 }
 
 @mixin search-table{
   width:100%;
-  height: 400px;
   margin: 20px 0;
 }
 
-.add-left{
+.add-student, .add-assistant{
   width: 45%;
   float:left;
   table{
@@ -727,7 +745,7 @@ $course-header-h: 90px;
   }
 }
 
-.added-student{
+.added-student, .added-assistant{
   width: 45%;
   float: right;
   table{
@@ -735,6 +753,52 @@ $course-header-h: 90px;
   }
 }
 
+
+
+.main-table{
+  @include search-table;
+
+  .inner-td{
+    padding: 0;
+  }
+
+  .scroll-tr{
+
+  }
+
+  .scorll-table{
+    width: 100%;
+    height: 360px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .inner-table{
+    margin: 0;
+
+    tbody tr:nth-child(even) {
+      background: #fff;
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset;
+    }
+  }
+}
+
+.td-img{
+  height: 15px;
+  display: none;
+}
+
+.s-t-id{
+  width: 35%;
+}
+.s-t-name{
+  width: 35%;
+}
+.s-t-op{
+  width: 30%;
+}
 .sel-btns{
   float:right;
 }
@@ -751,15 +815,15 @@ $course-header-h: 90px;
   margin: 20px 12px;
 
   .h-submit{
-    background-color: $course-header-color;
+    background-color: $light-blue;
   }
 
   .h-commit{
-    background-color: $comp-hover-color;
+    background-color: $mid-blue;
   }
 
   .h-done{
-    background-color: #0C2136;
+    background-color: $dark-blue;
   }
 
   .homework-card-header{
@@ -789,6 +853,7 @@ $course-header-h: 90px;
     .homework-des{
       display: block;
       height: 70px;
+      line-height: 1.7;
       font-size: 13px;
       color: $gray-font;
       overflow: scroll;
@@ -802,6 +867,16 @@ $course-header-h: 90px;
     line-height: 40px;
 
     background-color: $course-body-color;
+
+    .h-active-span {
+      color: $light-blue;
+    }
+    .h-commit-span{
+      color: $light-gray-font;
+    }
+    .h-done-span{
+      color: $dark-blue;
+    }
   }
 }
 
@@ -1111,6 +1186,86 @@ $a-course-height: 60px;
 .a-result-btns{
   float: right;
 }
+
+
+.announcement{
+  width: 90%;
+  background: $course-body-color;
+  border-left: 15px solid $light-blue;
+
+  padding: 10px;
+  margin:25px 0 5px;
+
+  .announce-header{
+
+    margin: 0 0 10px 0;
+
+    span{
+      display: block;
+      margin: 0 0 5px 0;
+    }
+    .announce-title{
+      font-size: 22px;
+    }
+    .announce-time{
+      font-size: 12px;
+      color: $light-gray-font;
+    }
+  }
+
+  .announce-body{
+    span{
+      color: $gray-font;
+    }
+  }
+}
+
+@mixin a-struct{
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+
+}
+
+@mixin new-a($color){
+  @include a-struct;
+  border: 1px solid $color;
+  color: $color;
+  background: none;
+}
+
+.a-button{
+  @include new-a($a-btn);
+  margin: 0 0 0 12px;
+
+  &:hover{
+    border: 1px solid $a-btn-hover;
+    color: $a-btn-hover;
+  }
+}
+
+.a-btn-confirm{
+  @include a-struct;
+  background-color: $a-btn;
+  color: #fff;
+
+  margin: 0 0 0 15px;
+
+  &:hover{
+    background: $a-btn-hover;
+  }
+}
+
+.a-btn-cancel{
+  @include new-a($a-btn);
+  &:hover{
+    border: 1px solid $a-btn-hover;
+    color: $a-btn-hover;
+  }
+}
+
 
 #to-add-user{
   a{
@@ -1427,7 +1582,7 @@ tr.semester-tr td{
   margin: 0 0 20px;
 }
 
-.fuzzy-form{
+#fuzzy-form{
   input{
     width: 100px;
     margin-right: 10px;

@@ -35,8 +35,9 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 	private UserService userService;
 	
 	private List<CourseStudentVO> studentList;
-//	private List<User> studentList;
 	private List<User> inCourseStudentList;
+	private List<User> inCourseAssistantList;
+//	private List<User> studentList;
 	
 	private Course course;
 	private int courseId;
@@ -62,10 +63,13 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
+		setCourseInfo();
 		showAllStudent();
+		showInCourseStudent(id);
 		return SUCCESS;
 	}
-	
+
+
 	@Action(
 			value = "assistantManagement",
 			results = {
@@ -84,10 +88,13 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
+		setCourseInfo();
 		showAllStudent();
+		showInCourseAssistant(id);
 		return SUCCESS;
 	}
 	
+
 	@Action(
 			value = "getStudentList",
 			results = {
@@ -102,28 +109,42 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 		setCourseId(id);
 		setCourse(courseService.getCourseById(id));
 		List<User> list = userService.getStudentByFuzzy(vo);
-		formatToStudentList(list);
-		
+		setStudentList(formatToStudentList(list));
+		showInCourseStudent(id);
 		return request.getParameter("page");
 	}
-
-	private void showAllStudent(){
+	
+	private void setCourseInfo(){
 		int id = Integer.parseInt(request.getParameter("courseId"));
 		setCourseId(id);
 		setCourse(courseService.getCourseById(id));
 		setCourseName(course.getName());
+	}
+
+	private void showAllStudent(){
 		List<User> list = new ArrayList<User>(userService.getUserByRole(Common.ROLE_STUDENT));
-		formatToStudentList(list);
+		setStudentList(formatToStudentList(list));
 	}
 	
-	private void formatToStudentList(List<User> list) {
-		studentList = new ArrayList<CourseStudentVO>();
+	
+	private void showInCourseStudent(int courseId) {
+		setInCourseStudentList(new ArrayList<User>(courseService.getStudentsByCourseId(courseId)));
+	}
+	
+	private void showInCourseAssistant(int courseId) {
+		setInCourseAssistantList(new ArrayList<User>(courseService.getAssistantByCourse(courseId)));
+	}
+
+	
+	private List<CourseStudentVO> formatToStudentList(List<User> list) {
+		List<CourseStudentVO> studentList = new ArrayList<CourseStudentVO>();
 		for(User user: list){
 			StudentInOrAssisVO inOrAssisVO = userService.isInOrAssis(user.getId(), getCourseId());
 			CourseStudentVO vo = new CourseStudentVO(user.getId(), user.getUserId(), user.getName(), 
 					inOrAssisVO.isIn(), inOrAssisVO.getAssistantCourseId());
 			studentList.add(vo);
 		}	
+		return studentList;
 	}
 
 	
@@ -152,15 +173,7 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-
-	public List<User> getInCourseStudentList() {
-		return inCourseStudentList;
-	}
-
-	public void setInCourseStudentList(List<User> inCourseStudentList) {
-		this.inCourseStudentList = inCourseStudentList;
-	}
-
+	
 	public Course getCourse() {
 		return course;
 	}
@@ -183,6 +196,24 @@ public class ShowAndFuzzyStudentAction extends BaseAction{
 
 	public void setCourseList(List<Course> courseList) {
 		this.courseList = courseList;
+	}
+	
+	public List<User> getInCourseStudentList() {
+		return inCourseStudentList;
+	}
+
+	public void setInCourseStudentList(List<User> inCourseStudentList) {
+		this.inCourseStudentList = inCourseStudentList;
+	}
+
+
+	public List<User> getInCourseAssistantList() {
+		return inCourseAssistantList;
+	}
+
+
+	public void setInCourseAssistantList(List<User> inCourseAssistantList) {
+		this.inCourseAssistantList = inCourseAssistantList;
 	}
 
 }

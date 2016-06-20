@@ -17,14 +17,14 @@
 			<div>
 	            <s:iterator value="#request.courseList" id="cList">
 	         	 <div class="left-sub-title">
-	         	 <a href="teacherCourse.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">
+	         	 <a href="showTeacherHomeworkList.action?courseId=<s:property value="id"/>&name=<s:property value="name"/>">
 	         	 <s:property value="name"/>
 	         	 </a>
 	         	 </div>
 	         	 <s:if test="#cList.name==#request.course.name">
 	         	  <ul class="left-sub-list">
-	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程学生</a></li>
-	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">课程作业</a></li>
+	                <li><a href="showTeacherHomeworkList.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">作业</a></li>
+	                <li><a href="teacherCourse.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">学生</a></li>
 	     			 <li><a href="getAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
 	            </ul>
 	         	 </s:if>
