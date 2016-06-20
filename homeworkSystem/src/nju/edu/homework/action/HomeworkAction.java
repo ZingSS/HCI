@@ -53,9 +53,7 @@ public class HomeworkAction extends BaseAction{
 			})
 	public String execute() throws Exception {
 		int id = Integer.parseInt(request.getParameter("courseId"));
-		System.out.println(id);
 		setCourse(courseService.getCourseById(id));
-		setHomeworkList(courseService.getHomeworkByCourseId(id));
 		OnlineUserVO vo=(OnlineUserVO)session.get("onlineUser");
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
 		courseList= new ArrayList<Course>();
@@ -68,6 +66,7 @@ public class HomeworkAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
+		setHomeworkList(courseService.getHomeworkByCourseId(id));
 		return SUCCESS;
 	}
 	
