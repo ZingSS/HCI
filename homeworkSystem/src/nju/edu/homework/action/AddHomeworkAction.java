@@ -47,16 +47,11 @@ public class AddHomeworkAction extends BaseAction{
 	public String addHomework() throws Exception {
 		int id = Integer.parseInt(request.getParameter("courseId"));
 		setCourseId(id);
-		// TODO 到时候用个时间插件？
-		String studentDDL = request.getParameter("sddlYear") + "-" + request.getParameter("sddlMonth") 
-				+ "-" + request.getParameter("sddlDay") + " 23:59:59";
-		String assistantDDL = request.getParameter("addlYear") + "-" + request.getParameter("addlMonth") 
-				+ "-" + request.getParameter("addlDay") + " 23:59:59";
-		Timestamp sddl = new Timestamp(System.currentTimeMillis());
-		Timestamp addl = new Timestamp(System.currentTimeMillis());
+		String studentDDL = request.getParameter("sddl");
+		String assistantDDL = request.getParameter("addl");
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		sddl = Timestamp.valueOf(studentDDL);
-		addl = Timestamp.valueOf(assistantDDL);
+		Timestamp sddl = Timestamp.valueOf(studentDDL);
+		Timestamp addl = Timestamp.valueOf(assistantDDL);
 		if (sddl.compareTo(now) > 0 && sddl.compareTo(addl) < 0) {
 			homework.setStudentDDL(sddl);
 			homework.setAssistantDDL(addl);
