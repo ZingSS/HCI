@@ -8,9 +8,26 @@
 <title>添加作业</title>
 </head>
 <body>
-	<s:include value="../teacher/header.jsp"></s:include>
+	<s:include value="../student/header.jsp"></s:include>
 	<div class="content">
-		<s:include value="../teacher/courseSide.jsp"></s:include>
+	 <div class="left-sidebar">
+				<div class="left-title"><span>助教课程</span></div>	
+				<hr/>
+				<div>
+	            <ul class="left-list">
+	            	<li><a href="showStudentCourseList.action">所有课程</a></li>
+	            </ul>
+	            <div class="left-sub-title">
+	            	<a href="showStudentsHomework.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">
+	            		<span><s:property value="course.name"/></span>
+	            	</a>
+	            </div>
+	             <ul class="left-sub-list">
+	                <li><a href="showStudentsHomework.action?courseId=<s:property value="#request.course.id"/>&name=<s:property value="#request.course.name"/>">作业列表</a></li>
+	            	 <li><a href="asAddAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
+	            </ul>
+	        	</div>
+			</div>
 		<div class="right-content">
 			<div class="course-header-info">
 	        	<div class="course-header-main">
@@ -26,7 +43,7 @@
 	        	</div>
 	                <%-- <span><s:property value="course.semester.name"/></span> --%>
 	        </div>
-			<form id="add-h-form" action="addAnnouncement.action" method="post" enctype="multipart/form-data">
+			<form id="add-h-form" action="asAddAnnouncement.action" method="post" enctype="multipart/form-data">
                 <s:hidden name="courseId" value="%{courseId}"/>
             <%-- <div>
                 <span>为课程<s:property value="courseName"/>添加作业</span>

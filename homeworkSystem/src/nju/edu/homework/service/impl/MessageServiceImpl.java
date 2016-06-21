@@ -92,6 +92,9 @@ public class MessageServiceImpl implements MessageService{
 		}else if(type.equals(Common.NEW_ANNOUNCEMENT)){
 			users.addAll(course.getStudent());
 			users.addAll(course.getAssistant());
+		}else if(type.equals(Common.AS_ANNOUNCEMENT)){
+			users.addAll(course.getStudent());
+			users.addAll(course.getTeachers());
 		}
 		
 		for(User user: users){

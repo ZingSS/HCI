@@ -21,8 +21,11 @@
 	            	<a href="showStudentsHomework.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">
 	            		<span><s:property value="course.name"/></span>
 	            	</a>
-	            	
 	            </div>
+	             <ul class="left-sub-list">
+	                <li><a href="showStudentsHomework.action?courseId=<s:property value="#request.course.id"/>&name=<s:property value="#request.course.name"/>">作业列表</a></li>
+	            	 <li><a href="asGetAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
+	            </ul>
 	        	</div>
 			</div>
 		<div class="right-content">

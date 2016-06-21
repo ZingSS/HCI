@@ -44,6 +44,9 @@
 					<s:elseif test="%{type=='newAnnouncement'}">
 					<a href="getAnnouncement.action?courseId=<s:property value="%{course.id}"/>&name=<s:property value="%{course.name}"/>" class="message-a"> << 查看</a>
 					</s:elseif>
+					<s:elseif test="%{type=='asAnnouncement'}">
+					<a href="getAnnouncement.action?courseId=<s:property value="%{course.id}"/>&name=<s:property value="%{course.name}"/>" class="message-a"> << 查看</a>
+					</s:elseif>
 					
 				</div>
 			</s:iterator>

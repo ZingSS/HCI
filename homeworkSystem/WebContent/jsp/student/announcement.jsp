@@ -20,7 +20,7 @@
 			<%-- <div><a href="exportCourseExcel.action?courseId=<s:property value="course.id"/>">生成课程Excel文件</a></div> --%>
 			<s:include value="../student/courseHeader.jsp"></s:include>
 			<s:if test="%{announcementList.size() == 0}">
-				<div class="homework-commit-state">暂无公告</div>
+				<div class="t-homework">暂无公告</div>
 			</s:if>
 			    <s:iterator value="announcementList" >
 			    <div class="announcement">
