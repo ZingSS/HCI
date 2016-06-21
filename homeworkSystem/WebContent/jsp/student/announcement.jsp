@@ -20,14 +20,16 @@
 			<%-- <div><a href="exportCourseExcel.action?courseId=<s:property value="course.id"/>">生成课程Excel文件</a></div> --%>
 			<s:include value="../student/courseHeader.jsp"></s:include>
 			<s:if test="%{announcementList.size() == 0}">
-				<div class="t-homework">暂无公告</div>
+				<div class="homework-commit-state">暂无公告</div>
 			</s:if>
-			<s:iterator value="announcementList" >
-			    <div class="announce-header-info" style="margin-top:2%">
-					<div class="announce-header-main">
-						<span style="font-size: 25px;margin-left:1%;margin-top:2%"><s:property value="title" /></span>
-						<h3 style="font-size: 15px;margin-left:1%;margin-top:1%"><s:property value="tname" />&nbsp<s:property value="atime" /></h3>
-						<h3 style="font-size: 15px;margin-left:1%;margin-top:1%;margin-bottom: 2%">&nbsp &nbsp<s:property value="content" /></h3>
+			    <s:iterator value="announcementList" >
+			    <div class="announcement">
+					<div class="announce-header">
+						<span class="announce-title"><s:property value="title" /></span>
+						<span class="announce-time"><s:property value="tname" /> | <s:property value="atime" /></span>
+					</div>
+					<div class="announce-body">
+						<span><s:property value="content" /></span>
 					</div>
 				</div>
 			    </s:iterator>

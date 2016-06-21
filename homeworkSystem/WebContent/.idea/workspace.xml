@@ -6,17 +6,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css.map" afterPath="$PROJECT_DIR$/css/main.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/homework.js" afterPath="$PROJECT_DIR$/js/homework.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/announcement.jsp" afterPath="$PROJECT_DIR$/jsp/student/announcement.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/assistantHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/assistantHomework.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/courseHomeworkList.jsp" afterPath="$PROJECT_DIR$/jsp/student/courseHomeworkList.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/addHomework.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/addHomework.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/addStudent.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/addStudent.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/announcement.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/announcement.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/courseHomeworkList.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/courseHomeworkList.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/manageAssistant.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/manageAssistant.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/teacherCourse.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/teacherCourse.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/main.scss" afterPath="$PROJECT_DIR$/sass/main.scss" />
     </list>
     <ignored path="WebContent.iws" />
@@ -41,8 +34,8 @@
       <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="813" column="13" selection-start-line="813" selection-start-column="13" selection-end-line="813" selection-end-column="13" />
+            <state relative-caret-position="401">
+              <caret line="868" column="0" selection-start-line="868" selection-start-column="0" selection-end-line="868" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -201,12 +194,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1457686981400</updated>
-      <workItem from="1466390194388" duration="13138000" />
+      <workItem from="1466390194388" duration="13377000" />
+      <workItem from="1466475389581" duration="1751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13138000" />
+    <option name="totallyTimeSpent" value="15128000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -272,6 +266,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sass/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -288,8 +290,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="813" column="13" selection-start-line="813" selection-start-column="13" selection-end-line="813" selection-end-column="13" />
+        <state relative-caret-position="401">
+          <caret line="868" column="0" selection-start-line="868" selection-start-column="0" selection-end-line="868" selection-end-column="0" />
           <folding />
         </state>
       </provider>

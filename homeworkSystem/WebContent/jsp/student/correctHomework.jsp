@@ -30,6 +30,7 @@
 			</div>
 		<div class="right-content">
 			<s:hidden name="courseId" value="%{courseId}"/>
+			<s:hidden name="homeworkId" value="%{homework.id}"/>
 			<div class="homework-title">
 				<div class="h-title-top">
 					<div class="h-title-name">
@@ -92,7 +93,7 @@
 					<table class="inner-table"><tbody>
 						<s:iterator value="studentList" >
 				            <tr class="homework-line">
-				                <%-- <td class="hidden-id">${ id }</td> --%>
+				                <input type="hidden" value="${id}" class="hidden-id">
 				                <td class="a-s-id">${ studentId }</td>
 				                <td class="a-s-name">${ name }</td>
 				                <td class="download-td a-s-hw">
@@ -105,13 +106,19 @@
 					                	未提交
 					                </s:else>
 				                </td>
-				                <td class="a-s-grade">
+				                <td class="a-s-grade change-grade changable-td">
+				                <span>
 				                <s:if test="%{grade == ''}">0</s:if>
 				                <s:else>${ grade }</s:else>
+				                <img alt="编辑" src="../../image/edit.png">
+				                </span>
 				                </td>
-				                <td class="a-s-comment">
+				                <td class="a-s-comment change-comment changable-td">
+				                <span>
 				                <s:if test="%{comment == ''}">暂无</s:if>
 				                <s:else>${ comment }</s:else>
+				                <img alt="编辑" src="../../image/edit.png">
+				                </span>
 				                </td>
 				            </tr>
 						</s:iterator>
@@ -126,12 +133,13 @@
             	<s:if test="%{course.semester.startTime.after(currentDate) || course.semester.endTime.before(currentDate)}">
             	</s:if>
             	<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state == 'commit'}">
-            		<a href="informTeacher.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-confirm">
+            		<span>于<span>20:23:44</span> 自动保存</span>
+            		<a href="saveCorrectResult.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-cancel">
 						保存
 					</a>
 					<span>
 					<a href="informTeacher.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-confirm">
-						提交批改结果
+						保存并提交
 					</a>
 					</span>
             	</s:elseif>

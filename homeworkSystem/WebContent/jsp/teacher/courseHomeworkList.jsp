@@ -51,7 +51,11 @@
 	        				<span class="homework-name">${ name }</span>
 	        			</div>
 	        			<div class="homework-card-body">
-	        				<span class="homework-des">${ description }</span>
+	        				<%-- <span class="homework-des">${ description }</span> --%>
+	        				<s:if test="%{description.length()>30}">
+	        					<span class="homework-des"><s:property value="description.substring(0,30)"/>...</span>
+	        				</s:if>
+	        				<s:else><span class="homework-des">${ description }</span></s:else>
 	        			</div>
 	        			<div class="homework-card-footer">
 	        				<hr/>

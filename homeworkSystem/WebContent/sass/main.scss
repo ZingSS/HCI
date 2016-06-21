@@ -634,7 +634,7 @@ $course-header-h: 90px;
     background: $course-body-color;
 
     text-align: center;
-    border-left: 20px solid $course-header-color;
+    border-left: 15px solid $main-pink;
     float: left;
 
     margin: 0 0 30px 0;
@@ -858,8 +858,6 @@ $course-header-h: 90px;
 
   .homework-card-body{
     padding: 10px 15px 15px;
-    height: 80px;
-    overflow: scroll;
     background-color: $course-body-color;
 
     .homework-des{
@@ -868,7 +866,6 @@ $course-header-h: 90px;
       line-height: 1.7;
       font-size: 13px;
       color: $gray-font;
-      overflow: scroll;
     }
   }
 
@@ -1048,10 +1045,12 @@ $h-title-border: 10px solid $course-header-color;
   width: 10%;
 }
 .a-s-grade{
-  width: 10%
+  width: 10%;
+  padding: 0 10px;
 }
 .a-s-comment{
   width: 60%;
+  padding: 0 10px;
 }
 
 #add-h-form{
@@ -1679,4 +1678,31 @@ tr.semester-tr td{
   position: absolute;
   top: 466px;
   left: 788px;
+}
+
+
+.changable-td{
+
+  cursor: pointer;
+  img{
+    height: 16px;
+    margin: 0 0 0 5px;
+  }
+
+  input{
+    margin: 0;
+    height: 25px;
+  }
+}
+
+.change-grade{
+  input{
+    width: 60%;
+  }
+}
+
+.change-comment{
+  input{
+    width: 90%;
+  }
 }

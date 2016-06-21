@@ -440,7 +440,7 @@ nav {
     height: 90px;
     background: #F2F2F2;
     text-align: center;
-    border-left: 20px solid #F77A5F;
+    border-left: 15px solid #F96241;
     float: left;
     margin: 0 0 30px 0; }
     .course-header-info .course-header-main #course-header-name {
@@ -585,16 +585,13 @@ nav {
       font-size: 18px; }
   .homework-card .homework-card-body {
     padding: 10px 15px 15px;
-    height: 80px;
-    overflow: scroll;
     background-color: #F2F2F2; }
     .homework-card .homework-card-body .homework-des {
       display: block;
       height: 70px;
       line-height: 1.7;
       font-size: 13px;
-      color: #666;
-      overflow: scroll; }
+      color: #666; }
   .homework-card .homework-card-footer {
     padding: 0 10px;
     height: 40px;
@@ -713,10 +710,12 @@ nav {
   width: 10%; }
 
 .a-s-grade {
-  width: 10%; }
+  width: 10%;
+  padding: 0 10px; }
 
 .a-s-comment {
-  width: 60%; }
+  width: 60%;
+  padding: 0 10px; }
 
 #add-h-form {
   clear: both;
@@ -1317,5 +1316,20 @@ tr.semester-tr td {
   position: absolute;
   top: 466px;
   left: 788px; }
+
+.changable-td {
+  cursor: pointer; }
+  .changable-td img {
+    height: 16px;
+    margin: 0 0 0 5px; }
+  .changable-td input {
+    margin: 0;
+    height: 25px; }
+
+.change-grade input {
+  width: 60%; }
+
+.change-comment input {
+  width: 90%; }
 
 /*# sourceMappingURL=main.css.map */
