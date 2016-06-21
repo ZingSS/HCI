@@ -50,7 +50,16 @@ public class TeacherCourseListAction extends BaseAction{
 	private HomeworkService homeworkService;
 	
 	private List<Course> courseList;
+	private List<String> semesterList;
 	
+	public List<String> getSemesterList() {
+		return semesterList;
+	}
+
+	public void setSemesterList(List<String> semesterList) {
+		this.semesterList = semesterList;
+	}
+
 	private Map<String, List<Course>> semesterCourseList;
 	
 	@Action(
@@ -61,6 +70,41 @@ public class TeacherCourseListAction extends BaseAction{
 	public String execute() throws Exception {
 		int id = ((OnlineUserVO)session.get("onlineUser")).getId();
 		List<String> semesters = semesterService.getAllStringSemesters();
+		setSemesterList(semesters);
+		setCourseList(courseService.getCourseByTeacherId(id));
+		semesterCourseList = new LinkedHashMap<String, List<Course>>();
+		for(String semester : semesters){
+			List<Course> oneSemesterCourse = new ArrayList<Course>();
+			for(Course course : courseList){
+				if (semester.equals(course.getSemester().getName())) {
+					oneSemesterCourse.add(course);
+				}
+			}
+			
+			semesterCourseList.put(semester, oneSemesterCourse);
+		}
+		// 判断当前的课是不是要导出Excel表
+		isCourseExportExcel();
+		return SUCCESS;
+	}
+	
+	@Action(
+			value = "showTermCourseList",
+			results = {
+					@Result(name = SUCCESS, location = "/jsp/teacher/teacherCourseList.jsp"),
+			})
+	public String showTermCourseList() throws Exception {
+		int id = ((OnlineUserVO)session.get("onlineUser")).getId();
+		String selectTerm = (String) request.getParameter("selectTerm");
+		request.setAttribute("selectTerm", selectTerm);
+		List<String> semesterList = semesterService.getAllStringSemesters();
+		setSemesterList(semesterList);
+		List<String> semesters = new ArrayList<String>();
+		if(selectTerm.equals("all")){
+			semesters=semesterList;
+		}else{
+			semesters.add(selectTerm);
+		}
 		setCourseList(courseService.getCourseByTeacherId(id));
 		semesterCourseList = new LinkedHashMap<String, List<Course>>();
 		for(String semester : semesters){

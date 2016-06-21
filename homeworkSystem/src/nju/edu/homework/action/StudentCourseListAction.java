@@ -40,6 +40,15 @@ public class StudentCourseListAction extends BaseAction{
 	private Date currentDate;
 	
 	private Map<String, List<Course>> semesterCourseList;
+	private List<String> semesterList;
+	
+	public List<String> getSemesterList() {
+		return semesterList;
+	}
+
+	public void setSemesterList(List<String> semesterList) {
+		this.semesterList = semesterList;
+	}
 	
 	@Action(
 			value = "showStudentCourseList",
@@ -53,6 +62,7 @@ public class StudentCourseListAction extends BaseAction{
 		setAssistantCourse(userService.getAssistantCourseByid(id));
 		// 按学期划分课程
 		List<String> semesters = semesterService.getAllStringSemesters();
+		setSemesterList(semesters);
 		semesterCourseList = new LinkedHashMap<String, List<Course>>();
 		for(String semester : semesters){
 			List<Course> oneSemesterCourse = new ArrayList<Course>();
@@ -64,6 +74,42 @@ public class StudentCourseListAction extends BaseAction{
 			
 			semesterCourseList.put(semester, oneSemesterCourse);
 		}
+		return SUCCESS;
+	}
+	
+	@Action(
+			value = "showStudentTermCourseList",
+			results = {
+					@Result(name = SUCCESS, location = "/jsp/student/studentCourseList.jsp"),
+			})
+	public String showStudentTermCourseList() throws Exception {
+		int id = ((OnlineUserVO)session.get("onlineUser")).getId();
+		setCourseList(courseService.getCourseByStudentId(id));
+		setAssistantCourse(userService.getAssistantCourseByid(id));
+		String selectTerm = (String) request.getParameter("selectTerm");
+		request.setAttribute("selectTerm", selectTerm);
+		List<String> semesterList = semesterService.getAllStringSemesters();
+		setSemesterList(semesterList);
+		List<String> semesters = new ArrayList<String>();
+		System.out.println("!!"+semesterList.size()+selectTerm);
+		if(selectTerm.equals("all")){
+			System.out.println("???"+semesterList.size());
+			semesters=semesterList;
+		}else{
+			semesters.add(selectTerm);
+		}
+		semesterCourseList = new LinkedHashMap<String, List<Course>>();
+		for(String semester : semesters){
+			List<Course> oneSemesterCourse = new ArrayList<Course>();
+			for(Course course : courseList){
+				if (semester.equals(course.getSemester().getName())) {
+					oneSemesterCourse.add(course);
+				}
+			}
+			
+			semesterCourseList.put(semester, oneSemesterCourse);
+		}
+		// 判断当前的课是不是要导出Excel表
 		return SUCCESS;
 	}
 	
