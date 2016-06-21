@@ -52,9 +52,12 @@
 	        			</div>
 	        			<div class="homework-card-body">
 	        				<%-- <span class="homework-des">${ description }</span> --%>
-	        				<s:if test="%{description.length()>30}">
-	        					<span class="homework-des"><s:property value="description.substring(0,30)"/>...</span>
+	        				<s:if test="%{homework.description == ''}">
+	        					<span class="homework-des">无作业描述</span>
 	        				</s:if>
+	        				<s:elseif test="%{description.length()>30}">
+	        					<span class="homework-des"><s:property value="description.substring(0,30)"/>...</span>
+	        				</s:elseif>
 	        				<s:else><span class="homework-des">${ description }</span></s:else>
 	        			</div>
 	        			<div class="homework-card-footer">
