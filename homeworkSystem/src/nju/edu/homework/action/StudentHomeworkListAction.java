@@ -70,6 +70,7 @@ public class StudentHomeworkListAction extends BaseAction{
 		String term =courseService.getCourseById(courseId).getSemester().getName();
 		List<Course> cList = courseService.getCourseByStudentId(user.getId());
 		session.put("semester", term);
+		session.put("sideState","hw");
 		setSemester(term);
 		for(Course course : cList){
 			if (term.equals(course.getSemester().getName())) {

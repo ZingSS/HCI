@@ -23,9 +23,13 @@
 	            	</a>
 	            </div>
 	             <ul class="left-sub-list">
-	                <li><a href="showStudentsHomework.action?courseId=<s:property value="#request.course.id"/>&name=<s:property value="#request.course.name"/>">作业列表</a></li>
+	                <li><a id="hw" href="showStudentsHomework.action?courseId=<s:property value="#request.course.id"/>&name=<s:property value="#request.course.name"/>">作业</a></li>
 	            	 <li><a href="asGetAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
 	            </ul>
+	             <script type="text/javascript">
+						var li = document.getElementById("hw");
+						li.style.backgroundColor = "#e7e7e7";
+					</script>
 	        	</div>
 			</div>
 		<div class="right-content">

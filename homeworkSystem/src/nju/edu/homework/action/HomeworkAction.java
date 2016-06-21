@@ -59,6 +59,7 @@ public class HomeworkAction extends BaseAction{
 		courseList= new ArrayList<Course>();
 		semester=courseService.getCourseById(id).getSemester().getName();
 		session.put("semester", semester);
+		session.put("sideState","hw");
 		setSemester(semester);
 		for(Course course : cList){
 			if (semester.equals(course.getSemester().getName())) {

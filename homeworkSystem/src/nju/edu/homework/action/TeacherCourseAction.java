@@ -63,6 +63,7 @@ public class TeacherCourseAction extends BaseAction{
 	public String teacherCourse() throws Exception {
 		int id = Integer.parseInt(request.getParameter("courseId"));
 		session.put("courseId", id);
+		session.put("sideState","st");
 		setCourse(courseService.getCourseById(id));
 		List<User> list = new ArrayList<User>(courseService.getStudentsByCourseId(id));
 		
@@ -103,6 +104,7 @@ public class TeacherCourseAction extends BaseAction{
 	public String getAnnouncement(){
 		int id = Integer.parseInt(request.getParameter("courseId"));
 		session.put("courseId", id);
+		session.put("sideState","an");
 		setCourse(courseService.getCourseById(id));
 		setAnnouncementList(courseService.getAnnouncementByCid(id));
 		List<User> list = new ArrayList<User>(courseService.getStudentsByCourseId(id));

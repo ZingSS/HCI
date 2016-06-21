@@ -23,9 +23,13 @@
 	            	</a>
 	            </div>
 	             <ul class="left-sub-list">
-	                <li><a href="showStudentsHomework.action?courseId=<s:property value="#request.course.id"/>&name=<s:property value="#request.course.name"/>">作业列表</a></li>
-	            	 <li><a href="asAddAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
+	                <li><a href="showStudentsHomework.action?courseId=<s:property value="#request.course.id"/>&name=<s:property value="#request.course.name"/>">作业</a></li>
+	            	 <li><a id="an" href="asAddAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
 	            </ul>
+	            <script type="text/javascript">
+						var li = document.getElementById("an");
+						li.style.backgroundColor = "#e7e7e7";
+					</script>
 	        	</div>
 			</div>
 		<div class="right-content">
@@ -61,7 +65,7 @@
           
             
             <div id="add-h-btns">
-            	<button type="button"><a  class="a-btn-cancel" href="getAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">取消</a></button>
+            	<button type="button"><a  class="a-btn-cancel" href="asGetAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">取消</a></button>
             	<button type="submit"><a class="a-btn-confirm">添加</a></button>
             </div>
         </form>
