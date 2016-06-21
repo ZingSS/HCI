@@ -17,7 +17,7 @@ import org.springframework.stereotype.Controller;
 public class addTeacherAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private CourseService courseService;
 	@Autowired
@@ -26,12 +26,12 @@ public class addTeacherAction extends BaseAction{
 	private SemesterService semesterService;
 
 	private Course course;
-	
+
 	private List<User> teacherList;
 	private List<Boolean> isInCourse;
-	
+
 	private String[] semesterList;
-	
+
 	@Action(value = "addCourseTeacherList",
 			results = {
 			@Result( name = SUCCESS, location = "/jsp/administrator/addCourseTeacher.jsp")
@@ -45,7 +45,7 @@ public class addTeacherAction extends BaseAction{
 		setSelectList();
 		return SUCCESS;
 	}
-	
+
 	@Action(value = "addTeacher",
 			results = {
 			@Result( name = SUCCESS, location = "/jsp/administrator/addCourseTeacher.jsp")
@@ -57,7 +57,7 @@ public class addTeacherAction extends BaseAction{
 		setSelectList();
 		return SUCCESS;
 	}
-	
+
 	@Action(value = "removeTeacher",
 			results = {
 			@Result( name = SUCCESS, location = "/jsp/administrator/addCourseTeacher.jsp")
@@ -71,11 +71,9 @@ public class addTeacherAction extends BaseAction{
 	}
 
 	public Course getCourse() {
-		System.out.println("try to get Course");
-		System.out.println(course.getName());
 		return course;
 	}
-	
+
 	private void setSelectList(){
 		List<String> semesters = semesterService.getAllStringSemesters();
 		String ss[] = semesters.toArray(new String[]{});

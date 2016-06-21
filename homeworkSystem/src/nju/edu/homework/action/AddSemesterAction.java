@@ -16,15 +16,15 @@ import org.springframework.stereotype.Controller;
 public class AddSemesterAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private SemesterService semesterService;
-	
+
 	private String newSemester;
 	private Semester semester;
-	
+
 	private String[] semesterList;
-	
+
 	@Action(
 			value = "jumpToAddSemester",
 			results = {
@@ -45,27 +45,26 @@ public class AddSemesterAction extends BaseAction{
     	else{									// 第一个学期
     		setNewSemester(lastSemester.substring(0, 12) + "二学期");
     	}
-		
+
 		setSelectList();
 		return SUCCESS;
 	}
-	
+
 	@Action(
 			value = "addSemester",
 			results = {
 					@Result(name = SUCCESS, location = "/jsp/administrator/courseList.action", type="redirect"),
 			})
 	public String addSemester() throws Exception {
-		String startTime = request.getParameter("beginYear") + "-" + request.getParameter("beginMonth") 
+		String startTime = request.getParameter("beginYear") + "-" + request.getParameter("beginMonth")
 				+ "-" + request.getParameter("beginDay");
-		String endTime = request.getParameter("endYear") + "-" + request.getParameter("endMonth") 
+		String endTime = request.getParameter("endYear") + "-" + request.getParameter("endMonth")
 				+ "-" + request.getParameter("endDay");
-		System.out.println(startTime +  " " + endTime); 
 		semester = new Semester(request.getParameter("newSemester"), Date.valueOf(startTime), Date.valueOf(endTime));
 		semesterService.addNewSemester(semester);
 		return SUCCESS;
 	}
-	
+
 	public void setSelectList(){
 		List<String> semesters = semesterService.getAllStringSemesters();
 		String ss[] = semesters.toArray(new String[]{});
@@ -95,5 +94,5 @@ public class AddSemesterAction extends BaseAction{
 	public void setSemesterList(String[] semesterList) {
 		this.semesterList = semesterList;
 	}
-	
+
 }

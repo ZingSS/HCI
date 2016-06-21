@@ -13,18 +13,18 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class AddCourseAction extends BaseAction{
-	
-	private static final long serialVersionUID = 1L; 
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Autowired
 	private CourseService courseService;
 	@Autowired
 	private SemesterService semesterService;
-	
+
 	private Course course;
 	private String[] semesterList;
 	private String[] activeSemesterList;
-	
+
 
 	@Action(value = "addCourse",
 			results = {
@@ -34,8 +34,8 @@ public class AddCourseAction extends BaseAction{
 		setSelectList();
 		return SUCCESS;
 	}
-	
-	
+
+
 	@Action(value = "addOneCourse",
 			results = {
 			@Result( name = SUCCESS, location = "/jsp/administrator/courseList.action", type="redirect"),
@@ -47,16 +47,14 @@ public class AddCourseAction extends BaseAction{
 		String begin = request.getParameter("begin");
 		String end = request.getParameter("end");
 		course.setTime(day + " 第"+begin + "-" + end + "节");
-		System.out.println(course.getCredit());
 		int semesterId = semesterService.getSemesterByName(request.getParameter("semester"));
-		System.out.println(semesterId + "     这是第x学期的课");
 		if (semesterId == 0) {
 			return ERROR;
 		}
 		courseService.addCourse(course, semesterId);
 		return SUCCESS;
 	}
-	
+
 	private void setSelectList(){
 		List<String> activeSemesters = semesterService.getActiveStringSemester();
 		String activeSS[];
@@ -100,7 +98,7 @@ public class AddCourseAction extends BaseAction{
 	public void setActiveSemesterList(String[] activeSemesterList) {
 		this.activeSemesterList = activeSemesterList;
 	}
-	
-	
+
+
 
 }

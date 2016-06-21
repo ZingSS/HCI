@@ -19,23 +19,23 @@ import nju.edu.homework.vo.OnlineUserVO;
 public class HomeworkAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private CourseService courseService;
-	
+
 	private List<Homework> homeworkList;
-	
+
 	private Course course;
 	private String courseName;
 	private int courseId;
 	private String errorMessage;
-	
+
 	private Timestamp currentTime;
 	private List<Course> courseList;
-	
+
 	private Date currentDate;
 	private String semester;
-	
+
 	public String getSemester() {
 		return semester;
 	}
@@ -69,7 +69,7 @@ public class HomeworkAction extends BaseAction{
 		setHomeworkList(courseService.getHomeworkByCourseId(id));
 		return SUCCESS;
 	}
-	
+
 	@Action(
 			value = "toAddHomework",
 			results = {
@@ -87,16 +87,15 @@ public class HomeworkAction extends BaseAction{
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
 		courseList = new ArrayList<Course>();
 		for(Course course : cList){
-			System.out.println(term+" "+course.getSemester().getName());
 			if (term.equals(course.getSemester().getName())) {
 					courseList.add(course);
 			}
 		}
 		setCourseList(courseList);
-		
+
 		return SUCCESS;
 	}
-	
+
 	@Action(
 			value = "toAddAnnouncement",
 			results = {
@@ -114,13 +113,12 @@ public class HomeworkAction extends BaseAction{
 		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
 		courseList = new ArrayList<Course>();
 		for(Course course : cList){
-			System.out.println(term+" "+course.getSemester().getName());
 			if (term.equals(course.getSemester().getName())) {
 					courseList.add(course);
 			}
 		}
 		setCourseList(courseList);
-		
+
 		return SUCCESS;
 	}
 
@@ -173,7 +171,7 @@ public class HomeworkAction extends BaseAction{
 		currentDate = new Date(System.currentTimeMillis());
 		return currentDate;
 	}
-	
+
 	public List<Course> getCourseList() {
 		return courseList;
 	}

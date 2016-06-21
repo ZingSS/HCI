@@ -14,10 +14,10 @@ import org.springframework.stereotype.Controller;
 public class UpdateSemesterAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private SemesterService semesterService;
-	
+
 	private Semester semester;
 
 	@Action(value = "updateSemester",
@@ -25,11 +25,10 @@ public class UpdateSemesterAction extends BaseAction{
 			@Result( name = SUCCESS, location = "/jsp/administrator/courseList.action", type="redirect")
 	})
 	public String updateSemester() throws Exception{
-		String startTime = request.getParameter("beginYear") + "-" + request.getParameter("beginMonth") 
+		String startTime = request.getParameter("beginYear") + "-" + request.getParameter("beginMonth")
 				+ "-" + request.getParameter("beginDay");
-		String endTime = request.getParameter("endYear") + "-" + request.getParameter("endMonth") 
+		String endTime = request.getParameter("endYear") + "-" + request.getParameter("endMonth")
 				+ "-" + request.getParameter("endDay");
-		System.out.println(startTime +  " " + endTime); 
 		String name = request.getParameter("updateSemester");
 		semester = new Semester(name, Date.valueOf(startTime), Date.valueOf(endTime));
 		semesterService.updateSemester(semester);

@@ -22,7 +22,7 @@ import nju.edu.homework.vo.StudentSubmitGradeVO;
 
 @Service
 public class UserServiceImpl implements UserService{
-	
+
 	@Autowired
 	private UserDao userDao;
 	@Override
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> getUserByRole(String role) {
 		String columns[] = {"role"};
-		String values[] = {role};	
+		String values[] = {role};
 		return userDao.find(columns, values);
 	}
 
@@ -141,7 +141,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return getCourseNumBySemester(courses, semester);
 	}
-	
+
 	private int getCourseNumBySemester(Set<Course> courses, String semester){
 		int number = 0;
 		for(Course course : courses){
@@ -151,7 +151,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return number;
 	}
-	
+
 	private List<Course> getCourseBySemester(Set<Course> courses, String semester){
 		List<Course> result = new ArrayList<Course>();
 		for(Course course : courses){
@@ -172,7 +172,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return getCourseBySemester(courses, semester);
 	}
-	
+
 	@Override
 	public List<Course> getStudentCourseBySemester(int id, String semester) {
 		User user = getUserById(id);
@@ -206,7 +206,7 @@ public class UserServiceImpl implements UserService{
 	public StatStudentCourseNumVO getSACourseNumBySemester(int userId, String semester) {
 		int courseNum = getStudentCourseNumBySemester(userId, semester);
 		int assistantCourseNum = (isAssistantInSemester(userId, semester)?1:0);
-		
+
 		return new StatStudentCourseNumVO(courseNum, assistantCourseNum);
 	}
 
@@ -237,11 +237,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public StudentInOrAssisVO isInOrAssis(int userId, int courseId) {
 		User user = getUserById(userId);
-		
+
 		boolean isIn = false;
 		for(Course course: user.getStudentCourse()){
-			System.out.println(course.getId() + " ========== " + courseId);
-			System.out.println("???????????????????");
 			if (course.getId() == courseId) {
 				isIn = true;
 				break;
@@ -251,6 +249,6 @@ public class UserServiceImpl implements UserService{
 		StudentInOrAssisVO vo = new StudentInOrAssisVO(isIn, assistantCourseId);
 		return vo;
 	}
-	
+
 
 }

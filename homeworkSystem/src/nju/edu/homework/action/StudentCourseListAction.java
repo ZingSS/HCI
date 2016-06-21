@@ -22,26 +22,26 @@ import org.springframework.stereotype.Controller;
 public class StudentCourseListAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private CourseService courseService;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private SemesterService semesterService;
-	
+
 	private List<Course> courseList;
-	
+
 	private Course assistantCourse;
 	private int courseId;
 	private Course course;
-	
+
 	private Timestamp currentTime;
 	private Date currentDate;
-	
+
 	private Map<String, List<Course>> semesterCourseList;
 	private List<String> semesterList;
-	
+
 	public List<String> getSemesterList() {
 		return semesterList;
 	}
@@ -49,13 +49,13 @@ public class StudentCourseListAction extends BaseAction{
 	public void setSemesterList(List<String> semesterList) {
 		this.semesterList = semesterList;
 	}
-	
+
 	@Action(
 			value = "showStudentCourseList",
 			results = {
 					@Result(name = SUCCESS, location = "/jsp/student/studentCourseList.jsp"),
 			})
-	
+
 	public String execute() throws Exception {
 		int id = ((OnlineUserVO)session.get("onlineUser")).getId();
 		setCourseList(courseService.getCourseByStudentId(id));
@@ -71,12 +71,12 @@ public class StudentCourseListAction extends BaseAction{
 					oneSemesterCourse.add(course);
 				}
 			}
-			
+
 			semesterCourseList.put(semester, oneSemesterCourse);
 		}
 		return SUCCESS;
 	}
-	
+
 	@Action(
 			value = "showStudentTermCourseList",
 			results = {
@@ -91,9 +91,7 @@ public class StudentCourseListAction extends BaseAction{
 		List<String> semesterList = semesterService.getAllStringSemesters();
 		setSemesterList(semesterList);
 		List<String> semesters = new ArrayList<String>();
-		System.out.println("!!"+semesterList.size()+selectTerm);
 		if(selectTerm.equals("all")){
-			System.out.println("???"+semesterList.size());
 			semesters=semesterList;
 		}else{
 			semesters.add(selectTerm);
@@ -106,13 +104,13 @@ public class StudentCourseListAction extends BaseAction{
 					oneSemesterCourse.add(course);
 				}
 			}
-			
+
 			semesterCourseList.put(semester, oneSemesterCourse);
 		}
 		// 判断当前的课是不是要导出Excel表
 		return SUCCESS;
 	}
-	
+
 	public List<Course> getCourseList() {
 		return courseList;
 	}

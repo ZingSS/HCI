@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ModifyHomeworkAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private CourseService courseService;
 	@Autowired
 	private HomeworkService homeworkService;
-	
+
 	private Homework homework;
 	private int courseId;
 	private int homeworkId;
@@ -34,7 +34,7 @@ public class ModifyHomeworkAction extends BaseAction{
 		setHomework(homeworkService.getHomeworkById(homeworkId));
 		return SUCCESS;
 	}
-	
+
 	@Action(
 			value = "modifyHomework",
 			results = {
@@ -46,7 +46,6 @@ public class ModifyHomeworkAction extends BaseAction{
 		int homeworkId = Integer.parseInt(request.getParameter("homeworkId"));
 		setCourseId(courseId);
 		setHomeworkId(homeworkId);
-		System.out.println("waofjieahfoiasufuw0   " + homework.getName());
 		homework.setId(homeworkId);
 		homeworkService.update(homework);
 		return SUCCESS;

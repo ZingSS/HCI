@@ -13,17 +13,17 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class LoginAction extends BaseAction{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private MessageUserService messageUserService;
-	
+
 	private String userId;
 	private String password;
-	
+
 	@SuppressWarnings("unchecked")
 	@Action(
 			value = "login",
@@ -34,7 +34,7 @@ public class LoginAction extends BaseAction{
 					@Result(name = Common.ROLE_STUDENT, location = "/jsp/student/showStudentCourseList.action", type = "redirect"),
 					@Result(name = Common.ROLE_DIRECTOR, location = "/jsp/director/showInitLastMonth.action", type = "redirect")
 			})
-	
+
 	public String execute() throws Exception {
 		userId = request.getParameter("userId");
 		password = request.getParameter("password");
@@ -45,18 +45,17 @@ public class LoginAction extends BaseAction{
 		}
 		else {
 			OnlineUserVO vo = new OnlineUserVO(user.getId(), userId, user.getName(), user.getRole());
-			System.out.println(user.getId() + "  用户的id");
 			session.put("onlineUser", vo);
 			setUnreadMessages(user.getId());
 			return user.getRole();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void setUnreadMessages(int userId){
 		int number = messageUserService.getUnreadNum(userId);
 		session.put("unreadMessage", number);
 	}
-	
+
 
 }

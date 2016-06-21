@@ -17,11 +17,11 @@ import nju.edu.homework.service.UserService;
 public class RegisterAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private UserService userService;
 	private User user;
-	
+
 	@Action(
 			value = "register",
 			results = {
@@ -37,20 +37,18 @@ public class RegisterAction extends BaseAction{
 		String role = request.getParameter("role");
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
-		Timestamp createdTime = new Timestamp(System.currentTimeMillis()); 
-		
+		Timestamp createdTime = new Timestamp(System.currentTimeMillis());
+
 		if (role == null) {
 			return ERROR;
 		}
-		
+
 		user.setName(name);
 		user.setPassword(password);
 		user.setRole(role);
 		user.setCreatedTime(createdTime);
-		
-		System.out.println(user.getName());
-		
-		userService.register(user);		
+
+		userService.register(user);
 		return SUCCESS;
 	}
 
@@ -62,7 +60,7 @@ public class RegisterAction extends BaseAction{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
+
+
+
 }
