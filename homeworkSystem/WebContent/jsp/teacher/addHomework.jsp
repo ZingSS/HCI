@@ -49,11 +49,11 @@
             <div id="add-h-ddl">
 	            <div id="add-h-stu-ddl">
 	                <label>学生提交</label>
-	                <input type="datetime-local" name="sddl">
+	                <input type="date" name="sddl">
 	            </div>
 	            <div id="add-h-assi-ddl">
 	                <label>助教批改</label>
-	                <input type="datetime-local" name="addl">
+	                <input type="date" name="addl">
 	            </div>
 	        </div>
             

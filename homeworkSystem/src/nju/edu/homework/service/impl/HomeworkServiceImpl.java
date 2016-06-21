@@ -25,10 +25,10 @@ import nju.edu.homework.vo.StudentGradeVO;
 
 @Service
 public class HomeworkServiceImpl implements HomeworkService{
-	
+
 	@Autowired
 	private HomeworkDao homeworkDao;
-	
+
 	@Autowired
 	private CourseDao courseDao;
 
@@ -97,10 +97,9 @@ public class HomeworkServiceImpl implements HomeworkService{
 		double average = 0;
 		for(Grade grade : grades){
 			average += (Double.parseDouble(grade.getGrade())); 
-			System.out.println(grade.getGrade());
 		}
 		average = average/length;
-		StatGradesVO vo = new StatGradesVO((int)(Double.parseDouble(grades.get(length-1).getGrade())), 
+		StatGradesVO vo = new StatGradesVO((int)(Double.parseDouble(grades.get(length-1).getGrade())),
 				(int)(Double.parseDouble(grades.get(0).getGrade())),  average);
 		return vo;
 	}

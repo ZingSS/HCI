@@ -17,7 +17,7 @@ import nju.edu.homework.util.ResultMessage;
 
 @Service
 public class SemesterServiceImpl implements SemesterService{
-	
+
 	@Autowired
 	private SemesterDao semesterDao;
 
@@ -48,7 +48,7 @@ public class SemesterServiceImpl implements SemesterService{
 	public List<Course> getCourseOfLastSemester() {
 		return Common.sortCourse(new ArrayList<Course>(getLastSemester().getCourses()));
 	}
-	
+
 	public Semester getLastSemester(){
 		List<Semester> semesters = sortSemesters();
 		if (semesters == null) {
@@ -70,7 +70,7 @@ public class SemesterServiceImpl implements SemesterService{
 		}
 		return semesterStrings;
 	}
-	
+
 	@Override
 	public List<String> getValidSemesterName() {
 		List<Semester> validSemesters = getValidSemester();
@@ -83,7 +83,7 @@ public class SemesterServiceImpl implements SemesterService{
 		}
 		return semesterStrings;
 	}
-	
+
 	@Override
 	public List<String> getActiveStringSemester() {
 		List<Semester> semesters = sortSemesters();
@@ -92,7 +92,7 @@ public class SemesterServiceImpl implements SemesterService{
 		}
 		List<String> semesterStrings = new ArrayList<String>();
 		Date current = new Date(System.currentTimeMillis());
-		for(Semester semester : semesters){	
+		for(Semester semester : semesters){
 			if (current.before(semester.getEndTime())) {
 				System.out.println(semester.getName() + "  这个学期可以被加课程");
 				semesterStrings.add(semester.getName());
@@ -103,11 +103,10 @@ public class SemesterServiceImpl implements SemesterService{
 		}
 		return semesterStrings;
 	}
-	
+
 	private List<Semester> sortSemesters(){
 		List<Semester> semesters = getAllSemesters();
 		if (semesters == null || semesters.size() == 0) {
-			System.out.println("这个semester是空的");
 			return null;
 		}
 		Collections.sort(semesters);

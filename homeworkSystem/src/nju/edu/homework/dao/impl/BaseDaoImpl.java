@@ -17,8 +17,8 @@ import nju.edu.homework.util.ResultMessage;
 
 @Repository
 public class BaseDaoImpl implements BaseDao{
-	
-	@Autowired 
+
+	@Autowired
 	protected SessionFactory sessionFactory;
 
 	@Override
@@ -34,7 +34,7 @@ public class BaseDaoImpl implements BaseDao{
 	@Override
 	public void flush() {
 		getSession().flush();
-		
+
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class BaseDaoImpl implements BaseDao{
 			return ResultMessage.FAILURE;
 		}
 	}
-	
-	
+
+
 
 	@SuppressWarnings({ "rawtypes" })
 	public ResultMessage delete(Class<?> c, int id) {
@@ -123,13 +123,13 @@ public class BaseDaoImpl implements BaseDao{
 			return ResultMessage.FAILURE;
 		}
 	}
-	
+
 	public ResultMessage merge(Object bean){
 		try {
 			Session session = getNewSession();
-			session.beginTransaction();  
+			session.beginTransaction();
 			session.merge(bean);
-			session.getTransaction().commit();  
+			session.getTransaction().commit();
 			session.flush();
 			session.clear();
 			session.close();
@@ -147,7 +147,7 @@ public class BaseDaoImpl implements BaseDao{
 		Session session = getSession();
 		return session.createQuery(hql).list();
 	}
-	
+
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -156,7 +156,7 @@ public class BaseDaoImpl implements BaseDao{
 		Session session = getSession();
 		return session.createQuery(hql).list();
 	}
-	
+
 	@Override
 	public Long getTotalCount(Class<?> c){
 		Session session = getNewSession();
@@ -178,11 +178,9 @@ public class BaseDaoImpl implements BaseDao{
 			ctns[i] = Restrictions.eq(columns[i], values[i]);
 			criteria.add(ctns[i]);
 		}
-		
+
 //		@SuppressWarnings("unchecked")
 		List<T> list = criteria.list();
-		System.out.println("查询结束");
-		System.out.println(list.size());
 		if (list.size() == 0) {
 			return null;
 		}
@@ -221,9 +219,7 @@ public class BaseDaoImpl implements BaseDao{
 	public int saveAndGetId(Object bean) {
 		Session session = getNewSession();
 		Object object = session.save(bean);
-		System.out.println(object.getClass().getName());
 		Integer id = (Integer)object;
-		System.out.println(id);
 		session.flush();
 		session.clear();
 		session.close();
@@ -239,9 +235,9 @@ public class BaseDaoImpl implements BaseDao{
 		String hql = "select distinct " + column +" from " + c.getName() + " order by " + column + " desc";
 		Session session = getSession();
 		return session.createQuery(hql).list();
-		
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public <C, T> List<T> findOneColumn(Class<C> c, String column, T type) {
@@ -251,7 +247,7 @@ public class BaseDaoImpl implements BaseDao{
 		String hql = "select distinct " + column +" from " + c.getName();
 		Session session = getSession();
 		return session.createQuery(hql).list();
-		
+
 	}
 
 	@Override
@@ -293,17 +289,17 @@ public class BaseDaoImpl implements BaseDao{
 	public <T> List<T> findByTimestamp(Class<T> c, String column, Timestamp begin, Timestamp end) {
 		if(column == null){
 			return null;
-		}	
+		}
 		Session session = getSession();
 		String hql = "select *" + " from " + c.getName() + "where " + column + " >= " + begin + " and < " + end;
 		return session.createQuery(hql).list();
 	}
 
-	@SuppressWarnings("unchecked") 
-	public List find(String queryString) { 
+	@SuppressWarnings("unchecked")
+	public List find(String queryString) {
 		Session session = getNewSession();
 		return session.createQuery(queryString).list();
-	
-	} 
-	
+
+	}
+
 }

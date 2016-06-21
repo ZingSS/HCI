@@ -14,24 +14,24 @@ import org.springframework.stereotype.Controller;
 public class UserListAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private UserService userService;
 	private List<User> userList;
-	
+
 	private User user;
-		
+
 	@Action(value = "userList",
 			results = {
 			@Result( name = SUCCESS, location = "/jsp/administrator/userList.jsp")
 	})
 	public String execute() throws Exception{
 		System.out.println("开始查询");
-		setUserList(userService.getAllUsers());		
+		setUserList(userService.getAllUsers());
 		System.out.println("管理员查看所有用户名单");
 		return SUCCESS;
 	}
-	
+
 	@Action(value = "teacherList",
 			results = {
 			@Result( name = SUCCESS, location = "/jsp/administrator/userList.jsp")
@@ -41,7 +41,7 @@ public class UserListAction extends BaseAction{
 
 		return SUCCESS;
 	}
-	
+
 	@Action(value = "studentList",
 			results = { @Result( name = SUCCESS, location = "/jsp/administrator/userList.jsp")
 	})
@@ -49,7 +49,7 @@ public class UserListAction extends BaseAction{
 		setUserList(userService.getUserByRole("student"));
 		return SUCCESS;
 	}
-	
+
 	@Action(value = "updateUser",
 			results = { @Result( name = SUCCESS, location = "/jsp/administrator/userList.action", type = "redirect")
 	})
@@ -58,11 +58,10 @@ public class UserListAction extends BaseAction{
 		user.setName(request.getParameter("name"));
 		user.setUserId(request.getParameter("userId"));
 		user.setPassword(request.getParameter("password"));
-		System.out.println(user.getName());
 		userService.update(user);
 		return SUCCESS;
 	}
-	
+
 	@Action(value = "deleteUser",
 			results = { @Result( name = SUCCESS, location = "/jsp/administrator/userList.jsp")
 	})
@@ -87,6 +86,6 @@ public class UserListAction extends BaseAction{
 		this.user = user;
 	}
 
-	
+
 
 }
