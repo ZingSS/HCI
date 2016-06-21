@@ -10,8 +10,44 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><s:property value="homework.name"/></title>
+
+
+		<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+		<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+		
 </head>
 <body>
+
+<script>
+function fillTable(list) {
+	var data = ""; 
+	data += "<table>"; 
+	data += "<tr>" + 
+	"<th>学生学号</th>" + 
+	"<th>学生姓名</th>" + 
+	"<th>作业</th>" + 
+	"<th>成绩</th>" +
+	"<th>点评</th></tr>"; 
+	for (var i = 0; i <list.length; i++) { 
+		data += "<tr class=\"homework-line\">"; 
+		data += "<td>" + list[i][0] + "</td>";
+		data += "<td>" + list[i][1] + "</td>";
+		if (list[i][2]) {
+			data += "<td><a href=\"downloadHomework.action?studentId=" + list[i][0] +"&homeworkId=<s:property value="homework.id"/>\" class=\"download-td-a\">下载作业</a></td>";
+		}
+		else {
+			data += "<td>未提交</td>";
+		}
+		data += "<td>" + list[i][3] + "</td>";
+		data += "<td>" + list[i][4] + "</td>";
+		data += "</tr>"; 
+		} 
+		data += "</table>"; 
+		document.getElementById("homework-scores").innerHTML = data; 
+	}
+</script>
+
+
 	<s:include value="../teacher/header.jsp"></s:include>
 	<div class="content">
 		<s:include value="../teacher/courseSide.jsp"></s:include>
@@ -72,15 +108,16 @@
 				</s:if>
 		</div>
 		
+		<!-- 不知道这个按钮往哪放 -->
+			<input type="button" onclick="fillTable(grades[0])" value="显示全部"/>
+			
 		<div class="homework-stat">
 			<div class="h-stat-card">
 				<div class="h-stat-header">作业情况分析</div>
 				<div class="h-stat-chart"></div>
-				<div class="h-stat-data">
-					<hr/>
-					<span>最高分：</span>
-					<span>最低分：</span>
-					<span>平均分：</span>
+				<div class="h-stat-data" id="diagram"  style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto" >
+					<!-- by dxh 方图表的地方-->
+					
 				</div>
 			</div>
 			<div class="homework-btns">
@@ -94,36 +131,8 @@
 	            <s:elseif test="%{homework.state == 'commit'}"><a class="forbid-td-a">等待助教审批</a></s:elseif>
 			</div>
 		</div>   
-		<div class="homework-scores">
-            <table>
-                <tr>
-                    <!-- <th>编号</th> -->
-                    <th>学生学号</th>
-                    <th>学生姓名</th>
-                    <th>作业</th>
-                    <th>成绩</th>
-                    <th>点评</th>
-                </tr>
-                <s:iterator value="studentList" >
-		            <tr class="homework-line">
-		                <%-- <td class="hidden-id">${ id }</td> --%>
-		                <td>${ studentId }</td>
-		                <td>${ name }</td>
-		                <td>
-			               	<s:if test="%{submit}">
-			                	<a href="downloadHomework.action?studentId=<s:property value="id"/>&homeworkId=<s:property value="homework.id"/>" class="download-td-a">
-			                	下载作业
-			                	</a>
-			                </s:if>
-			                <s:else>
-			                	未提交
-			                </s:else>
-		                </td>
-		                <td>${ grade }</td>
-		                <td>${ comment }</td>
-		            </tr>
-			</s:iterator>
-            </table>
+		<div class="homework-scores" id="homework-scores">
+ 			<!-- 放表 -->
             
         </div>
 		</s:else>
@@ -131,6 +140,8 @@
 		</div>
 		
 	</div>
+	
+
 	
 	<div id="upload-div">
 		<h3>上传作业样例及点评</h3>
@@ -151,8 +162,102 @@
 			</form>
     	</div>
     </div>
-<script type="text/javascript" src="<%=localPath %>/js/jquery.js" charset="utf-8"></script>
 <script type="text/javascript" src="<%=localPath %>/js/approval.js" charset="utf-8"></script>
+
+<script>
+var full = ${full};
+var grades = new Array();		//0的位置上是全部的。
+grades.push(new Array());
+
+<s:iterator value="studentList" >
+	grades[0].push(['${ studentId }', '${ name }', '${submit}', '${ grade }', '${ comment }']);
+</s:iterator>
+
+var i = 1;
+<s:iterator value="grades" var="l1">
+	grades.push(new Array());
+	<s:iterator value="#l1" var="student">
+		grades[i].push(['<s:property value="#student.studentId"/>', '<s:property value="#student.name"/>', 
+		                '<s:property value="#student.submit"/>',  '<s:property value="#student.grade"/>', 
+		                '<s:property value="#student.comment"/>']);
+	</s:iterator>
+	i += 1;
+</s:iterator>
+
+fillTable(grades[0]);
+
+var x = [];
+var values = [];
+
+for (var i = 1; i<grades.length; i++) {
+	values.push(grades[i].length);
+}
+
+if (full == 100) {
+	x = ['60以下', '60~69','70~79','80~89','90~100'];
+}
+else {
+	for (var i=0; i<= full; i++) {
+		x.push(i);
+	}
+}
+</script>
+
+<script>
+$(function () {
+	if (x.length == 0) return;
+	$('#diagram').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+        	categories: x
+        },
+        yAxis: {
+            min: 0,
+            title: {
+            	text: '人数'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y} 人</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.01,
+                borderWidth: 0
+            },
+            series: {        
+	        	cursor: 'pointer',        
+	        	events: {            
+	          	click: function(event) {
+	          		fillTable(grades[event.point.x + 1]);
+	            }   
+	          }   
+	        }
+        	
+        },
+        legend: {
+            enabled:false
+         },
+        series: [{
+            name: '作业',
+            data: values
+        }]
+    });
+});
+</script>
 
 </body>
 </html>
