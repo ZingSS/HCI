@@ -5,6 +5,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.Grade;
 import nju.edu.homework.model.Homework;
@@ -18,11 +23,6 @@ import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.AssistantStudentHomworkVO;
 import nju.edu.homework.vo.OnlineUserVO;
 import nju.edu.homework.vo.StudentSubmitGradeVO;
-
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Result;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 @Controller
 public class ApprovalHomeworkAction extends BaseAction{
@@ -67,6 +67,13 @@ public class ApprovalHomeworkAction extends BaseAction{
 	}
 	private List<AssistantStudentHomworkVO> studentList;
 	
+	private int full = 0;	//满分是多少？如果所有成绩里的最高分在10以下（含），full等于最高分。10以上，就是100.
+	
+	//如果full == 100,60以下一组，60以上隔10一组。否则，从0开始到最高分，隔1分一组
+	private List<List<AssistantStudentHomworkVO>> grades;
+	
+	private List<Integer> heights;
+	
 
 	@Action(
 			value = "toApprovalHomework",
@@ -107,13 +114,62 @@ public class ApprovalHomeworkAction extends BaseAction{
 				vo = new AssistantStudentHomworkVO(student.getId(), student.getUserId(),
 						student.getName(), submit, grade.getGrade(), grade.getComment());
 			}
-			studentList.add(vo);
-			
+			studentList.add(vo);			
 		}
+		
+		//TODO 下面的算法效率很低但是我喜欢 by dxh
+		int max = 0;
+		for (AssistantStudentHomworkVO vo : studentList) {
+			if (getGrade(vo) > max) max = getGrade(vo);
+		}
+		
+		if (max > 10) full = 100;
+		else full = max;
+		
+		grades = new ArrayList<List<AssistantStudentHomworkVO>>();
+		if (full == 100) {
+			for (int i=0; i<5;i++) {
+				grades.add(new ArrayList<AssistantStudentHomworkVO>());
+			}
+			for (AssistantStudentHomworkVO student : studentList) {
+				if (getGrade(student) < 60) grades.get(0).add(student);
+				else if (getGrade(student) < 70) grades.get(1).add(student);
+				else if (getGrade(student) < 80) grades.get(2).add(student);
+				else if (getGrade(student) < 90) grades.get(3).add(student);
+				else grades.get(4).add(student);
+			}
+		}
+		else {
+			for (int i=0; i<full + 1; i++) {	//如果满分3分，就会有0 1 2 3四段
+				grades.add(new ArrayList<AssistantStudentHomworkVO>());
+			}
+			for (AssistantStudentHomworkVO student : studentList) {
+				grades.get(getGrade(student)).add(student);
+			}
+		}
+		
+		heights = new ArrayList<Integer>();
+		for (int i=0;i<grades.size();i++) {
+			heights.add(grades.get(i).size());
+		}
+		
 		return SUCCESS;
 	}
 	
+	private int getGrade(AssistantStudentHomworkVO student) {
+		if (student.getGrade().length() == 0) return 0;
+		return Integer.parseInt(student.getGrade().substring(0, student.getGrade().indexOf('.')));
+	}
 	
+//	private boolean isZero(String s) {
+//		return (s.length() == 0 || Math.abs(Double.parseDouble(s)) < 0.001);
+//	}
+//	
+//	private boolean equalTo(String s, int i) {
+//		if (s.length() == 0 && i != 0) return false;
+//		else if (s.length() == 0 && i == 0) return true;
+//		return Math.abs(Double.parseDouble(s) - i) < 0.001;
+//	}
 	
 	@Action(
 			value = "passApproval",
@@ -189,5 +245,41 @@ public class ApprovalHomeworkAction extends BaseAction{
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+
+
+
+	public int getFull() {
+		return full;
+	}
+
+
+
+	public void setFull(int full) {
+		this.full = full;
+	}
+
+
+
+	public List<List<AssistantStudentHomworkVO>> getGrades() {
+		return grades;
+	}
+
+
+
+	public void setGrades(List<List<AssistantStudentHomworkVO>> grades) {
+		this.grades = grades;
+	}
+
+
+
+	public List<Integer> getHeights() {
+		return heights;
+	}
+
+
+
+	public void setHeights(List<Integer> heights) {
+		this.heights = heights;
 	}
 }
