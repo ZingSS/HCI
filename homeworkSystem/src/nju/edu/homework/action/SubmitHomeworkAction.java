@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nju.edu.homework.model.Course;
+import nju.edu.homework.model.Grade;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.service.CourseService;
 import nju.edu.homework.service.FileService;
+import nju.edu.homework.service.GradeService;
 import nju.edu.homework.service.HomeworkService;
 import nju.edu.homework.service.UserService;
 import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.OnlineUserVO;
+import nju.edu.homework.vo.StudentHomeworkVO;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.convention.annotation.Action;
@@ -31,6 +34,8 @@ public class SubmitHomeworkAction extends BaseAction{
 	private CourseService courseService;
 	@Autowired
 	private HomeworkService homeworkService;
+	@Autowired
+	private GradeService gradeService;
 	
 	private File file;
 	private String fileContentType;
@@ -44,6 +49,9 @@ public class SubmitHomeworkAction extends BaseAction{
 	private List<Course> courseList;
 	private String semester;
 	private Course course;
+	
+	private StudentHomeworkVO homeworkVO;
+	
 	public Course getCourse() {
 		return course;
 	}
@@ -95,6 +103,13 @@ public class SubmitHomeworkAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
+		
+		if(homework.getState().equals(Common.PASS)){
+			Grade grade = gradeService.getGradeByUserAndHomework(user.getId(), homework.getId());
+			homeworkVO = new StudentHomeworkVO(homework, false, grade.getGrade(), grade.getComment());
+			setHomeworkVO(homeworkVO);
+		}
+		
 		return SUCCESS;
 	}
 	
@@ -219,6 +234,14 @@ public class SubmitHomeworkAction extends BaseAction{
 
 	public void setHomework(Homework homework) {
 		this.homework = homework;
+	}
+
+	public StudentHomeworkVO getHomeworkVO() {
+		return homeworkVO;
+	}
+
+	public void setHomeworkVO(StudentHomeworkVO homeworkVO) {
+		this.homeworkVO = homeworkVO;
 	}
 
 }

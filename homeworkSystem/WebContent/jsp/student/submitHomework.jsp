@@ -71,7 +71,14 @@
 			    <s:elseif test="%{homework.state=='pass'}">
 			    	<div id="student-grade">
 			    		<div id="s-grade-left">
-			    			<span id="s-grade-span">83</span><span id="s-comment-span">没有说清楚细节</span>
+			    			<span id="s-grade-span">
+			    				<s:if test="%{homeworkVO.grade != ''}"><s:property value="homeworkVO.grade"/><span>分</span></s:if>
+			    				<s:else>无</s:else>
+			    			</span>
+			    			<span id="s-comment-span">
+			    				<s:if test="%{homeworkVO.comment != '' }"><s:property value="homeworkVO.comment"/></s:if>
+			    				<s:else>无点评</s:else>
+			    			</span>
 			    		</div>
 			    		<div id="s-grade-right">
 			    			<span>
@@ -86,7 +93,8 @@
 			    			</span>
 			    		</div>
 			    	</div>
-			    	<div>图表</div>
+			    	<div class="s-h-stat" id="s-hs-stat">这里放这次作业的统计</div>
+			    	<div class="s-h-stat" id="s-allh-stat">这里是这个学生所有作业的</div>
 			    </s:elseif>
 			    <s:else>
 			    	<span>未公布</span>

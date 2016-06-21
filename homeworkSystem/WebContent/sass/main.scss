@@ -180,6 +180,8 @@ button{
   border: none;
   background: none;
 
+  margin: 0 15px 0 0;
+
 }
 select{
   background: #eee;
@@ -1323,8 +1325,6 @@ $a-course-height: 50px;
   background-color: $a-btn;
   color: #fff;
 
-  margin: 0 0 0 15px;
-
   &:hover{
     background: $a-btn-hover;
   }
@@ -1755,11 +1755,15 @@ $s-grade-h: 60px;
 #s-grade-span{
   display: inline-block;
   line-height: 40px;
-  width: 50px;
+  width: 80px;
   font-size: 20px;
   text-align: center;
   margin: 10px 0;
-  border-right: 1px solid #a1c2d4
+  border-right: 1px solid #a1c2d4;
+
+  span{
+    font-size: 14px;
+  }
 }
 
 #s-comment-span{
@@ -1786,4 +1790,21 @@ $s-grade-h: 60px;
       margin: 0px 0 0 20px;
     }
   }
+}
+
+
+.s-h-stat{
+  margin: 30px 0;
+  background: #eee;
+  height: 300px;
+}
+
+#s-hs-stat{
+  width: 35%;
+  float: left;
+}
+
+#s-allh-stat{
+  width: 60%;
+  float: right;
 }
