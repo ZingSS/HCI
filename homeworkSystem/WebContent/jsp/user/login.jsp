@@ -10,7 +10,6 @@
 <title>作业系统</title>
 </head>
 <body id="login-page">
-	<div class="nav"></div>
 	<div class="login-content">
 		<img src="<%=localPath %>/image/title.png" />
 	    <form id="login-form" action="login.action" method="post">

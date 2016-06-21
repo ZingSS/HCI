@@ -277,33 +277,42 @@ table {
     .message-info-div .message-a:hover {
       color: #2F4083; }
 
-#login-page .login-content {
-  height: 184px;
-  width: 700px;
-  margin: 300px auto;
-  padding: 20px 0 0;
-  background: #72c2ea;
-  position: relative; }
-  #login-page .login-content img {
-    position: absolute;
-    width: 260px;
-    top: 41px;
-    left: 50px; }
-  #login-page .login-content form {
-    margin: 20px 0 0 400px; }
-    #login-page .login-content form input {
-      width: 180px;
-      margin: 0 0 20px; }
-    #login-page .login-content form button {
-      width: 200px;
-      background: #3A97C5;
-      color: #fff; }
-  #login-page .login-content .login-bottom {
-    background: #3A97C5;
-    height: 10px;
-    width: 100%;
-    position: absolute;
-    bottom: 0; }
+#login-page {
+  background-image: url(../image/login.jpg); }
+  #login-page .login-content {
+    height: 184px;
+    width: 700px;
+    margin: 300px auto;
+    padding: 20px 0 0;
+    background: rgba(30, 65, 68, 0.49);
+    position: relative; }
+    #login-page .login-content img {
+      position: absolute;
+      width: 260px;
+      top: 41px;
+      left: 50px; }
+    #login-page .login-content form {
+      margin: 20px 0 0 400px; }
+      #login-page .login-content form input {
+        width: 180px;
+        margin: 0 0 20px; }
+      #login-page .login-content form button {
+        width: 200px;
+        background: #3A97C5;
+        color: #fff;
+        cursor: pointer; }
+        #login-page .login-content form button:hover {
+          background: #1b6d85; }
+    #login-page .login-content .login-bottom {
+      background: #24465e;
+      height: 10px;
+      width: 100%;
+      position: absolute;
+      bottom: 0; }
+
+#login-error {
+  margin: 0 0 0 15px;
+  color: #d04242; }
 
 header {
   height: 41px;
@@ -403,14 +412,16 @@ nav {
 .t-course-a {
   height: 146px;
   width: 195px; }
-  .t-course-a:hover {
-    background-color: #555555; }
 
 .t-course {
   width: 195px;
   float: left;
   margin: 15px 20px 30px;
-  box-shadow: 1px 1px 1px #b3b3b3; }
+  box-shadow: 1px 1px 1px #b3b3b3;
+  border-right: 1px solid #c7c7c7;
+  border-bottom: 1px solid #c7c7c7; }
+  .t-course:hover {
+    box-shadow: none; }
   .t-course .t-course-header {
     background-color: #57b5e8;
     padding: 5px 20px; }
@@ -567,7 +578,12 @@ nav {
 .homework-card {
   width: 215px;
   float: left;
-  margin: 20px 12px; }
+  margin: 20px 27px;
+  box-shadow: 1px 1px 1px #b3b3b3;
+  border-right: 1px solid #c7c7c7;
+  border-bottom: 1px solid #c7c7c7; }
+  .homework-card:hover {
+    box-shadow: none; }
   .homework-card .h-submit {
     background-color: #57b5e8; }
   .homework-card .h-commit {
@@ -877,7 +893,7 @@ div#add-h-ddl {
   color: #FFAE30;
   background: none;
   cursor: pointer;
-  margin: 0 0 0 12px; }
+  margin: 0 0 0 27px; }
   .a-margin-button:hover {
     border: 1px solid #eea32d;
     color: #eea32d; }
@@ -1371,9 +1387,5 @@ tr.semester-tr td {
     #s-grade-right span a {
       color: #fff;
       margin: 0px 0 0 20px; }
-
-#login-error {
-  margin: 0 0 0 15px;
-  color: #ad3d3d; }
 
 /*# sourceMappingURL=main.css.map */
