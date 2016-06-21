@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@page import="nju.edu.homework.vo.OnlineUserVO"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>提交课程作业</title>
 </head>
@@ -25,7 +26,13 @@
 				</div>
 			</div>
 			<div class="h-title-mid">
-				<span><s:property value="homework.description"/></span>
+				<s:if test="%{homework.description == ''}">
+					<span class="homework-des">无作业描述</span>
+				</s:if>
+				<s:elseif test="%{homework.description.length()>30}">
+					<span class="homework-des"><s:property value="homework.description.substring(0,30)"/>...</span>
+				</s:elseif>
+				<s:else><span class="homework-des">${ homework.description }</span></s:else>
 			</div>
 			<div class="h-title-bottom">
 				<div class="h-title-btm-left"></div>
@@ -33,11 +40,9 @@
 					<span>作业提交格式：<s:property value="homework.fileType"/></span>
                 	<span id="h-title-attach">
 	                	<s:if test="%{homework.fileId != 0}">
-			            	<a href="downloadAttachment.action?fileId=${ homework.fileId }" class="download-td-a">下载附件</a>
-			            </s:if>
-			            <s:else>
-			            	无附件
-			            </s:else>
+				            	<a href="downloadAttachment.action?fileId=${ homework.fileId }" id="download-file"><img alt="下载" src="../../image/down-white.png"> 附件</a>
+				        </s:if>
+				       	<s:else>无附件</s:else>
                		</span>
 				</div>
 			</div>
@@ -46,7 +51,14 @@
 			<div>
 				<!-- 提交中 -->
 				<s:if test="%{homework.studentDDL > homework.currentTime}"> 
-					<span>提交中</span>
+					<div class="homework-commit-state">
+						<form action="submitHomework.action" method="post" enctype="multipart/form-data" >   
+			        		<s:hidden name="courseId" value="%{courseId}"/>
+			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
+			         		请选择需要上传的文件：<input type="file" id="dofile" name="file"/>
+			         		<button type="submit" class="submit-btn">上传文件</button>
+			    		 </form> 
+					</div>
 				</s:if>
 				<!-- 批改中 -->
 				<s:elseif test="%{homework.studentDDL < homework.currentTime && homework.assistantDDL > homework.currentTime}">
@@ -57,20 +69,30 @@
 				</s:elseif>
 				<!-- 教师审批中/已经公布／其它 -->
 			    <s:elseif test="%{homework.state=='pass'}">
-			    	<span>公布</span>
+			    	<div id="student-grade">
+			    		<div id="s-grade-left">
+			    			<span id="s-grade-span">83</span><span id="s-comment-span">没有说清楚细节</span>
+			    		</div>
+			    		<div id="s-grade-right">
+			    			<span>
+				    			<a href="downloadAttachment.action?fileId=${ studentHomework.publishFileId }" class="">
+				    			<img alt="下载" src="../../image/down-white.png">样例&点评
+				    			</a>
+			    			</span>
+			    			<span>
+				    			<a href="downloadHomework.action?studentId=<%=((OnlineUserVO)session.getAttribute("onlineUser")).getId()%>&homeworkId=<s:property value="homework.id"/>">
+				    			<img alt="下载" src="../../image/down-white.png">作业下载
+				    			</a>
+			    			</span>
+			    		</div>
+			    	</div>
+			    	<div>图表</div>
 			    </s:elseif>
 			    <s:else>
 			    	<span>未公布</span>
 			    </s:else>
-        	<div class="homework-commit-state">
-						<form action="submitHomework.action" method="post" enctype="multipart/form-data" >   
-			        		<s:hidden name="courseId" value="%{courseId}"/>
-			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
-			         		请选择需要上传的文件：<input type="file" id="dofile" name="file"/>
-			         		<button type="submit" class="submit-btn">上传文件</button>
-			    		 </form> 
-			</div>
-			<div>
+        	
+			<%-- <div>
 				<div class="s-homework-stat">
 				</div>
 				<div>
@@ -79,7 +101,7 @@
 					<span><a href="downloadAttachment.action?fileId=${ studentHomework.publishFileId }" class="download-td-a">样例&点评</a></span>
 					<span></span>
 				</div>
-			</div>
+			</div> --%>
         </div>
 		</div>
 	</div>

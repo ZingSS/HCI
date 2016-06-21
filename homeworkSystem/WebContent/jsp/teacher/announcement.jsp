@@ -30,14 +30,16 @@
 			</s:if>
 			    <s:iterator value="announcementList" >
 			    <div class="announcement">
-					<div class="announce-header">
-						<span class="announce-title"><s:property value="title" /></span>
-						<span class="announce-time"><s:property value="tname" /> | <s:property value="atime" /></span>
+			    	<div class="announcement-body">
+						<div class="announce-header">
+							<span class="announce-title"><s:property value="title" /></span>
+							<span class="announce-time"><s:property value="tname" /> | <s:property value="atime" /></span>
+						</div>
+						<div class="announce-body">
+							<span><s:property value="content" /></span>
+						</div>
 					</div>
-					<div class="announce-body">
-						<span><s:property value="content" /></span>
-					</div>
-				</div>
+			    </div>
 			    </s:iterator>
 		</div>
 	</div>

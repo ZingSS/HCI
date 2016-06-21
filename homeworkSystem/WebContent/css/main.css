@@ -611,7 +611,7 @@ nav {
 
 .h-title-name {
   background-color: #F2F2F2;
-  border-left: 10px solid #F77A5F;
+  border-left: 15px solid #F96241;
   width: 70%;
   height: 60px;
   padding: 10px 0;
@@ -635,7 +635,7 @@ nav {
     color: #fff; }
 
 .h-title-mid {
-  border-left: 10px solid #F77A5F;
+  border-left: 15px solid #F96241;
   border-right: 1px solid #F77A5F; }
   .h-title-mid span {
     display: inline-block;
@@ -644,7 +644,7 @@ nav {
 
 .h-title-btm-left {
   background-color: #F2F2F2;
-  border-left: 10px solid #F77A5F;
+  border-left: 15px solid #F96241;
   width: 70%;
   height: 30px;
   float: left; }
@@ -662,7 +662,8 @@ nav {
     margin: 0 20px; }
 
 .homework-commit-state {
-  text-align: center; }
+  text-align: center;
+  clear: both; }
 
 .homework-example {
   margin: 0 0 20px 0; }
@@ -833,11 +834,12 @@ div#add-h-ddl {
   float: right; }
 
 .announcement {
-  width: 90%;
-  background: #F2F2F2;
-  border-left: 15px solid #57b5e8;
-  padding: 10px;
-  margin: 25px 0 5px; }
+  width: 100%; }
+  .announcement .announcement-body {
+    background: #F2F2F2;
+    border-left: 15px solid #57b5e8;
+    padding: 10px;
+    margin: 25px 0 5px; }
   .announcement .announce-header {
     margin: 0 0 10px 0; }
     .announcement .announce-header span {
@@ -1331,5 +1333,43 @@ tr.semester-tr td {
 
 .change-comment input {
   width: 90%; }
+
+#student-grade {
+  height: 60px;
+  width: 100%; }
+  #student-grade #s-grade-left {
+    width: 70%;
+    height: 60px;
+    background: #F2F2F2;
+    border-left: 15px solid #57b5e8;
+    float: left; }
+
+#s-grade-span {
+  display: inline-block;
+  line-height: 40px;
+  width: 50px;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0;
+  border-right: 1px solid #a1c2d4; }
+
+#s-comment-span {
+  display: inline-block;
+  margin: 0 0 0 10px;
+  line-height: 60px;
+  color: #777; }
+
+#s-grade-right {
+  height: 60px;
+  background: #57b5e8;
+  line-height: 30px; }
+  #s-grade-right span {
+    display: block; }
+    #s-grade-right span img {
+      width: 16px;
+      margin: 0 5px 0 0; }
+    #s-grade-right span a {
+      color: #fff;
+      margin: 0px 0 0 20px; }
 
 /*# sourceMappingURL=main.css.map */

@@ -897,7 +897,7 @@ $course-header-h: 90px;
 $h-title-top-height: 60px;
 $h-title-btm-height: 30px;
 
-$h-title-border: 10px solid $course-header-color;
+$h-title-border: 15px solid $main-pink;
 
 .h-title-name{
   background-color: $course-body-color;
@@ -975,6 +975,7 @@ $h-title-border: 10px solid $course-header-color;
 
 .homework-commit-state{
   text-align: center;
+  clear: both;
 }
 
 .homework-example{
@@ -1222,12 +1223,15 @@ $a-course-height: 50px;
 
 
 .announcement{
-  width: 90%;
-  background: $course-body-color;
-  border-left: 15px solid $light-blue;
+  width: 100%;
 
-  padding: 10px;
-  margin:25px 0 5px;
+  .announcement-body{
+    background: $course-body-color;
+    border-left: 15px solid $light-blue;
+
+    padding: 10px;
+    margin:25px 0 5px;
+  }
 
   .announce-header{
 
@@ -1704,5 +1708,58 @@ tr.semester-tr td{
 .change-comment{
   input{
     width: 90%;
+  }
+}
+
+
+$s-grade-h: 60px;
+
+#student-grade{
+  height: $s-grade-h;
+  width: 100%;
+
+  #s-grade-left{
+    width: 70%;
+    height: $s-grade-h;
+    background: $course-body-color;
+    border-left: 15px solid $light-blue;
+    float: left;
+  }
+
+}
+
+#s-grade-span{
+  display: inline-block;
+  line-height: 40px;
+  width: 50px;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0;
+  border-right: 1px solid #a1c2d4
+}
+
+#s-comment-span{
+  display: inline-block;
+  margin: 0 0 0 10px;
+  line-height: 60px;
+  color: #777;
+}
+
+#s-grade-right{
+  height: $s-grade-h;
+  background: $light-blue;
+  line-height: 30px;
+  span{
+    display: block;
+
+    img{
+      width: 16px;
+      margin: 0 5px 0 0;
+    }
+
+    a{
+      color: #fff;
+      margin: 0px 0 0 20px;
+    }
   }
 }
