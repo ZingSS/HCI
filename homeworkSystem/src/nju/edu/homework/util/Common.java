@@ -43,6 +43,7 @@ public class Common {
 	public static final String RE_CORRECT = "reCorrect";
 	public static final String PUBLISH_EXAMPLE = "publishExample";
 	public static final String NEW_ANNOUNCEMENT="newAnnouncement";
+	public static final String AS_ANNOUNCEMENT = "asAnnouncement";
 	
 	public static final String STAT_ALL_COURSE = "statAllCourses";
 	public static final String STAT_COURSE_HW = "statCourseHomework";
@@ -56,6 +57,7 @@ public class Common {
 	public static final String[] EXPORT_COURSE_STUDENT_TITLE = {"学号" , "姓名"};
 	public static final String[] EXPORT_COURSE_HW_TITLE = {"作业名" , "学生提交截止", "助教批改截止"};
 	public static final String[] EXPORT_COURSE_SG_TITLE = {"学号" , "学生名", "成绩"};
+
 	
 	public static String formatSemester(String semester){
 		String year = semester.substring(0, 4);

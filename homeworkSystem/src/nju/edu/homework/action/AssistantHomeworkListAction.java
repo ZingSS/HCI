@@ -44,6 +44,7 @@ public class AssistantHomeworkListAction extends BaseAction{
 		return SUCCESS;
 	}
 
+
 	public Course getCourse() {
 		return course;
 	}
