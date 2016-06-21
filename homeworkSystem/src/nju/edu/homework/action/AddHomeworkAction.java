@@ -49,6 +49,7 @@ public class AddHomeworkAction extends BaseAction{
 		setCourseId(id);
 		String studentDDL = request.getParameter("sddl");
 		String assistantDDL = request.getParameter("addl");
+		System.out.println(studentDDL + "     "  + assistantDDL + "  " + homework.getName());
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		Timestamp sddl = Timestamp.valueOf(studentDDL);
 		Timestamp addl = Timestamp.valueOf(assistantDDL);

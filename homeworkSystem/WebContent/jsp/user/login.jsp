@@ -17,7 +17,7 @@
 	        <input type="text" placeholder="请输入帐号" name="userId"><br/>
 	        <input type="password" placeholder="请输入密码" name="password"><br/>
 	        <button type="submit">登录</button>
-	        <h5 class="login-error">${FieldErrors.loginMessage[0]}</h5>
+	        <span id="login-error">${FieldErrors.loginMessage[0]}</span>
 	    </form>
 	    <div class="login-bottom"></div>
 	</div>

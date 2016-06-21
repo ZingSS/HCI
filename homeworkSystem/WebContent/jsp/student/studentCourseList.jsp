@@ -55,13 +55,13 @@
 										value="assistantCourse.name" /></span>
 							</div>
 							<div id="a-course-body">
-								<span><img alt="上课时间" src="../../image/cal-black.png"
-									class="cal-img">
-								<s:property value="assistantCourse.time" /></span> <span><img
-									alt="上课地点" src="../../image/map-black.png" class="map-img">
-								<s:property value="assistantCourse.location" /></span> <span><img
-									alt="教师" src="../../image/tea-black.png" class="tea-img">
+								<span><img alt="上课时间" src="../../image/cal-black.png"class="cal-img">
+								<s:property value="assistantCourse.time" /></span> 
+								<span><imgalt="上课地点" src="../../image/map-black.png" class="map-img">
+								<s:property value="assistantCourse.location" /></span> 
+								<span><imgalt="教师" src="../../image/tea-black.png" class="tea-img">
 								<s:iterator value="assistantCourse.teachers">${ name }  </s:iterator></span>
+								
 
 							</div>
 						</div>
@@ -85,10 +85,12 @@
 							</div>
 							<div class="t-course-body">
 								<img alt="上课时间" src="../../image/cal-black.png" class="cal-img"><span>${ time }</span>
-								<br /> <img alt="上课地点" src="../../image/map-black.png"
-									class="map-img"><span>${ location }</span> <br /> <img
-									alt="教师" src="../../image/tea-black.png" class="tea-img"><span><s:iterator
-										value="%{ teachers }">${ name } </s:iterator></span>
+								<br /> 
+								<img alt="上课地点" src="../../image/map-black.png"class="map-img">
+								<span>${ location }</span> 
+								<br /> 
+								<img alt="教师" src="../../image/tea-black.png" class="tea-img"><span><s:iterator value="%{ teachers }">${ name } </s:iterator></span>
+								
 							</div>
 						</div>
 					</a>

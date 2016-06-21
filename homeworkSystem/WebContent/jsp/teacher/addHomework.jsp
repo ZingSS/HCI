@@ -14,10 +14,10 @@
 		<div class="right-content">
 			<s:include value="../teacher/courseHeader.jsp"></s:include>
 			<form id="add-h-form" action="addHomework.action" method="post" enctype="multipart/form-data">
-            <%-- <div>
-                <span>为课程<s:property value="courseName"/>添加作业</span>
+            <div>
+                <%-- <span>为课程<s:property value="courseName"/>添加作业</span> --%>
                 <s:hidden name="courseId" value="%{courseId}"/>
-            </div> --%>
+            </div>
             <div class="add-h-first">
                 <div id="add-h-name">
                 	<label>作业标题</label>
@@ -58,8 +58,8 @@
 	        </div>
             
             <div id="add-h-btns">
-            	<input type="button" value="取消" class="a-btn-cancel">
-            	<input type="submit" value="添加" class="a-btn-confirm">
+            	<button type="button"><a class="a-btn-cancel" href="showTeacherHomeworkList.action?courseId=<s:property value="courseId"/>&name=<s:property value="courseName"/>">取消</a></button>
+            	<button type="submit"><a class="a-btn-confirm">添加</a></button>
             </div>
         </form>
 		</div>
