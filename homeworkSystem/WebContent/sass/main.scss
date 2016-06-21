@@ -142,7 +142,7 @@ $a-btn-hover: #eea32d;
 }
 
 body{
-  background: $gray;
+  background: #fff;
 }
 
 a{
@@ -157,7 +157,7 @@ input,textarea{
   outline:none;
 }
 
-input[type="text"], input[type="password"], input[type="datetime-local"]{
+input[type="text"], input[type="password"], input[type="datetime-local"], input[type="date"]{
   height: 30px;
   width: 180px;
   @include normal-input;
@@ -1085,7 +1085,7 @@ $h-title-border: 15px solid $main-pink;
   min-width: 500px;
   margin: 0;
 
-  input[type="text"],input[type="file"], input[type="datetime-local"]{
+  input[type="text"],input[type="file"], input[type="datetime-local"], input[type="date"]{
     margin: 10px 0 10px 10px;
   }
 

@@ -47,9 +47,8 @@ public class AddHomeworkAction extends BaseAction{
 	public String addHomework() throws Exception {
 		int id = Integer.parseInt(request.getParameter("courseId"));
 		setCourseId(id);
-		String studentDDL = request.getParameter("sddl");
-		String assistantDDL = request.getParameter("addl");
-		System.out.println(studentDDL + "     "  + assistantDDL + "  " + homework.getName());
+		String studentDDL = request.getParameter("sddl") + " 23:59:59";
+		String assistantDDL = request.getParameter("addl") + " 23:59:59";
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		Timestamp sddl = Timestamp.valueOf(studentDDL);
 		Timestamp addl = Timestamp.valueOf(assistantDDL);
