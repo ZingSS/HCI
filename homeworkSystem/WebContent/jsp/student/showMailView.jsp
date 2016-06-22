@@ -44,7 +44,7 @@
                 <s:hidden name="identity" value="%{identity}"/>
 					<div style="margin-left:-2%">
 						<label>收件人</label> <input type="text" name="address"
-							value="<s:property value="user.userId"/>@nju.edu.cn">
+							value="<s:property value="user.userId"/>@smail.nju.edu.cn">
 					</div>
 					<div style="margin-top:2%">
 						<label>主题</label> 

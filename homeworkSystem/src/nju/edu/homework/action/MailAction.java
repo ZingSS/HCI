@@ -47,6 +47,15 @@ public class MailAction extends BaseAction {
 	/** 收件人，主要用到他的 userId 和 name */
 	private User user;
 	private String identity;
+	private String sendState;
+
+	public String getSendState() {
+		return sendState;
+	}
+
+	public void setSendState(String sendState) {
+		this.sendState = sendState;
+	}
 
 	public String getIdentity() {
 		return identity;
@@ -138,8 +147,12 @@ public class MailAction extends BaseAction {
 		String content = request.getParameter("content");
 		String from = "cylong1016@163.com";
 		String password = "lsy940815";
-		sendMail(from, password, "131250129@smail.nju.edu.cn", subject, content);
-		
+		boolean isSuccess = sendMail(from, password, address, subject, content);
+		if(isSuccess){
+			setSendState("success");
+		}else{
+			setSendState("fail");
+		}
 		return SUCCESS;
 	}
 
@@ -152,7 +165,7 @@ public class MailAction extends BaseAction {
 	 * @author cylong
 	 * @version 2016年6月20日 下午7:23:39
 	 */
-	public void sendMail(String from, String password, String address, String subject, String content) {
+	public boolean sendMail(String from, String password, String address, String subject, String content) {
 
 		Properties props = new Properties();
 		// 开启 debug 调试  
@@ -185,8 +198,10 @@ public class MailAction extends BaseAction {
 			// 设置收件人
 			msg.setRecipient(RecipientType.TO, new InternetAddress(address));
 			Transport.send(msg);
+			return true;
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 

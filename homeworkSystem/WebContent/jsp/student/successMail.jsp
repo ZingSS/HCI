@@ -39,7 +39,12 @@
 	</s:else>
 		<div class="right-content">
 			<s:include value="../student/courseHeader.jsp"></s:include>
-			<div class="t-homework">成功发送</div>
+			<div class="t-homework">
+			<s:if test="%{sendState == 'success'}">
+			成功发送
+			</s:if>
+			<s:else>发送失败</s:else>
+			</div>
 		</div>
     </div>
 </body>
