@@ -54,11 +54,13 @@
 						<label>内容</label>
 						<textarea name="content"></textarea>
 					</div>
-
-					<div style="margin-left:6%">
+					
+					<!-- style 最好写在 css 里 -->
+					<div style="margin:8px 6%;">
 						您正在发送邮件给
-						<s:property value="user.name" />
-						，回复的邮件可以在邮箱中查看 <input type="submit" value="发送">
+						<i><s:property value="user.name" /></i>
+						，回复的邮件可以在邮箱中查看 
+						<button type="submit" class="a-btn-confirm" style="margin-left: 120px;">发送</button>
 					</div>
 			</s:form>
 		</div>
