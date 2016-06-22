@@ -39,28 +39,7 @@
 	</s:else>
 		<div class="right-content">
 			<s:include value="../student/courseHeader.jsp"></s:include>
-			<s:form id="add-h-form" action="sendMail.action" method="post" enctype="multipart/form-data">
-                <s:hidden name="courseId" value="%{courseId}"/>
-                <s:hidden name="identity" value="%{identity}"/>
-					<div style="margin-left:-2%">
-						<label>收件人</label> <input type="text" name="address"
-							value="<s:property value="user.userId"/>@nju.edu.cn">
-					</div>
-					<div style="margin-top:2%">
-						<label>主题</label> 
-						<input type="text" name="subject">
-					</div>
-					<div id="add-h-des">
-						<label>内容</label>
-						<textarea name="content"></textarea>
-					</div>
-
-					<div style="margin-left:6%">
-						您正在发送邮件给
-						<s:property value="user.name" />
-						，回复的邮件可以在邮箱中查看 <input type="submit" value="发送">
-					</div>
-			</s:form>
+			<div class="t-homework">成功发送</div>
 		</div>
     </div>
 </body>

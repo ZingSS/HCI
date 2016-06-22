@@ -108,7 +108,7 @@ public class MailAction extends BaseAction {
 	@Action(
 			value = "sendMail",
 			results = {
-					@Result(name = SUCCESS, location = "/jsp/student/showMailView.jsp"),
+					@Result(name = SUCCESS, location = "/jsp/student/successMail.jsp"),
 			})
 	public String sendMail() throws Exception {
 		int id = Integer.parseInt(request.getParameter("courseId"));
@@ -127,6 +127,8 @@ public class MailAction extends BaseAction {
 			}
 		}
 		setCourseList(courseList);
+		String identity=request.getParameter("identity");
+		setIdentity(identity);
 		
 		// 以上代码是从 HomeworkAction 复制过来的
 		// 以下代码是 cylong 写的有问题说一下
@@ -136,7 +138,7 @@ public class MailAction extends BaseAction {
 		String content = request.getParameter("content");
 		String from = "cylong1016@163.com";
 		String password = "lsy940815";
-		sendMail(from, password, address, subject, content);
+		sendMail(from, password, "131250129@smail.nju.edu.cn", subject, content);
 		
 		return SUCCESS;
 	}
