@@ -46,6 +46,15 @@ public class MailAction extends BaseAction {
 	private String semester;
 	/** 收件人，主要用到他的 userId 和 name */
 	private User user;
+	private String identity;
+
+	public String getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
 
 	/**
 	 * 展示发送邮件的界面
@@ -69,7 +78,7 @@ public class MailAction extends BaseAction {
 		session.put("semester", term);
 		setSemester(term);
 		OnlineUserVO vo = (OnlineUserVO)session.get("onlineUser");
-		List<Course> cList = courseService.getCourseByTeacherId(vo.getId());
+		List<Course> cList = courseService.getCourseByStudentId(vo.getId());
 		courseList = new ArrayList<Course>();
 		for(Course course : cList) {
 			if (term.equals(course.getSemester().getName())) {
@@ -77,14 +86,14 @@ public class MailAction extends BaseAction {
 			}
 		}
 		setCourseList(courseList);
-		
 		// 以上代码是从 HomeworkAction 复制过来的
 		// 以下代码是 cylong 写的有问题说一下
 		
 		// 收件人 ID
 		String userId = request.getParameter("userId");
 		user = userService.getuserByUserId(userId);
-
+		String identity=request.getParameter("identity");
+		setIdentity(identity);
 		return SUCCESS;
 	}
 	
