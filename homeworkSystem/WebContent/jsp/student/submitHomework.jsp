@@ -50,13 +50,15 @@
 			
 			<div>
 				<!-- 提交中 -->
-				<s:if test="%{homework.studentDDL > homework.currentTime}"> 
+				<s:if test="%{homework.state=='commit'}"> 
 					<div class="homework-commit-state">
 						<form action="submitHomework.action" method="post" enctype="multipart/form-data" >   
 			        		<s:hidden name="courseId" value="%{courseId}"/>
 			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
 			         		请选择需要上传的文件：<input type="file" id="dofile" name="file"/>
-			         		<button type="submit" class="submit-btn">上传文件</button>
+			         		<br/>
+			         		<span>您已经提交过，再次提交将会进行覆盖</span>
+			         		<button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button>
 			    		 </form> 
 					</div>
 				</s:if>
@@ -93,8 +95,8 @@
 			    			</span>
 			    		</div>
 			    	</div>
-			    	<div class="s-h-stat" id="s-hs-stat">这里放这次作业的统计</div>
-			    	<div class="s-h-stat" id="s-allh-stat">这里是这个学生所有作业的</div>
+			    	<div class="s-h-stat" id="s-hs-stat">这里放这次作业的统计<s:iterator value="homeworkGrades" >${ grade }</s:iterator></div>
+			    	<div class="s-h-stat" id="s-allh-stat">这里是这个学生所有作业的  <s:iterator value="grades" ></s:iterator></div>
 			    </s:elseif>
 			    <s:else>
 			    	<span>未公布</span>

@@ -51,6 +51,8 @@ public class SubmitHomeworkAction extends BaseAction{
 	private Course course;
 	
 	private StudentHomeworkVO homeworkVO;
+	private List<String> grades;
+	private List<Grade> homeworkGrades;
 	
 	public Course getCourse() {
 		return course;
@@ -108,6 +110,10 @@ public class SubmitHomeworkAction extends BaseAction{
 			Grade grade = gradeService.getGradeByUserAndHomework(user.getId(), homework.getId());
 			homeworkVO = new StudentHomeworkVO(homework, false, grade.getGrade(), grade.getComment());
 			setHomeworkVO(homeworkVO);
+			
+			List<Homework> homeworks = courseService.getHomeworkByCourseId(courseId);
+			setGrades(gradeService.getGradesByStudentIdAndHomeworks(user.getId(), homeworks));
+			setHomeworkGrades(gradeService.getGradesByHomeworkId(homework.getId()));
 		}
 		
 		return SUCCESS;
@@ -242,6 +248,22 @@ public class SubmitHomeworkAction extends BaseAction{
 
 	public void setHomeworkVO(StudentHomeworkVO homeworkVO) {
 		this.homeworkVO = homeworkVO;
+	}
+
+	public List<String> getGrades() {
+		return grades;
+	}
+
+	public void setGrades(List<String> grades) {
+		this.grades = grades;
+	}
+
+	public List<Grade> getHomeworkGrades() {
+		return homeworkGrades;
+	}
+
+	public void setHomeworkGrades(List<Grade> homeworkGrades) {
+		this.homeworkGrades = homeworkGrades;
 	}
 
 }

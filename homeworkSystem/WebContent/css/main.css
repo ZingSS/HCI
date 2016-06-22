@@ -393,7 +393,8 @@ nav {
     .left-sidebar li a:hover {
       background: rgba(0, 0, 0, 0.06); }
 .left-sidebar .left-sub-list li {
-  margin: 1.2em 0 .3em 20px; }
+  margin: 1.2em 0 .3em 20px;
+  padding: 3px 0 0 0; }
 .left-sidebar .left-sub-list a {
   border-left: 2px solid #4C87C3; }
 .left-sidebar hr {
@@ -683,22 +684,24 @@ nav {
   clear: both; }
 
 .homework-example {
-  margin: 0 0 20px 0; }
+  margin: 0 136px 20px 0;
+  float: left; }
 
 .homework-stat {
   width: 30%;
   float: left;
-  height: 200px; }
+  height: 200px;
+  clear: both; }
   .homework-stat .h-stat-card {
-    height: 200px;
-    background-color: #F2F2F2; }
+    height: 340px;
+    background-color: #fff; }
   .homework-stat .h-stat-header {
     background: #0C2136;
     color: #fff;
     text-align: center;
     padding: 10px; }
   .homework-stat .h-stat-data {
-    padding: 0 20px; }
+    padding: 0 10px; }
     .homework-stat .h-stat-data hr {
       margin: 0 0 10px; }
     .homework-stat .h-stat-data span {
@@ -708,6 +711,19 @@ nav {
   .homework-stat .homework-btns {
     float: right;
     margin: 20px 0; }
+
+.a-attach {
+  color: #fff; }
+  .a-attach img {
+    width: 17px;
+    margin: 0 4px 0 0;
+    position: relative;
+    top: 2px; }
+
+#show-all {
+  position: relative;
+  top: 56px;
+  left: -130px; }
 
 .homework-scores {
   width: 68%;
@@ -923,6 +939,34 @@ div#add-h-ddl {
   .a-btn-cancel:hover {
     border: 1px solid #eea32d;
     color: #eea32d; }
+
+.a-btn-forbid {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #666;
+  color: #666;
+  background: none;
+  cursor: pointer; }
+  .a-btn-forbid:hover {
+    border: 1px solid #666;
+    color: #666; }
+
+.a-show {
+  color: #fff;
+  border: 1px solid #fff;
+  width: 80px;
+  height: 30px;
+  display: inline-block;
+  line-height: 30px;
+  left: 70px;
+  position: relative;
+  cursor: pointer; }
+  .a-show:hover {
+    border: 1px solid #F5F5F5;
+    color: #F5F5F5; }
 
 #to-add-user a {
   color: #fff;
@@ -1402,5 +1446,23 @@ tr.semester-tr td {
 #s-allh-stat {
   width: 60%;
   float: right; }
+
+.a-download img {
+  width: 16px; }
+
+.h-s-id {
+  width: 15%; }
+
+.h-s-name {
+  width: 15%; }
+
+.h-s-h {
+  width: 10%; }
+
+.h-s-g {
+  width: 10%; }
+
+.h-s-c {
+  width: 50%; }
 
 /*# sourceMappingURL=main.css.map */

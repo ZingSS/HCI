@@ -3,10 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="3196ee0c-1b6c-4da2-a6fe-9f1a41978176" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" afterPath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WEB-INF/classes/applicationContext.xml" afterPath="$PROJECT_DIR$/WEB-INF/classes/applicationContext.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css.map" afterPath="$PROJECT_DIR$/css/main.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/approval.js" afterPath="$PROJECT_DIR$/js/approval.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/submitHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/submitHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/announcement.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/announcement.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/courseHomeworkList.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/courseHomeworkList.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/main.scss" afterPath="$PROJECT_DIR$/sass/main.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/nju/edu/homework/action/SubmitHomeworkAction.java" afterPath="$PROJECT_DIR$/../src/nju/edu/homework/action/SubmitHomeworkAction.java" />
     </list>
     <ignored path="WebContent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +37,8 @@
       <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="1798" column="16" selection-start-line="1798" selection-start-column="16" selection-end-line="1798" selection-end-column="16" />
+            <state relative-caret-position="536">
+              <caret line="1377" column="19" selection-start-line="1377" selection-start-column="19" selection-end-line="1377" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -191,12 +198,13 @@
       <option name="presentableId" value="Default" />
       <updated>1457686981400</updated>
       <workItem from="1466390194388" duration="13377000" />
-      <workItem from="1466475389581" duration="8977000" />
+      <workItem from="1466475389581" duration="9576000" />
+      <workItem from="1466563286927" duration="3024000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22354000" />
+    <option name="totallyTimeSpent" value="25977000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -270,6 +278,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sass/main.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -286,8 +302,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="1798" column="16" selection-start-line="1798" selection-start-column="16" selection-end-line="1798" selection-end-column="16" />
+        <state relative-caret-position="536">
+          <caret line="1377" column="19" selection-start-line="1377" selection-start-column="19" selection-end-line="1377" selection-end-column="19" />
           <folding />
         </state>
       </provider>

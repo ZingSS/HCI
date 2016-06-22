@@ -20,14 +20,13 @@
 
 			<div class="t-homework">
 				<ul>
-					<li><a
-						href="toAddAnnouncement.action?courseId=<s:property value="course.id"/>"
-						class="a-button">添加公告</a></li>
+					<li>
+					<s:if test="%{announcementList.size() == 0}">
+						<span>暂无公告，可以 </span>
+					</s:if>
+					<a href="toAddAnnouncement.action?courseId=<s:property value="course.id"/>" class="a-button">添加公告</a></li>
 				</ul>
 			</div>
-			<s:if test="%{announcementList.size() == 0}">
-				<div class="homework-commit-state">暂无公告</div>
-			</s:if>
 			    <s:iterator value="announcementList" >
 			    <div class="announcement">
 			    	<div class="announcement-body">

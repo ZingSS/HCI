@@ -8,7 +8,7 @@ window.onload = function(){
 			{homeworkId : homeworkId, courseId : courseId},
 			function(){
 				$(".approval-result").children().remove();
-				var publishExample = "<a class='add-td-a'>上传样例</a>";
+				var publishExample = "<a class='a-btn-confirm'>上传样例</a>";
 				$(".approval-result").append(publishExample);
 			}
 		)
@@ -22,7 +22,7 @@ window.onload = function(){
 			{homeworkId : homeworkId, courseId : courseId},
 			function(){
 				$(".approval-result").children().remove();
-				var waitToApproval = "<a class='forbid-td-a'>等待助教批改</a>";
+				var waitToApproval = "<a class='a-btn-forbid'>等待助教批改</a>";
 				$(".approval-result").append(waitToApproval);
 			}
 		)

@@ -23,23 +23,25 @@ function fillTable(list) {
 	var data = ""; 
 	data += "<table>"; 
 	data += "<tr>" + 
-	"<th>学生学号</th>" + 
-	"<th>学生姓名</th>" + 
-	"<th>作业</th>" + 
-	"<th>成绩</th>" +
-	"<th>点评</th></tr>"; 
+	"<th class='h-s-id'>学生学号</th>" + 
+	"<th class='h-s-name'>学生姓名</th>" + 
+	"<th class='h-s-h'>作业</th>" + 
+	"<th class='h-s-g'>成绩</th>" +
+	"<th class='h-s-c'>点评</th></tr>"; 
 	for (var i = 0; i <list.length; i++) { 
 		data += "<tr class=\"homework-line\">"; 
-		data += "<td>" + list[i][0] + "</td>";
-		data += "<td>" + list[i][1] + "</td>";
+		data += "<td class='h-s-id'>" + list[i][0] + "</td>";
+		data += "<td class='h-s-name'>" + list[i][1] + "</td>";
 		if (list[i][2]) {
-			data += "<td><a href=\"downloadHomework.action?studentId=" + list[i][0] +"&homeworkId=<s:property value="homework.id"/>\" class=\"download-td-a\">下载作业</a></td>";
+			data += "<td class='h-s-h'><a href=\"downloadHomework.action?studentId=" 
+				+ list[i][0] +"&homeworkId=<s:property value="homework.id"/>\" class='a-download'>" 
+				+ "<img alt='下载' src='../../image/down-black.png'></a></td>";
 		}
 		else {
-			data += "<td>未提交</td>";
+			data += "<td class='h-s-h'>无</td>";
 		}
-		data += "<td>" + list[i][3] + "</td>";
-		data += "<td>" + list[i][4] + "</td>";
+		data += "<td class='h-s-g'>" + list[i][3] + "</td>";
+		data += "<td class='h-s-c'>" + list[i][4] + "</td>";
 		data += "</tr>"; 
 		} 
 		data += "</table>"; 
@@ -53,7 +55,8 @@ function fillTable(list) {
 		<s:include value="../teacher/courseSide.jsp"></s:include>
 		
 		<div class="right-content">
-		<s:hidden name="courseId" value="%{courseId}"/>
+		<s:hidden name="courseId" value="%{courseId}" id="courseId"/>
+		<s:hidden name="homework.id" value="%{homework.id}" id="homework-id"/>
 		<div class="homework-title">
 			<div class="h-title-top">
 				<div class="h-title-name">
@@ -74,7 +77,9 @@ function fillTable(list) {
 					<span>作业提交格式：<s:property value="homework.fileType"/></span>
                 	<span id="h-title-attach">
 	                	<s:if test="%{homework.fileId != 0}">
-			            	<a href="downloadAttachment.action?fileId=${ homework.fileId }" class="download-td-a">下载附件</a>
+			            	<a href="downloadAttachment.action?fileId=${ homework.fileId }" class="a-attach">
+			            		<img alt="下载" src="../../image/down-white.png">下载附件
+			            	</a>
 			            </s:if>
 			            <s:else>
 			            	无附件
@@ -99,23 +104,29 @@ function fillTable(list) {
 	            <s:if test="%{homework.state == 'pass'}">
 					<s:if test="%{homework.publishFileId == 0}">
 						<span class="info-title">作业样例&点评：</span>
-						<span><a id="to-add-example"class="add-td-a">上传样例</a></span>
+						<span><a id="to-add-example"class="a-button-confirm">上传样例</a></span>
 					</s:if>
 					<s:else>
 						<span class="info-title">作业样例&点评：</span>
-						<span><a href="downloadExample.action?fileId=${homework.publishFileId}" class="download-td-a">下载样例&点评</a></span>
+						<span>
+							<a href="downloadExample.action?fileId=${homework.publishFileId}" class="a-button">
+								下载样例&点评
+							</a>
+						</span>
 					</s:else>
 				</s:if>
 		</div>
 		
 		<!-- 不知道这个按钮往哪放 -->
-			<input type="button" onclick="fillTable(grades[0])" value="显示全部"/>
+<!-- 		<div id="show-all">
+			<a onclick="fillTable(grades[0])" class="a-button">显示全部</a>
+		</div> -->
 			
 		<div class="homework-stat">
 			<div class="h-stat-card">
-				<div class="h-stat-header">作业情况分析</div>
+				<div class="h-stat-header">作业情况分析 <a onclick="fillTable(grades[0])" class="a-show">显示全部</a></div>
 				<div class="h-stat-chart"></div>
-				<div class="h-stat-data" id="diagram"  style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto" >
+				<div class="h-stat-data" id="diagram"  style="min-width: 310px; max-width: 800px; height: 300px; margin: 0 auto" >
 					<!-- by dxh 方图表的地方-->
 					
 				</div>
@@ -123,12 +134,12 @@ function fillTable(list) {
 			<div class="homework-btns">
 				<s:if test="%{homework.state == 'approval'}">
             	<div class="approval-result">
-	            	<span><a id="failed-approval" class="delete-td-a">不合格并重新批改</a></span>
-	            	<span><a id="pass-approval" class="update-td-a">通过批改并发布成绩</a></span>
+	            	<span><a id="failed-approval" class="a-btn-cancel">要求重新批改</a></span>
+	            	<span><a id="pass-approval" class="a-btn-confirm">通过并发布</a></span>
 	            </div>
 	            </s:if>
-	            <s:elseif test="%{homework.state == 'pass'}"><a class="forbid-td-a">已经通过审批</a></s:elseif>
-	            <s:elseif test="%{homework.state == 'commit'}"><a class="forbid-td-a">等待助教审批</a></s:elseif>
+	            <s:elseif test="%{homework.state == 'pass'}"><a class="a-btn-forbid">已通过审批</a></s:elseif>
+	            <s:elseif test="%{homework.state == 'commit'}"><a class="a-btn-forbid">等待助教审批</a></s:elseif>
 			</div>
 		</div>   
 		<div class="homework-scores" id="homework-scores">
@@ -162,7 +173,7 @@ function fillTable(list) {
 			</form>
     	</div>
     </div>
-<script type="text/javascript" src="<%=localPath %>/js/approval.js" charset="utf-8"></script>
+
 
 <script>
 var full = ${full};
@@ -258,6 +269,7 @@ $(function () {
     });
 });
 </script>
+<script type="text/javascript" src="<%=localPath %>/js/approval.js" charset="utf-8"></script>
 
 </body>
 </html>

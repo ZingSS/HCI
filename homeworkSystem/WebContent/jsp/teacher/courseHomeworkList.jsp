@@ -25,12 +25,18 @@
         	<div class="t-homework">
 	        	<ul>
 	        		<s:if test="%{course.semester.endTime.after(currentDate)}">
-	        			<li><a href="toAddHomework.action?courseId=<s:property value="course.id"/>" class="a-margin-button">添加作业</a></li>
+	        			<li>
+	        				<s:if test="%{homeworkList.size() == 0}">
+	        					<span>暂无作业，可以</span>
+	        					<a href="toAddHomework.action?courseId=<s:property value="course.id"/>" class="a-button">添加作业</a>
+	        				</s:if>
+	        				<s:else>
+	        					<a href="toAddHomework.action?courseId=<s:property value="course.id"/>" class="a-margin-button">添加作业</a>
+	        				</s:else>
+	        				
+	        			</li>
 	        			<!-- <li><a class="add-td-a" id="to-add-homework">添加作业</a></li> -->
         			</s:if>       
-<!-- 	                <li><a href="">所有作业</a></li>
-	                <li><a href="">待审核作业</a></li>
-	                <li><a href="">已完结作业</a></li> -->
 	            </ul>
 	        </div>
 	
@@ -39,10 +45,13 @@
 	        	<a href="toApprovalHomework.action?homeworkId=<s:property value="id"/>&courseId=<s:property value="course.id"/>">
 	        		<div class="homework-card">
 	        			<s:if test="%{studentDDL > currentTime}">
-			                <div class="homework-card-header h-submit">
+			                <div class="homework-card-header h-commit">
 			            </s:if>
 			            <s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
 			               	<div class="homework-card-header h-commit">
+			            </s:elseif>
+			            <s:elseif test="%{state=='approval'}">
+			               	<div class="homework-card-header h-submit">
 			            </s:elseif>
 			            <s:else>
 			            	<div class="homework-card-header h-done">
@@ -68,7 +77,7 @@
 	        				<s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
 			               		<span class="h-commit-span">距批改截止 4天14小时</span>
 			            	</s:elseif>
-			            	<s:elseif test="%{assistantDDL > currentTime && state=='approval'}">
+			            	<s:elseif test="%{state=='approval'}">
 			            		<span class="h-active-span">待审批</span>
 			                </s:elseif>
 			                <s:elseif test="%{state=='pass'}">

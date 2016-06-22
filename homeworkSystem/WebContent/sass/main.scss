@@ -562,6 +562,7 @@ nav{
   .left-sub-list{
     li{
       margin: 1.2em 0 .3em 20px;
+      padding: 3px 0 0 0;
     }
     a{
       border-left: 2px solid #4C87C3;
@@ -1005,17 +1006,19 @@ $h-title-border: 15px solid $main-pink;
 }
 
 .homework-example{
-  margin: 0 0 20px 0;
+  margin: 0 136px 20px 0;
+  float: left;
 }
 
 .homework-stat{
   width: 30%;
   float: left;
   height: 200px;
+  clear: both;
 
   .h-stat-card{
-    height: 200px;
-    background-color: $course-body-color;
+    height: 340px;
+    background-color: #fff;
   }
 
   .h-stat-header{
@@ -1027,7 +1030,7 @@ $h-title-border: 15px solid $main-pink;
 
   .h-stat-data{
 
-    padding: 0 20px;
+    padding: 0 10px;
 
     hr{
       margin: 0 0 10px;
@@ -1044,6 +1047,22 @@ $h-title-border: 15px solid $main-pink;
     margin: 20px 0;
   }
 
+}
+
+.a-attach{
+  color: #fff;
+  img{
+    width: 17px;
+    margin: 0 4px 0 0;
+    position: relative;
+    top: 2px;
+  }
+}
+
+#show-all{
+  position: relative;
+  top: 56px;
+  left: -130px;
 }
 
 .homework-scores{
@@ -1335,6 +1354,31 @@ $a-course-height: 50px;
   &:hover{
     border: 1px solid $a-btn-hover;
     color: $a-btn-hover;
+  }
+}
+
+.a-btn-forbid{
+  @include new-a($gray-font);
+  &:hover{
+    border: 1px solid $gray-font;
+    color: $gray-font;
+  }
+}
+
+.a-show{
+  color: #fff;
+  border: 1px solid #fff;
+  width: 80px;
+  height: 30px;
+  display: inline-block;
+  line-height: 30px;
+  left: 70px;
+  position: relative;
+
+  cursor: pointer; 
+  &:hover{
+    border: 1px solid $gray;
+    color: $gray;
   }
 }
 
@@ -1807,4 +1851,32 @@ $s-grade-h: 60px;
 #s-allh-stat{
   width: 60%;
   float: right;
+}
+
+
+.a-download{
+  img{
+    width: 16px;
+  }
+}
+
+
+.h-s-id{
+  width: 15%;
+}
+
+.h-s-name{
+  width: 15%;
+}
+
+.h-s-h{
+  width: 10%;
+}
+
+.h-s-g{
+  width: 10%;
+}
+
+.h-s-c{
+  width: 50%;
 }
