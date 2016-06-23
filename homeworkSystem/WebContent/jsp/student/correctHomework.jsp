@@ -129,7 +129,7 @@
 						保存
 					</a>
 					<span>
-					<a href="informTeacher.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-confirm">
+					<a onclick="showImg()" href="informTeacher.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-confirm">
 						保存并提交
 					</a>
 					</span>
@@ -143,9 +143,16 @@
 
         </div>
 		</div>
+		<
+		<div class="loading-img"><img alt="加载" src="../../image/loading.gif"></div>
 		
 	</div>
 <script type="text/javascript" src="<%=localPath %>/js/jquery.js" charset="utf-8"></script>
 <script type="text/javascript" src="<%=localPath %>/js/homework.js" charset="utf-8"></script>
+<script>
+function showImg(){
+	$(".loading-img").css({"display":"block"});
+}
+</script>
 </body>
 </html>

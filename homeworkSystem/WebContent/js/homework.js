@@ -54,6 +54,18 @@ window.onload = function(){
         $("#auto-saving").text("保存成功");
     })
 
+    
+    $("#to-add-example").click(function(){
+        $("#add-example-div").css({"display":"block"});
+        $("#add-example-div").on("click", ".close-btn", function(){
+            $("#add-example-div").css({"display":"none"});
+        })
+    })
+
+    $("#send-save").click(function(){
+        $(".loading-img").css({"display":"block"});
+    })
+
 }
 
 function showAutoSaving(){

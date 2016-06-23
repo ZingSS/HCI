@@ -34,4 +34,8 @@ window.onload = function(){
             $("#add-example-div").css({"display":"none"});
         })
 	})
+
+	$("#send-save").click(function(){
+		$(".loading-img").css({"display":"block"});
+	})
 }

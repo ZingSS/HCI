@@ -1530,4 +1530,16 @@ tr.semester-tr td {
   background: #f7f7f7;
   margin-bottom: 10px; }
 
+.loading-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  background: rgba(84, 84, 84, 0.36);
+  border-radius: 18px;
+  height: 100px; }
+  .loading-img img {
+    width: 110px;
+    margin: -21px 0px; }
+
 /*# sourceMappingURL=main.css.map */

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3196ee0c-1b6c-4da2-a6fe-9f1a41978176" name="Default" comment="" />
+    <list default="true" id="3196ee0c-1b6c-4da2-a6fe-9f1a41978176" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" afterPath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css.map" afterPath="$PROJECT_DIR$/css/main.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/main.scss" afterPath="$PROJECT_DIR$/sass/main.scss" />
+    </list>
     <ignored path="WebContent.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +30,8 @@
       <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="1200" column="22" selection-start-line="1200" selection-start-column="22" selection-end-line="1200" selection-end-column="22" />
+            <state relative-caret-position="543">
+              <caret line="1976" column="11" selection-start-line="1976" selection-start-column="11" selection-end-line="1976" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -186,12 +192,12 @@
       <updated>1457686981400</updated>
       <workItem from="1466390194388" duration="13377000" />
       <workItem from="1466475389581" duration="9576000" />
-      <workItem from="1466563286927" duration="8638000" />
+      <workItem from="1466563286927" duration="9322000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31591000" />
+    <option name="totallyTimeSpent" value="32275000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -289,8 +295,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="1200" column="22" selection-start-line="1200" selection-start-column="22" selection-end-line="1200" selection-end-column="22" />
+        <state relative-caret-position="543">
+          <caret line="1976" column="11" selection-start-line="1976" selection-start-column="11" selection-end-line="1976" selection-end-column="11" />
           <folding />
         </state>
       </provider>

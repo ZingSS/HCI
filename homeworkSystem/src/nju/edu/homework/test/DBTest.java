@@ -73,6 +73,9 @@ public class DBTest {
 //    		
     	
 //    	
+    	
+    		int homeworkId = 61;
+    		int beginGrade = 152;
     		
 //    		强行模拟正太分布的成绩
 //    	Random r = new Random();
@@ -91,22 +94,22 @@ public class DBTest {
 //    		System.out.println(i);
 //    		PreparedStatement ps = conn.prepareStatement("insert into grade(grade, homework_id, user_id) values(?,?,?)");
 //    		ps.setString(1, grades[i]+"");
-//    		ps.setInt(2, 60);
+//    		ps.setInt(2, homeworkId);
 //    		ps.setInt(3, i + 23);
 //    		ps.executeUpdate();
 //    	}
-    	
+//    	
     	for (int i=0;i<120;i++) {
     		PreparedStatement ps = conn.prepareStatement("insert into user_grade values(?,?)");
     		ps.setInt(1, i + 23);
-    		ps.setInt(2, i + 517);
+    		ps.setInt(2, i + beginGrade);
     		ps.executeUpdate();
     	}
    	
     	for (int i=0;i<120;i++) {
     		PreparedStatement ps = conn.prepareStatement("insert into homework_grade values(?,?)");
-    		ps.setInt(1, 60);
-    		ps.setInt(2, i + 517);
+    		ps.setInt(1, homeworkId);
+    		ps.setInt(2, i + beginGrade);
     		ps.executeUpdate();
     	}
 //    	
