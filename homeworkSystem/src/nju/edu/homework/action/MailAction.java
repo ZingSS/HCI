@@ -145,6 +145,8 @@ public class MailAction extends BaseAction {
 		String address = request.getParameter("address");
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
+		String courseUrl = "课程链接请点击： http://localhost:8080/homeworkSystem/jsp/teacher/showTeacherHomeworkList.action?courseId=" + id + "&name=" + course.getName();
+		content = content + "\n\n" + courseUrl;
 		String from = "cylong1016@163.com";
 		String password = "lsy940815";
 		boolean isSuccess = sendMail(from, password, address, subject, content);

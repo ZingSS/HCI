@@ -43,8 +43,8 @@
                 <s:hidden name="courseId" value="%{courseId}"/>
                 <s:hidden name="identity" value="%{identity}"/>
 					<div id="mail-receiver">
-						<label>收件人</label> <input type="text" name="address"
-							value="<s:property value="user.userId"/>@smail.nju.edu.cn">
+						<label>收件人</label>
+						<input type="text" name="address" value="<s:property value="user.userId"/>@smail.nju.edu.cn">
 					</div>
 					<div id="mail-theme">
 						<label>主题</label> 
