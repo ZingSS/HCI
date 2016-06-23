@@ -50,22 +50,23 @@
 			
 			<div>
 			
-				<div class="homework-commit-state">
-					<form action="submitHomework.action" 
-						method="post" 
-						class="dropzone"
-	      				id="my-awesome-dropzone" 
-	      				enctype="multipart/form-data" >   
-		         		<br/>
-		         		<span>您已经提交过，再次提交将会进行覆盖</span>
-		         		<button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button>
-		    		 </form> 
-				</div>
+				
 			
 			
 				<!-- 提交中 -->
-				<s:if test="%{homework.state=='commit'}"> 
+				<s:if test="%{homework.state == 'commit' && homework.studentDDL > currentTime}"> 
 					<div class="homework-commit-state">
+						<form action="submitHomework.action"  method="post" 
+						class="dropzone" id="my-awesome-dropzone"  enctype="multipart/form-data" >  
+							<s:hidden name="courseId" value="%{courseId}"/>
+			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
+			         		<br/>
+			         		<%-- <span>您已经提交过，再次提交将会进行覆盖</span> --%>
+			         		
+			         		<!-- <button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button> -->
+			    		 </form> 
+					</div>
+<%-- 					<div class="homework-commit-state">
 						<form action="submitHomework.action" method="post" enctype="multipart/form-data" >   
 			        		<s:hidden name="courseId" value="%{courseId}"/>
 			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
@@ -74,13 +75,13 @@
 			         		<span>您已经提交过，再次提交将会进行覆盖</span>
 			         		<button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button>
 			    		 </form> 
-					</div>
+					</div> --%>
 				</s:if>
 				<!-- 批改中 -->
-				<s:elseif test="%{homework.studentDDL < homework.currentTime && homework.assistantDDL > homework.currentTime}">
-					<<span>批改中</span>
+				<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime}">
+					<span>批改中</span>
 				</s:elseif>
-				<s:elseif test="%{homework.assistantDDL > homework.currentTime && homework.state=='approval'}">
+				<s:elseif test="%{homework.assistantDDL > currentTime && homework.state=='approval'}">
 					<span class="homework-done">待审批</span>
 				</s:elseif>
 				<!-- 教师审批中/已经公布／其它 -->

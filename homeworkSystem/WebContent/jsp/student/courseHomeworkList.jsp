@@ -29,9 +29,6 @@
 	        	<a href="toSubmitHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="course.id"/>" class="">
 	        		<div class="homework-card">
 	        			<!-- 提交中 -->
-<%-- 	        			<s:if test="%{homework.state == 'commit' && homework.studentDDL > homework.currentTime}"> 
-			                <div class="homework-card-header h-submit">
-			            </s:if> --%>
 			            <s:if test="%{homework.state == 'commit' && homework.studentDDL > currentTime}">
 			                <div class="homework-card-header h-submit">
 			            </s:if>

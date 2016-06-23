@@ -856,7 +856,8 @@ div#add-h-ddl {
   color: #081E34; }
 
 #a-h-excel {
-  margin: 0 0 20px 0; }
+  margin: 0 0 20px 0;
+  height: 30px; }
   #a-h-excel #a-h-output {
     float: left;
     margin: 0 20px 0 0; }

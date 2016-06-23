@@ -2,6 +2,7 @@ package nju.edu.homework.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +54,13 @@ public class SubmitHomeworkAction extends BaseAction{
 	private StudentHomeworkVO homeworkVO;
 	private List<String> grades;
 	private List<Grade> homeworkGrades;
+	
+	private Timestamp currentTime;
+	
+	public Timestamp getCurrentTime() {
+		currentTime = new Timestamp(System.currentTimeMillis());
+		return currentTime;
+	}
 	
 	public Course getCourse() {
 		return course;
@@ -129,8 +137,7 @@ public class SubmitHomeworkAction extends BaseAction{
 		
 		int homeworkId = Integer.parseInt(request.getParameter("homeworkId"));
 		int courseId = Integer.parseInt(request.getParameter("courseId"));
-		System.out.println("homeworkId:" + homeworkId);
-		System.out.println("courseId:" + courseId);
+
 		setHomeworkId(homeworkId);
 		setCourseId(courseId);
 		// 保存上传的附件
