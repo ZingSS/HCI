@@ -687,6 +687,15 @@ $course-header-h: 90px;
       margin-left: 20px;
     }
 
+    a{
+      color: #fff;
+      text-decoration: underline;
+
+      &:hover{
+        color: $gray;
+      }
+    }
+
     img{
       width: 16px;
       margin: 0 5px 0 0;
@@ -1375,7 +1384,7 @@ $a-course-height: 50px;
   left: 70px;
   position: relative;
 
-  cursor: pointer; 
+  cursor: pointer;
   &:hover{
     border: 1px solid $gray;
     color: $gray;
@@ -1879,4 +1888,46 @@ $s-grade-h: 60px;
 
 .h-s-c{
   width: 50%;
+}
+
+
+#add-mail-form{
+  clear: both;
+  width: 70%;
+  min-width: 500px;
+  margin: 14px;
+
+  .mail-content textarea{
+    height: 16em;
+  }
+}
+
+#mail-receiver{
+  label{
+    margin: 0px 7px 0 -12px;
+  }
+  input{
+    width: 86%;
+  }
+}
+
+#mail-theme{
+
+  margin: 0 0 10px 0;
+  label{
+    margin: 0px 9px 0 0;
+  }
+  input{
+    width: 86%;
+  }
+
+}
+
+#mail-btn{
+  float: right;
+  margin: 11px 28px;
+
+  span{
+    margin: 0 10px 0 0 ;
+  }
 }

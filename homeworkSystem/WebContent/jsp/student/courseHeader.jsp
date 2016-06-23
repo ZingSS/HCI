@@ -20,18 +20,12 @@
 	        		<br/>
 	        		<span><img alt="上课地点" src="../../image/map-white.png" class="map-img"><s:property value="course.location"/></span>
 	         		<br/>
-	         		<span><img alt="上课教师" src="../../image/tea-white.png" class="assi-img">
-	         			<s:iterator value="course.teachers" >
-	         				<a href="showMailView.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&userId=${ userId }&identity='student'">
-	         				${ name }  </a>
+	         		<span><img alt="上课教师" src="../../image/tea-white.png" class="assi-img"><s:iterator value="course.teachers" ><a href="showMailView.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&userId=${ userId }&identity='student'">${ name }</a>  
 	         			</s:iterator>
 	         		</span>
 	         		
 	                <br/>
-	                <span><img alt="上课助教" src="../../image/assi-white.png" class="assi-img">
-	                	<s:iterator value="%{course.assistant}" >
-	                		<a href="showMailView.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&userId=${ userId }&identity='assistant'">
-	           	 			${ name }  </a>
+	                <span><img alt="上课助教" src="../../image/assi-white.png" class="assi-img"><s:iterator value="%{course.assistant}" ><a href="showMailView.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>&userId=${ userId }&identity='assistant'">${ name }</a>  
 	               		</s:iterator>
 	               	</span>
 	        		

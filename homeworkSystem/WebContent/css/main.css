@@ -471,6 +471,11 @@ nav {
       display: inline-block;
       line-height: 1.8;
       margin-left: 20px; }
+    .course-header-info .course-header-left a {
+      color: #fff;
+      text-decoration: underline; }
+      .course-header-info .course-header-left a:hover {
+        color: #F5F5F5; }
     .course-header-info .course-header-left img {
       width: 16px;
       margin: 0 5px 0 0; }
@@ -1464,5 +1469,31 @@ tr.semester-tr td {
 
 .h-s-c {
   width: 50%; }
+
+#add-mail-form {
+  clear: both;
+  width: 70%;
+  min-width: 500px;
+  margin: 14px; }
+  #add-mail-form .mail-content textarea {
+    height: 16em; }
+
+#mail-receiver label {
+  margin: 0px 7px 0 -12px; }
+#mail-receiver input {
+  width: 86%; }
+
+#mail-theme {
+  margin: 0 0 10px 0; }
+  #mail-theme label {
+    margin: 0px 9px 0 0; }
+  #mail-theme input {
+    width: 86%; }
+
+#mail-btn {
+  float: right;
+  margin: 11px 28px; }
+  #mail-btn span {
+    margin: 0 10px 0 0; }
 
 /*# sourceMappingURL=main.css.map */

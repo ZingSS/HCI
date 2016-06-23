@@ -39,28 +39,26 @@
 	</s:else>
 		<div class="right-content">
 			<s:include value="../student/courseHeader.jsp"></s:include>
-			<s:form id="add-h-form" action="sendMail.action" method="post" enctype="multipart/form-data">
+			<s:form id="add-mail-form" action="sendMail.action" method="post" enctype="multipart/form-data">
                 <s:hidden name="courseId" value="%{courseId}"/>
                 <s:hidden name="identity" value="%{identity}"/>
-					<div style="margin-left:-2%">
+					<div id="mail-receiver">
 						<label>收件人</label> <input type="text" name="address"
 							value="<s:property value="user.userId"/>@smail.nju.edu.cn">
 					</div>
-					<div style="margin-top:2%">
+					<div id="mail-theme">
 						<label>主题</label> 
 						<input type="text" name="subject">
 					</div>
-					<div id="add-h-des">
+					<div id="add-h-des" class="mail-content">
 						<label>内容</label>
 						<textarea name="content"></textarea>
 					</div>
 					
 					<!-- style 最好写在 css 里 -->
-					<div style="margin:8px 6%;">
-						您正在发送邮件给
-						<i><s:property value="user.name" /></i>
-						，回复的邮件可以在邮箱中查看 
-						<button type="submit" class="a-btn-confirm" style="margin-left: 120px;">发送</button>
+					<div id="mail-btn">
+						<span>您正在发送邮件给<i><s:property value="user.name" /></i>，请在邮箱中查询是否收到回信 </span>
+						<button type="submit" class="a-btn-confirm">发送</button>
 					</div>
 			</s:form>
 		</div>
