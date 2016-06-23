@@ -49,6 +49,20 @@
 		</div>
 			
 			<div>
+			
+				<div class="homework-commit-state">
+					<form action="submitHomework.action" 
+						method="post" 
+						class="dropzone"
+	      				id="my-awesome-dropzone" 
+	      				enctype="multipart/form-data" >   
+		         		<br/>
+		         		<span>您已经提交过，再次提交将会进行覆盖</span>
+		         		<button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button>
+		    		 </form> 
+				</div>
+			
+			
 				<!-- 提交中 -->
 				<s:if test="%{homework.state=='commit'}"> 
 					<div class="homework-commit-state">
@@ -117,4 +131,11 @@
 	</div>
 
 </body>
+<script src="../../js/dropzone.js"></script>
+<script type="text/javascript">
+	Dropzone.options.myAwesomeDropzone = {
+		paramName: "file", // The name that will be used to transfer the file
+		dictDefaultMessage: "拖拽至此或者点击上传",
+	};
+</script>
 </html>

@@ -129,6 +129,8 @@ public class SubmitHomeworkAction extends BaseAction{
 		
 		int homeworkId = Integer.parseInt(request.getParameter("homeworkId"));
 		int courseId = Integer.parseInt(request.getParameter("courseId"));
+		System.out.println("homeworkId:" + homeworkId);
+		System.out.println("courseId:" + courseId);
 		setHomeworkId(homeworkId);
 		setCourseId(courseId);
 		// 保存上传的附件
@@ -148,7 +150,7 @@ public class SubmitHomeworkAction extends BaseAction{
 		}
 		setCourseList(courseList);
 
-		
+		System.out.println("filename:" + file.getName());
 		return SUCCESS;
 	}
 	
