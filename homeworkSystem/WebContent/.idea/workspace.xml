@@ -6,10 +6,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css.map" afterPath="$PROJECT_DIR$/css/main.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/courseHomeworkList.jsp" afterPath="$PROJECT_DIR$/jsp/student/courseHomeworkList.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/submitHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/submitHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/homework.js" afterPath="$PROJECT_DIR$/js/homework.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/approvalHomework.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/teacher/modifyHomework.jsp" afterPath="$PROJECT_DIR$/jsp/teacher/modifyHomework.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/main.scss" afterPath="$PROJECT_DIR$/sass/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/nju/edu/homework/action/SubmitHomeworkAction.java" afterPath="$PROJECT_DIR$/../src/nju/edu/homework/action/SubmitHomeworkAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/nju/edu/homework/action/CorrectHomeworkAction.java" afterPath="$PROJECT_DIR$/../src/nju/edu/homework/action/CorrectHomeworkAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/nju/edu/homework/service/GradeService.java" afterPath="$PROJECT_DIR$/../src/nju/edu/homework/service/GradeService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/nju/edu/homework/service/impl/GradeServiceImpl.java" afterPath="$PROJECT_DIR$/../src/nju/edu/homework/service/impl/GradeServiceImpl.java" />
     </list>
     <ignored path="WebContent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,8 +37,8 @@
       <file leaf-file-name="main.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sass/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="1255" column="15" selection-start-line="1255" selection-start-column="15" selection-end-line="1255" selection-end-column="15" />
+            <state relative-caret-position="708">
+              <caret line="1942" column="21" selection-start-line="1942" selection-start-column="21" selection-end-line="1942" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -195,12 +199,12 @@
       <updated>1457686981400</updated>
       <workItem from="1466390194388" duration="13377000" />
       <workItem from="1466475389581" duration="9576000" />
-      <workItem from="1466563286927" duration="5160000" />
+      <workItem from="1466563286927" duration="5514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28113000" />
+    <option name="totallyTimeSpent" value="28467000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -298,8 +302,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sass/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="1255" column="15" selection-start-line="1255" selection-start-column="15" selection-end-line="1255" selection-end-column="15" />
+        <state relative-caret-position="708">
+          <caret line="1942" column="21" selection-start-line="1942" selection-start-column="21" selection-end-line="1942" selection-end-column="21" />
           <folding />
         </state>
       </provider>

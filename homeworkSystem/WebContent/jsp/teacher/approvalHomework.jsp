@@ -57,37 +57,7 @@ function fillTable(list) {
 		<div class="right-content">
 		<s:hidden name="courseId" value="%{courseId}" id="courseId"/>
 		<s:hidden name="homework.id" value="%{homework.id}" id="homework-id"/>
-		<div class="homework-title">
-			<div class="h-title-top">
-				<div class="h-title-name">
-					<span id="h-title-name"><s:property value="homework.name"/></span>
-					<span id="h-title-id">No.<s:property value="homework.id"/></span>
-				</div>
-				<div class="h-title-time">
-					<span><s:property value="homework.studentDDL"/></span>
-					<span><s:property value="homework.assistantDDL"/></span>
-				</div>
-			</div>
-			<div class="h-title-mid">
-				<span><s:property value="homework.description"/></span>
-			</div>
-			<div class="h-title-bottom">
-				<div class="h-title-btm-left"></div>
-				<div class="h-title-btm-right">
-					<span>作业提交格式：<s:property value="homework.fileType"/></span>
-                	<span id="h-title-attach">
-	                	<s:if test="%{homework.fileId != 0}">
-			            	<a href="downloadAttachment.action?fileId=${ homework.fileId }" class="a-attach">
-			            		<img alt="下载" src="../../image/down-white.png">下载附件
-			            	</a>
-			            </s:if>
-			            <s:else>
-			            	无附件
-			            </s:else>
-               		</span>
-				</div>
-			</div>
-		</div>
+		<s:include value="../user/homeworkTitle.jsp"></s:include>
 		<s:if test="%{homework.studentDDL > currentTime}">
 			<div class="homework-commit-state">
 				<span>正在提交中</span>
@@ -98,7 +68,7 @@ function fillTable(list) {
 			<div class="homework-commit-state">
 				<span>正在批改中</span>
 			</div>
-			</s:elseif>
+		</s:elseif>
 		<s:else>
 			<div class="homework-example">
 	            <s:if test="%{homework.state == 'pass'}">

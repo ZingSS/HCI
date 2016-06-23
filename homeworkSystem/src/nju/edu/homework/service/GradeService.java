@@ -37,4 +37,8 @@ public interface GradeService {
 
 	public List<ExcelVO> getStudentGradeById(int homeworkId);
 	
+	public ResultMessage changeGrade(String grade, int studentId, int homeworkId);
+	
+	public ResultMessage changeComment(String comment, int studentId, int homeworkId);
+	
 }

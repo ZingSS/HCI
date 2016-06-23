@@ -12,26 +12,7 @@
 	<div class="content">
 		<s:include value="../teacher/courseSide.jsp"></s:include>
 		<div class="right-content">
-			<div class="course-header-info">
-	        	<div class="course-header-main">
-	        		<span id="course-header-name"><s:property value="course.name"/></span>
-	        		<br/>
-	        		<span id="course-header-id"><s:property value="course.courseId"/></span>
-	        	</div>
-	        	<div class="course-header-left">
-	        		<span><s:property value="course.time"/></span>
-	        		<br/>
-	        		<span><s:property value="course.location"/></span>
-	         		<br/>
-	         		<s:iterator value="%{course.assistant}" >
-		                <span>${ name }</span>
-		            </s:iterator>
-	                <%-- <s:if test="%{course.semester.startTime.after(currentDate)}">
-	                	<a href="assistantManagement.action?courseId=<s:property value="course.id"/>" class="add-td-a">管理助教</a>
-	                </s:if> --%>
-	        	</div>
-	                <%-- <span><s:property value="course.semester.name"/></span> --%>
-	        </div>
+			<s:include value="../user/homeworkTitle.jsp"></s:include>
 			<form id="add-h-form" action="modifyHomework.action" method="post" enctype="multipart/form-data">
             <%-- <div>
                 <span>为课程<s:property value="courseName"/>添加作业</span>
@@ -78,7 +59,7 @@
 	        </div>
             
             <div id="add-h-btns">
-            	<button type="button"><a class="a-btn-cancel">取消</a></button>
+            	<button type="button"><a class="a-btn-cancel" href="toApprovalHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="courseId"/>">取消</a></button>
             	<button type="submit"><a class="a-btn-confirm">修改</a></button>
             </div>
         </form>

@@ -14,23 +14,10 @@
 <body>
 	<s:include value="../student/header.jsp"></s:include>
 	<div class="content">
-		<div class="left-sidebar">
-			<div class="left-title"><span>助教课程</span></div>	
-			<hr/>
-			<div>
-	            <ul class="left-list">
-	            	<li><a href="showStudentCourseList.action">所有课程</a></li>
-	            </ul>
-	            <div class="left-sub-title">
-	            	<a href="showStudentsHomework.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">
-	            		<span><s:property value="course.name"/></span>
-	            	</a>
-	            </div>
-	        	</div>
-			</div>
+		<s:include value="../assistant/courseSide.jsp"></s:include>
 		<div class="right-content">
 			<s:hidden name="courseId" value="%{courseId}"/>
-			<s:hidden name="homeworkId" value="%{homework.id}"/>
+			<s:hidden name="homeworkId" value="%{homework.id}" id="homework-id"/>
 			<div class="homework-title">
 				<div class="h-title-top">
 					<div class="h-title-name">
@@ -61,7 +48,20 @@
 				</div>
 			</div>
 		<div>
-			<div id="a-h-excel">
+			<!-- 提交中 -->
+			<s:if test="%{homework.state == 'commit' && homework.studentDDL > currentTime}"> 
+				<div>学生提交中</div>
+			</s:if>
+			<!-- 批改中 -->
+			<%-- <s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime">
+				
+			</s:elseif>
+			<!-- 教师审批中/已经公布／其它 -->
+			<s:else>
+				
+			</s:else> --%>
+			<s:else>
+						<div id="a-h-excel">
 				<div id="a-h-output">
 	            	<a href="exportStudentListExcel.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-button">导出名单</a>
 	            </div>
@@ -75,7 +75,6 @@
 			    		 </form> 
 		            </s:if>
 				</div>
-            
 			</div>
            
             <table id="a-student-table" class="main-table">
@@ -107,18 +106,18 @@
 					                </s:else>
 				                </td>
 				                <td class="a-s-grade change-grade changable-td">
-				                <span>
-				                <s:if test="%{grade == ''}">0</s:if>
-				                <s:else>${ grade }</s:else>
-				                <img alt="编辑" src="../../image/edit.png">
-				                </span>
+					                <span>
+						                <s:if test="%{grade == ''}">0</s:if>
+						                <s:else>${ grade }</s:else>
+						                <s:if test="%{homework.state == 'commit'}"><img alt="编辑" src="../../image/edit.png"></s:if>
+					                </span>
 				                </td>
 				                <td class="a-s-comment change-comment changable-td">
-				                <span>
-				                <s:if test="%{comment == ''}">暂无</s:if>
-				                <s:else>${ comment }</s:else>
-				                <img alt="编辑" src="../../image/edit.png">
-				                </span>
+					                <span>
+						                <s:if test="%{comment == ''}">暂无</s:if>
+						                <s:else>${ comment }</s:else>
+						                <s:if test="%{homework.state == 'commit'}"><img alt="编辑" src="../../image/edit.png"></s:if>
+					                </span>
 				                </td>
 				            </tr>
 						</s:iterator>
@@ -133,8 +132,8 @@
             	<s:if test="%{course.semester.startTime.after(currentDate) || course.semester.endTime.before(currentDate)}">
             	</s:if>
             	<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state == 'commit'}">
-            		<span>于<span>20:23:44</span> 自动保存</span>
-            		<a href="saveCorrectResult.action?courseId=<s:property value="course.id"/>&homeworkId=<s:property value="homework.id"/>" class="a-btn-cancel">
+            		<span id="auto-saving"></span>
+            		<a id="correct-save" class="a-btn-cancel">
 						保存
 					</a>
 					<span>
@@ -144,30 +143,16 @@
 					</span>
             	</s:elseif>
             	<s:elseif test="%{homework.state == 'approval'}">
-            		<span><a class="forbid-td-a">等待审批</a></span>
+            		<span><a class="a-btn-forbid">等待审批</a></span>
             	</s:elseif>
             	
             </div>
+			</s:else>
+
         </div>
 		</div>
 		
 	</div>
-	<div id="update-grade-div">
-        <div id="update-grade-body">
-        	<div id="update-grade-title"><span>修改学生成绩</span></div>
-	        <form action="updateGrade.action" method="post">
-	            <s:hidden name="studentId" id="grade-user-id"/>
-	            <s:hidden name="homeworkId" value="%{homework.id}"/>
-	            <s:hidden name="courseId" value="%{course.id}"/>
-	            <span id="student-userId"></span>
-	            <span id="student-name"></span><br/>
-	            <input type="text" id="update-grade" name="grade" placeholder="修改成绩"><br/>
-	            <input type="text" id="update-comment" name="comment" placeholder="修改点评"><br/>
-	            <button type="button" class="cancel-btn close-btn">取消</button>
-	            <button type="submit" class="submit-btn close-btn">修改</button>
-	        </form>
-        </div>
-    </div>
 <script type="text/javascript" src="<%=localPath %>/js/jquery.js" charset="utf-8"></script>
 <script type="text/javascript" src="<%=localPath %>/js/homework.js" charset="utf-8"></script>
 </body>

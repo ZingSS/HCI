@@ -166,4 +166,26 @@ public class GradeServiceImpl implements GradeService{
 		return null;
 	}
 
+	@Override
+	public ResultMessage changeGrade(String grade, int studentId, int homeworkId) {
+		if (!haveGrade(homeworkId, studentId)) {
+			return ResultMessage.FAILURE;
+		}
+		Grade g = getGradeByUserAndHomework(studentId, homeworkId);
+		g.setGrade(grade);
+		update(g);
+		return ResultMessage.SUCCESS;
+	}
+
+	@Override
+	public ResultMessage changeComment(String comment, int studentId, int homeworkId) {
+		if (!haveGrade(homeworkId, studentId)) {
+			return ResultMessage.FAILURE;
+		}
+		Grade g = getGradeByUserAndHomework(studentId, homeworkId);
+		g.setComment(comment);
+		update(g);
+		return ResultMessage.SUCCESS;
+	}
+
 }

@@ -11,11 +11,13 @@ import nju.edu.homework.model.Homework;
 import nju.edu.homework.model.Message;
 import nju.edu.homework.model.User;
 import nju.edu.homework.service.CourseService;
+import nju.edu.homework.service.GradeService;
 import nju.edu.homework.service.HomeworkService;
 import nju.edu.homework.service.MessageService;
 import nju.edu.homework.service.UserService;
 import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.AssistantStudentHomworkVO;
+import nju.edu.homework.vo.GradeSaveVO;
 import nju.edu.homework.vo.StudentSubmitGradeVO;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -37,6 +39,8 @@ public class CorrectHomeworkAction extends BaseAction{
 	private UserService userService;
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private GradeService gradeService;;
 	
 	private List<AssistantStudentHomworkVO> studentList;
 	
@@ -91,12 +95,52 @@ public class CorrectHomeworkAction extends BaseAction{
 		return SUCCESS;
 	}
 	
+	
+	@Action(
+			value = "changeGrade",
+			results = {
+					@Result(name = SUCCESS, location = "/jsp/student/correctHomework.jsp"),
+			})
+	public String changeGrade() throws Exception {
+		int homeworkId = Integer.parseInt(request.getParameter("homeworkId"));
+		int studentId = Integer.parseInt(request.getParameter("studentId"));
+		String grade = request.getParameter("grade");
+		if (gradeService.haveGrade(homeworkId, studentId)) {
+			gradeService.changeGrade(grade, studentId, homeworkId);
+		}
+		else{
+			GradeSaveVO vo = new GradeSaveVO(new Grade(grade, ""), homeworkId, studentId);
+			gradeService.addGrade(vo);
+		}
+		return SUCCESS;
+	}
+	
+	@Action(
+			value = "changeComment",
+			results = {
+					@Result(name = SUCCESS, location = "/jsp/student/correctHomework.jsp"),
+			})
+	public String changeComment() throws Exception {
+		int homeworkId = Integer.parseInt(request.getParameter("homeworkId"));
+		int studentId = Integer.parseInt(request.getParameter("studentId"));
+		String comment = request.getParameter("comment");
+		if (gradeService.haveGrade(homeworkId, studentId)) {
+			gradeService.changeComment(comment, studentId, homeworkId);
+		}
+		else{
+			GradeSaveVO vo = new GradeSaveVO(new Grade("", comment), homeworkId, studentId);
+			gradeService.addGrade(vo);
+		}
+		return SUCCESS;
+	}
+	
+	
+	
 	@Action(
 			value = "informTeacher",
 			results = {
 					@Result(name = SUCCESS, location = "/jsp/student/toCorrectHomework.action", type="redirect", params = {"homeworkId", "${homeworkId}", "courseId", "${courseId}"}),
 			})
-	// TODO 到时候用Ajax写
 	public String informTeacher() throws Exception {
 		int homeworkId = Integer.parseInt(request.getParameter("homeworkId"));
 		int courseId = Integer.parseInt(request.getParameter("courseId"));
@@ -107,6 +151,7 @@ public class CorrectHomeworkAction extends BaseAction{
 				"本课程的" + homeworkService.getHomeworkById(homeworkId).getName() + "已经批改完", Common.CORRECTION_OVER);
 		messageService.saveMessage(message, courseId);
 		homeworkService.changeToApproval(homeworkId);
+
 		return SUCCESS;
 	}
 	

@@ -1497,4 +1497,11 @@ tr.semester-tr td {
   #mail-btn span {
     margin: 0 10px 0 0; }
 
+#auto-saving {
+  margin: 0 20px 0 0;
+  color: #888; }
+
+#correct-save {
+  margin: 0 10px 0 0; }
+
 /*# sourceMappingURL=main.css.map */
