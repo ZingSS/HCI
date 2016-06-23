@@ -53,9 +53,6 @@
 			
 			<div>
 			
-				
-			
-			
 				<!-- 提交中 -->
 				<s:if test="%{homework.state == 'commit' && homework.studentDDL > currentTime}"> 
 					<div class="homework-commit-state">
@@ -101,8 +98,28 @@
 			    			</span>
 			    		</div>
 			    	</div>
-			    	<div class="s-h-stat" id="s-hs-stat">这里放这次作业的统计<s:iterator value="homeworkGrades" >${ grade }</s:iterator></div>
-			    	<div class="s-h-stat" id="s-allh-stat">这里是这个学生所有作业的  <s:iterator value="grades" ></s:iterator></div>
+			    	
+			    	
+			    	<!-- <div class="s-h-stat" id="s-hs-stat"> -->
+			    		<div class="homework-stat">
+							<div class="h-stat-card">
+								<div class="h-stat-header">作业情况分析 <a onclick="fillTable(grades[0])" class="a-show">显示全部</a></div>
+								<div class="h-stat-chart"></div>
+								<div class="h-stat-data" id="diagram"  style="min-width: 310px; max-width: 800px; height: 300px; margin: 0 auto" >
+									<!-- by dxh 方图表的地方-->
+						
+								</div>
+							</div>
+						</div>  
+			    	<!-- </div> -->
+			    	<!-- <div class="s-h-stat" id="s-allh-stat"> -->
+			    		<div class="homework-scores" id="homework-scores">
+			 				<!-- 放表 -->
+			            
+			       		 </div>
+			    	
+			    	<!-- </div> -->
+			    	
 			    </s:elseif>
 			    <s:else>
 			    	<span>未公布</span>
@@ -123,6 +140,8 @@
 	</div>
 
 </body>
+<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
 <script src="../../js/dropzone.js"></script>
 <script type="text/javascript">
 	Dropzone.options.myAwesomeDropzone = {
@@ -132,4 +151,121 @@
 		addRemoveLinks: true,
 	};
 </script>
+<script>
+function fillTable(list) {
+	var data = ""; 
+	data += "<table>"; 
+	data += "<tr>" + 
+	"<th class='h-s-id'>学生学号</th>" + 
+	"<th class='h-s-name'>学生姓名</th>" + 
+	"<th class='h-s-g'>成绩</th>" +
+	"<th class='h-s-c'>点评</th></tr>"; 
+	for (var i = 0; i <list.length; i++) { 
+		data += "<tr class=\"homework-line\">"; 
+		data += "<td class='h-s-id'>" + list[i][0] + "</td>";
+		data += "<td class='h-s-name'>" + list[i][1] + "</td>";
+		data += "<td class='h-s-g'>" + list[i][3] + "</td>";
+		data += "<td class='h-s-c'>" + list[i][4] + "</td>";
+		data += "</tr>"; 
+		} 
+		data += "</table>"; 
+		document.getElementById("homework-scores").innerHTML = data; 
+	}
+</script>
+
+<script>
+var full = ${full};
+var grades = new Array();		//0的位置上是全部的。
+grades.push(new Array());
+
+<s:iterator value="studentList" >
+	grades[0].push(['${ studentId }', '${ name }', '${submit}', '${ grade }', '${ comment }']);
+</s:iterator>
+
+var i = 1;
+<s:iterator value="grades" var="l1">
+	grades.push(new Array());
+	<s:iterator value="#l1" var="student">
+		grades[i].push(['<s:property value="#student.studentId"/>', '<s:property value="#student.name"/>', 
+		                '<s:property value="#student.submit"/>',  '<s:property value="#student.grade"/>', 
+		                '<s:property value="#student.comment"/>']);
+	</s:iterator>
+	i += 1;
+</s:iterator>
+
+fillTable(grades[0]);
+
+var x = [];
+var values = [];
+
+for (var i = 1; i<grades.length; i++) {
+	values.push(grades[i].length);
+}
+
+if (full == 100) {
+	x = ['60以下', '60~69','70~79','80~89','90~100'];
+}
+else {
+	for (var i=0; i<= full; i++) {
+		x.push(i);
+	}
+}
+</script>
+
+<script>
+$(function () {
+	if (x.length == 0) return;
+	$('#diagram').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+        	categories: x
+        },
+        yAxis: {
+            min: 0,
+            title: {
+            	text: '人数'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y} 人</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.01,
+                borderWidth: 0
+            },
+            series: {        
+	        	cursor: 'pointer',        
+	        	events: {            
+	          	click: function(event) {
+	          		fillTable(grades[event.point.x + 1]);
+	            }   
+	          }   
+	        }
+        	
+        },
+        legend: {
+            enabled:false
+         },
+        series: [{
+            name: '作业',
+            data: values
+        }]
+    });
+});
+</script>
+<script type="text/javascript" src="<%=localPath %>/js/approval.js" charset="utf-8"></script>
 </html>

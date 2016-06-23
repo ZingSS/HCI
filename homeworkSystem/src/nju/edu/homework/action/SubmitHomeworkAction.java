@@ -9,12 +9,14 @@ import java.util.List;
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.Grade;
 import nju.edu.homework.model.Homework;
+import nju.edu.homework.model.User;
 import nju.edu.homework.service.CourseService;
 import nju.edu.homework.service.FileService;
 import nju.edu.homework.service.GradeService;
 import nju.edu.homework.service.HomeworkService;
 import nju.edu.homework.service.UserService;
 import nju.edu.homework.util.Common;
+import nju.edu.homework.vo.AssistantStudentHomworkVO;
 import nju.edu.homework.vo.OnlineUserVO;
 import nju.edu.homework.vo.StudentHomeworkVO;
 import nju.edu.homework.vo.StudentSubmitGradeVO;
@@ -53,11 +55,20 @@ public class SubmitHomeworkAction extends BaseAction{
 	private Course course;
 	
 	private StudentHomeworkVO homeworkVO;
-	private List<String> grades;
 	private List<Grade> homeworkGrades;
 	
 	private Timestamp currentTime;
 	private boolean submit;
+	
+	// -------------------- 显示图表使用 ------------------------
+	private List<AssistantStudentHomworkVO> studentList;
+	private int full = 0;	//满分是多少？如果所有成绩里的最高分在10以下（含），full等于最高分。10以上，就是100.
+	
+	//如果full == 100,60以下一组，60以上隔10一组。否则，从0开始到最高分，隔1分一组
+	private List<List<AssistantStudentHomworkVO>> grades;
+	
+	private List<Integer> heights;
+	// -------------------- 显示图表使用 ------------------------
 	
 	public Timestamp getCurrentTime() {
 		currentTime = new Timestamp(System.currentTimeMillis());
@@ -90,6 +101,7 @@ public class SubmitHomeworkAction extends BaseAction{
 		this.courseList = courseList;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Action(
 			value = "toSubmitHomework",
 			results = {
@@ -123,14 +135,80 @@ public class SubmitHomeworkAction extends BaseAction{
 			homeworkVO = new StudentHomeworkVO(homework, ssgVo.isSubmit(), grade.getGrade(), grade.getComment());
 			setHomeworkVO(homeworkVO);
 			
-			List<Homework> homeworks = courseService.getHomeworkByCourseId(courseId);
-			setGrades(gradeService.getGradesByStudentIdAndHomeworks(user.getId(), homeworks));
 			setHomeworkGrades(gradeService.getGradesByHomeworkId(homework.getId()));
+		}
+		
+		// TODO 下面的算法效率很低但是我喜欢 by dxh
+		// TODO 下面的代码虽然是复制的但是我喜欢 by cylong
+		
+		List<User> students = new ArrayList<User>(courseService.getStudentsByCourseId(courseId));
+		studentList = new ArrayList<AssistantStudentHomworkVO>();
+		for(User student : students){
+			StudentSubmitGradeVO ssgvo = userService.getStudentSubmitAndGrade(student.getId(), homeworkId);
+			boolean submit = ssgvo.isSubmit();
+			Grade grade = ssgvo.getGrade();
+			AssistantStudentHomworkVO vo = null;
+			if (grade == null) {
+				vo = new AssistantStudentHomworkVO(student.getId(), student.getUserId(),
+						student.getName(), submit, "", "");
+			}
+			else{
+				vo = new AssistantStudentHomworkVO(student.getId(), student.getUserId(),
+						student.getName(), submit, grade.getGrade(), grade.getComment());
+			}
+			studentList.add(vo);			
+		}
+		
+		int max = 0;
+		for (AssistantStudentHomworkVO vo : studentList) {
+			if (getGrade(vo) > max) max = getGrade(vo);
+		}
+		
+		if (max > 10) full = 100;
+		else full = max;
+		
+		grades = new ArrayList<List<AssistantStudentHomworkVO>>();
+		if (full == 100) {
+			for (int i=0; i<5;i++) {
+				grades.add(new ArrayList<AssistantStudentHomworkVO>());
+			}
+			for (AssistantStudentHomworkVO student : studentList) {
+				if (getGrade(student) < 60) grades.get(0).add(student);
+				else if (getGrade(student) < 70) grades.get(1).add(student);
+				else if (getGrade(student) < 80) grades.get(2).add(student);
+				else if (getGrade(student) < 90) grades.get(3).add(student);
+				else grades.get(4).add(student);
+			}
+		}
+		else {
+			for (int i=0; i<full + 1; i++) {	//如果满分3分，就会有0 1 2 3四段
+				grades.add(new ArrayList<AssistantStudentHomworkVO>());
+			}
+			for (AssistantStudentHomworkVO student : studentList) {
+				grades.get(getGrade(student)).add(student);
+			}
+		}
+		
+		heights = new ArrayList<Integer>();
+		for (int i=0;i<grades.size();i++) {
+			heights.add(grades.get(i).size());
 		}
 		
 		return SUCCESS;
 	}
 	
+	private int getGrade(AssistantStudentHomworkVO student) {
+		if (student.getGrade() == null) return 0;
+		if (student.getGrade().length() == 0) return 0;
+		if (student.getGrade().contains(".")) {
+			return Integer.parseInt(student.getGrade().substring(0, student.getGrade().indexOf('.')));
+		}
+		else{
+			return Integer.parseInt(student.getGrade());
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
 	@Action(
 			value = "submitHomework",
 			results = {
@@ -263,14 +341,6 @@ public class SubmitHomeworkAction extends BaseAction{
 		this.homeworkVO = homeworkVO;
 	}
 
-	public List<String> getGrades() {
-		return grades;
-	}
-
-	public void setGrades(List<String> grades) {
-		this.grades = grades;
-	}
-
 	public List<Grade> getHomeworkGrades() {
 		return homeworkGrades;
 	}
@@ -286,5 +356,37 @@ public class SubmitHomeworkAction extends BaseAction{
 	public void setSubmit(boolean isSubmit) {
 		this.submit = isSubmit;
 	}
+	
+	public int getFull() {
+		return full;
+	}
+	
+	public void setFull(int full) {
+		this.full = full;
+	}
 
+	public List<List<AssistantStudentHomworkVO>> getGrades() {
+		return grades;
+	}
+	
+	public void setGrades(List<List<AssistantStudentHomworkVO>> grades) {
+		this.grades = grades;
+	}
+	
+	public List<Integer> getHeights() {
+		return heights;
+	}
+
+	public void setHeights(List<Integer> heights) {
+		this.heights = heights;
+	}
+
+	public List<AssistantStudentHomworkVO> getStudentList() {
+		return studentList;
+	}
+	
+	public void setStudentList(List<AssistantStudentHomworkVO> studentList) {
+		this.studentList = studentList;
+	}
+	
 }
