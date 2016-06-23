@@ -16,6 +16,7 @@ import nju.edu.homework.model.Homework;
 import nju.edu.homework.model.Message;
 import nju.edu.homework.model.User;
 import nju.edu.homework.service.CourseService;
+import nju.edu.homework.service.GradeService;
 import nju.edu.homework.service.HomeworkService;
 import nju.edu.homework.service.MessageService;
 import nju.edu.homework.service.UserService;
@@ -37,6 +38,8 @@ public class ApprovalHomeworkAction extends BaseAction{
 	private MessageService messageService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private GradeService gradeService;
 	
 	public String getSemester() {
 		return semester;
@@ -99,9 +102,19 @@ public class ApprovalHomeworkAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
+		if (homework.getAssistantDDL().after(getCurrentTime())) {
+			return SUCCESS;
+		}
 		List<User> students = new ArrayList<User>(courseService.getStudentsByCourseId(courseId));
 		studentList = new ArrayList<AssistantStudentHomworkVO>();
 		for(User student : students){
+			if (!gradeService.haveGrade(homeworkId, student.getId())) {
+				AssistantStudentHomworkVO vo = new AssistantStudentHomworkVO(student.getId(), 
+						student.getUserId(), student.getName(), false, "", "无");
+				
+				studentList.add(vo);		
+				continue;
+			}
 			StudentSubmitGradeVO ssgVo = userService.getStudentSubmitAndGrade(student.getId(), homeworkId);
 			boolean submit = ssgVo.isSubmit();
 			Grade grade = ssgVo.getGrade();

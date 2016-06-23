@@ -72,10 +72,10 @@
 	        			<div class="homework-card-footer">
 	        				<hr/>
 	        				<s:if test="%{studentDDL > currentTime}">
-			                	<span class="h-commit-span">距提交截止 3天12小时</span>
+			                	<span class="h-commit-span">${ studentDDL }</span>
 			            	</s:if>
 	        				<s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
-			               		<span class="h-commit-span">距批改截止 4天14小时</span>
+			               		<span class="h-commit-span"></span>
 			            	</s:elseif>
 			            	<s:elseif test="%{state=='approval'}">
 			            		<span class="h-active-span">待审批</span>

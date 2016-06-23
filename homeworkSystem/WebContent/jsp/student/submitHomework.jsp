@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<% String localPath = request.getContextPath();%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <%@page import="nju.edu.homework.vo.OnlineUserVO"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>提交课程作业</title>
+<link href="<%=localPath %>/css/basic.css" rel="stylesheet" type="text/css"/>
+<link href="<%=localPath %>/css/dropzone.css" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
 	<s:include value="../student/header.jsp"></s:include>
@@ -61,24 +65,11 @@
 							<s:hidden name="courseId" value="%{courseId}"/>
 			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
 			         		<br/>
-			         		<s:if test="%{submit}">
-			         			<span>您已经提交过，再次提交将会进行覆盖</span>
-			         		</s:if>
-			         		<%-- <span>您已经提交过，再次提交将会进行覆盖</span> --%>
-			         		
-			         		<!-- <button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button> -->
 			    		 </form> 
 					</div>
-<%-- 					<div class="homework-commit-state">
-						<form action="submitHomework.action" method="post" enctype="multipart/form-data" >   
-			        		<s:hidden name="courseId" value="%{courseId}"/>
-			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
-			         		请选择需要上传的文件：<input type="file" id="dofile" name="file"/>
-			         		<br/>
-			         		<span>您已经提交过，再次提交将会进行覆盖</span>
-			         		<button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button>
-			    		 </form> 
-					</div> --%>
+					<s:if test="%{submit}">
+			         			<span id="submitted">您已经提交过，再次提交将会进行覆盖</span>
+			         		</s:if>
 				</s:if>
 				<!-- 批改中 -->
 				<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime}">
@@ -140,6 +131,8 @@
 	Dropzone.options.myAwesomeDropzone = {
 		paramName: "file", // The name that will be used to transfer the file
 		dictDefaultMessage: "拖拽至此或者点击上传",
+		maxFiles: 1,
+		addRemoveLinks: true,
 	};
 </script>
 </html>

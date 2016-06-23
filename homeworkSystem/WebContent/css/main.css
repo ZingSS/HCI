@@ -1504,4 +1504,10 @@ tr.semester-tr td {
 #correct-save {
   margin: 0 10px 0 0; }
 
+#submitted {
+  display: block;
+  text-align: center;
+  margin: 5px 0;
+  color: #e6524a; }
+
 /*# sourceMappingURL=main.css.map */
