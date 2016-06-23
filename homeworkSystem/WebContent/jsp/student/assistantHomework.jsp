@@ -10,28 +10,7 @@
 <body>
 	<s:include value="../student/header.jsp"></s:include>
 	<div class="content">
-        <div class="left-sidebar">
-				<div class="left-title"><span>助教课程</span></div>	
-				<hr/>
-				<div>
-	            <ul class="left-list">
-	            	<li><a href="showStudentCourseList.action">所有课程</a></li>
-	            </ul>
-	            <div class="left-sub-title">
-	            	<a href="showStudentsHomework.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">
-	            		<span><s:property value="course.name"/></span>
-	            	</a>
-	            </div>
-	             <ul class="left-sub-list">
-	                <li><a id="hw" href="showStudentsHomework.action?courseId=<s:property value="#request.course.id"/>&name=<s:property value="#request.course.name"/>">作业</a></li>
-	            	 <li><a href="asGetAnnouncement.action?courseId=<s:property value="course.id"/>&name=<s:property value="course.name"/>">公告</a></li>
-	            </ul>
-	             <script type="text/javascript">
-						var li = document.getElementById("hw");
-						li.style.backgroundColor = "#e7e7e7";
-					</script>
-	        	</div>
-			</div>
+        <s:include value="../assistant/courseSide.jsp"></s:include>
 		<div class="right-content">
 			<s:include value="../student/courseHeader.jsp"></s:include>
         <div>
@@ -46,11 +25,11 @@
 	        		<div class="homework-card">
 	        			<!-- 提交中 -->
 	        			<s:if test="%{state == 'commit' && studentDDL > currentTime}"> 
-			                <div class="homework-card-header h-submit">
+			                <div class="homework-card-header h-commit">
 			            </s:if>
 			            <!-- 批改中 -->
 			            <s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
-			               	<div class="homework-card-header h-commit">
+			               	<div class="homework-card-header h-submit">
 			            </s:elseif>
 			            <!-- 教师审批中/已经公布／其它 -->
 			            <s:else>
@@ -71,10 +50,10 @@
 	        			<div class="homework-card-footer">
 	        				<hr/>
 	        				<s:if test="%{studentDDL > currentTime}">
-			                	<span class="h-commit-span">距提交截止 xx天xx小时</span>
+			                	<span class="h-commit-span">距提交截止 2天12小时</span>
 			            	</s:if>
 	        				<s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
-			               		<span class="h-active-span">距批改截止 xx天xx小时</span>
+			               		<span class="h-active-span">距批改截止 5天7小时</span>
 			            	</s:elseif>
 			            	<s:elseif test="%{assistantDDL > currentTime && state=='approval'}">
 			            		<span class="h-done-span">待审批</span>

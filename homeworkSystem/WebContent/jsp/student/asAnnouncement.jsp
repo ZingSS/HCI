@@ -47,14 +47,14 @@
 			<s:include value="../student/courseHeader.jsp"></s:include>
 			<div class="t-homework">
 				<ul>
-					<li><a
-						href="toAddAsAnnouncement.action?courseId=<s:property value="course.id"/>"
-						class="a-button">添加公告</a></li>
+					<li>
+					<s:if test="%{announcementList.size() == 0}">
+						<span>暂无公告，可以 </span>
+					</s:if>
+					<a href="toAddAnnouncement.action?courseId=<s:property value="course.id"/>" class="a-button">添加公告</a>
+					</li>
 				</ul>
 			</div>
-			<s:if test="%{announcementList.size() == 0}">
-				<div class="t-homework">暂无公告</div>
-			</s:if>
 			<s:iterator value="announcementList">
 				<div class="announcement">
 					<div class="announcement-body">

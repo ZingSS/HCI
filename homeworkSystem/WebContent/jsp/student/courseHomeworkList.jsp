@@ -29,11 +29,14 @@
 	        	<a href="toSubmitHomework.action?homeworkId=<s:property value="homework.id"/>&courseId=<s:property value="course.id"/>" class="">
 	        		<div class="homework-card">
 	        			<!-- 提交中 -->
-	        			<s:if test="%{homework.state == 'commit' && homework.studentDDL > homework.currentTime}"> 
+<%-- 	        			<s:if test="%{homework.state == 'commit' && homework.studentDDL > homework.currentTime}"> 
+			                <div class="homework-card-header h-submit">
+			            </s:if> --%>
+			            <s:if test="%{homework.state == 'commit' && homework.studentDDL > currentTime}">
 			                <div class="homework-card-header h-submit">
 			            </s:if>
 			            <!-- 批改中 -->
-			            <s:elseif test="%{homework.studentDDL < homework.currentTime && homework.assistantDDL > homework.currentTime && homework.state=='commit'}">
+			            <s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state=='commit'}">
 			               	<div class="homework-card-header h-commit">
 			            </s:elseif>
 			            <!-- 教师审批中/已经公布／其它 -->
@@ -54,20 +57,20 @@
 	        			</div>
 	        			<div class="homework-card-footer">
 	        				<hr/>
-	        				<s:if test="%{homework.studentDDL > homework.currentTime}">
-			                	<span class="homework-undo">距提交截止 xx天xx小时</span>
+	        				<s:if test="%{homework.studentDDL > currentTime}">
+			                	<span class="h-active-span">距提交截止 2天12小时</span>
 			            	</s:if>
-	        				<s:elseif test="%{homework.studentDDL < homework.currentTime && homework.assistantDDL > homework.currentTime && homework.state=='commit'}">
-			               		<span class="homework-active">距批改截止 xx天xx小时</span>
+	        				<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state=='commit'}">
+			               		<span class="h-commit-span">待批改</span>
 			            	</s:elseif>
-			            	<s:elseif test="%{homework.assistantDDL > homework.currentTime && homework.state=='approval'}">
-			            		<span class="homework-done">待审批</span>
+			            	<s:elseif test="%{homework.assistantDDL > currentTime && homework.state=='approval'}">
+			            		<span class="h-commit-span">待审批</span>
 			                </s:elseif>
 			                <s:elseif test="%{homework.state=='pass'}">
-			                	<span class="homework-done">已公布</span>
+			                	<span class="h-done-span">已公布</span>
 			                </s:elseif>
 			                <s:else>
-			                	<span class="homework-done">已过期</span>
+			                	<span class="h-done-span">已过期</span>
 			                </s:else>
 	        				<%-- <span>${ studentDDL }</span><span>${ assistantDDL }</span> --%>
 	        			</div>
