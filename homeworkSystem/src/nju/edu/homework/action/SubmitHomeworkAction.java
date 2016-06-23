@@ -17,6 +17,7 @@ import nju.edu.homework.service.UserService;
 import nju.edu.homework.util.Common;
 import nju.edu.homework.vo.OnlineUserVO;
 import nju.edu.homework.vo.StudentHomeworkVO;
+import nju.edu.homework.vo.StudentSubmitGradeVO;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.convention.annotation.Action;
@@ -56,6 +57,7 @@ public class SubmitHomeworkAction extends BaseAction{
 	private List<Grade> homeworkGrades;
 	
 	private Timestamp currentTime;
+	private boolean submit;
 	
 	public Timestamp getCurrentTime() {
 		currentTime = new Timestamp(System.currentTimeMillis());
@@ -113,10 +115,12 @@ public class SubmitHomeworkAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
-		
+		StudentSubmitGradeVO ssgVo = userService.getStudentSubmitAndGrade(user.getId(), homeworkId);
+		setSubmit(ssgVo.isSubmit());
 		if(homework.getState().equals(Common.PASS)){
 			Grade grade = gradeService.getGradeByUserAndHomework(user.getId(), homework.getId());
-			homeworkVO = new StudentHomeworkVO(homework, false, grade.getGrade(), grade.getComment());
+			
+			homeworkVO = new StudentHomeworkVO(homework, ssgVo.isSubmit(), grade.getGrade(), grade.getComment());
 			setHomeworkVO(homeworkVO);
 			
 			List<Homework> homeworks = courseService.getHomeworkByCourseId(courseId);
@@ -273,6 +277,14 @@ public class SubmitHomeworkAction extends BaseAction{
 
 	public void setHomeworkGrades(List<Grade> homeworkGrades) {
 		this.homeworkGrades = homeworkGrades;
+	}
+
+	public boolean isSubmit() {
+		return submit;
+	}
+
+	public void setSubmit(boolean isSubmit) {
+		this.submit = isSubmit;
 	}
 
 }

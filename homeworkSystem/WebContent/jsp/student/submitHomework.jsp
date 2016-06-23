@@ -61,6 +61,9 @@
 							<s:hidden name="courseId" value="%{courseId}"/>
 			        		<s:hidden name="homeworkId" value="%{homework.id}"/>
 			         		<br/>
+			         		<s:if test="%{submit}">
+			         			<span>您已经提交过，再次提交将会进行覆盖</span>
+			         		</s:if>
 			         		<%-- <span>您已经提交过，再次提交将会进行覆盖</span> --%>
 			         		
 			         		<!-- <button type="submit" class=""><a class="a-btn-confirm">上传文件</a></button> -->

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import nju.edu.homework.model.Course;
 import nju.edu.homework.model.Homework;
 import nju.edu.homework.model.User;
@@ -28,7 +30,9 @@ public class Common {
 	
 	public static final String TIME_ERROR = "timeError";
 	
-	public static final String FILE_PATH = "/Users/soujing/Documents/Study/Junior/J2EE/NewLab/homeworkSystem/WebContent/upload";
+//	public static final String FILE_PATH = ServletActionContext.getServletContext().getRealPath("/upload");
+	public static final String FILE_PATH = "/Users/soujing/Documents/Study/Junior/HCI/HCI/homeworkSystem/WebContent/upload";
+//	"/Users/soujing/Documents/Study/Junior/J2EE/NewLab/homeworkSystem/WebContent/upload";
 	
 	public static final String COMMIT = "commit";
 	public static final String APPROVAL = "approval";
