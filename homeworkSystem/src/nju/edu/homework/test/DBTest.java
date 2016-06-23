@@ -64,11 +64,18 @@ public class DBTest {
 //    		ps.setInt(1, i);
 //    		ps.executeUpdate();
 //    	}
-    		
-//    	Random r = new Random();
+    	
+//    	for (int i=28;i<=142;i++) {
+//    		PreparedStatement ps = conn.prepareStatement("insert into user_course values(?, '20')");
+//    		ps.setInt(1, i);
+//    		ps.executeUpdate();
+//    	}
+//    		
+    	
 //    	
     		
-    		//强行模拟正太分布的成绩
+//    		强行模拟正太分布的成绩
+//    	Random r = new Random();
 //    	int[] grades = new int[120];
 //    	
 //    	for (int i=0;i<120;i++) {
@@ -81,21 +88,28 @@ public class DBTest {
 //    	}
 //    	
 //    	for (int i=0;i<120;i++) {
-//    		PreparedStatement ps = conn.prepareStatement("insert into grade(grade, homework_id, user_id) values(?,?,?)");
-//    		ps.setString(1, grades[i] + ".0");
-//    		ps.setInt(2, 65);
-//    		ps.setInt(3, i + 143);
-//    		ps.executeUpdate();
-//    	}
-    	
-//    	for (int i=0;i<120;i++) {
-//    		PreparedStatement ps = conn.prepareStatement("insert into user_grade values(?,?)");
-//    		ps.setInt(1, i + 143);
-//    		ps.setInt(2, i + 25);
 //    		System.out.println(i);
+//    		PreparedStatement ps = conn.prepareStatement("insert into grade(grade, homework_id, user_id) values(?,?,?)");
+//    		ps.setString(1, grades[i]+"");
+//    		ps.setInt(2, 60);
+//    		ps.setInt(3, i + 23);
 //    		ps.executeUpdate();
 //    	}
     	
+    	for (int i=0;i<120;i++) {
+    		PreparedStatement ps = conn.prepareStatement("insert into user_grade values(?,?)");
+    		ps.setInt(1, i + 23);
+    		ps.setInt(2, i + 517);
+    		ps.executeUpdate();
+    	}
+   	
+    	for (int i=0;i<120;i++) {
+    		PreparedStatement ps = conn.prepareStatement("insert into homework_grade values(?,?)");
+    		ps.setInt(1, 60);
+    		ps.setInt(2, i + 517);
+    		ps.executeUpdate();
+    	}
+//    	
     		
     	
     	}catch (Exception e) {

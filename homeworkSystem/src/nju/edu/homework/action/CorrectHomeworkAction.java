@@ -79,10 +79,12 @@ public class CorrectHomeworkAction extends BaseAction{
 		studentList = new ArrayList<AssistantStudentHomworkVO>();
 		for(User student : students){
 			StudentSubmitGradeVO ssgVo = userService.getStudentSubmitAndGrade(student.getId(), homeworkId);
+			
 			boolean submit = ssgVo.isSubmit();
 			Grade grade = ssgVo.getGrade();
 			AssistantStudentHomworkVO vo = null;
 			if (grade == null) {
+				System.out.println("grade 为空");
 				vo = new AssistantStudentHomworkVO(student.getId(), student.getUserId(),
 						student.getName(), submit, "", "");
 			}

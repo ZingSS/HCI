@@ -102,7 +102,7 @@ public class ApprovalHomeworkAction extends BaseAction{
 			}
 		}
 		setCourseList(courseList);
-		if (homework.getAssistantDDL().after(getCurrentTime())) {
+		if (homework.getState().equals(Common.COMMIT)) {
 			return SUCCESS;
 		}
 		List<User> students = new ArrayList<User>(courseService.getStudentsByCourseId(courseId));
@@ -129,13 +129,19 @@ public class ApprovalHomeworkAction extends BaseAction{
 			}
 			studentList.add(vo);			
 		}
+		System.out.println("======================================");
+		System.out.println("======================================");
+		System.out.println("======================================");
+		System.out.println("======================================");
+		System.out.println("======================================");
+		System.out.println("======================================");
 		
 		//TODO 下面的算法效率很低但是我喜欢 by dxh
 		int max = 0;
 		for (AssistantStudentHomworkVO vo : studentList) {
 			if (getGrade(vo) > max) max = getGrade(vo);
 		}
-		
+		System.out.println(max);
 		if (max > 10) full = 100;
 		else full = max;
 		
@@ -170,8 +176,15 @@ public class ApprovalHomeworkAction extends BaseAction{
 	}
 	
 	private int getGrade(AssistantStudentHomworkVO student) {
+		if (student.getGrade() == null) return 0;
 		if (student.getGrade().length() == 0) return 0;
-		return Integer.parseInt(student.getGrade().substring(0, student.getGrade().indexOf('.')));
+		if (student.getGrade().contains(".")) {
+			return Integer.parseInt(student.getGrade().substring(0, student.getGrade().indexOf('.')));
+		}
+		else{
+			return Integer.parseInt(student.getGrade());
+		}
+//		return Integer.parseInt(student.getGrade().substring(0, student.getGrade().indexOf('.')));
 	}
 	
 //	private boolean isZero(String s) {
