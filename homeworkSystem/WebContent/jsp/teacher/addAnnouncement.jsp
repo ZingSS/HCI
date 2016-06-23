@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>添加作业</title>
+<title>添加公告</title>
 </head>
 <body>
 	<s:include value="../teacher/header.jsp"></s:include>
