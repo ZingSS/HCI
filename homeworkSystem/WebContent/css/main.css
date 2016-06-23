@@ -898,10 +898,10 @@ div#add-h-ddl {
   line-height: 30px;
   text-align: center;
   display: inline-block;
+  cursor: pointer;
   border: 1px solid #FFAE30;
   color: #FFAE30;
-  background: none;
-  cursor: pointer; }
+  background: none; }
   .a-button:hover {
     border: 1px solid #eea32d;
     color: #eea32d; }
@@ -912,10 +912,10 @@ div#add-h-ddl {
   line-height: 30px;
   text-align: center;
   display: inline-block;
+  cursor: pointer;
   border: 1px solid #FFAE30;
   color: #FFAE30;
   background: none;
-  cursor: pointer;
   margin: 0 0 0 27px; }
   .a-margin-button:hover {
     border: 1px solid #eea32d;
@@ -927,6 +927,7 @@ div#add-h-ddl {
   line-height: 30px;
   text-align: center;
   display: inline-block;
+  cursor: pointer;
   background-color: #FFAE30;
   color: #fff; }
   .a-btn-confirm:hover {
@@ -938,10 +939,10 @@ div#add-h-ddl {
   line-height: 30px;
   text-align: center;
   display: inline-block;
+  cursor: pointer;
   border: 1px solid #FFAE30;
   color: #FFAE30;
-  background: none;
-  cursor: pointer; }
+  background: none; }
   .a-btn-cancel:hover {
     border: 1px solid #eea32d;
     color: #eea32d; }
@@ -952,10 +953,10 @@ div#add-h-ddl {
   line-height: 30px;
   text-align: center;
   display: inline-block;
+  cursor: pointer;
   border: 1px solid #666;
   color: #666;
-  background: none;
-  cursor: pointer; }
+  background: none; }
   .a-btn-forbid:hover {
     border: 1px solid #666;
     color: #666; }

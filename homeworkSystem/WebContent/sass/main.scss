@@ -1318,6 +1318,7 @@ $a-course-height: 50px;
   line-height: 30px;
   text-align: center;
   display: inline-block;
+  cursor: pointer;
 
 }
 
@@ -1327,7 +1328,6 @@ $a-course-height: 50px;
   color: $color;
   background: none;
 
-  cursor: pointer;
 }
 
 .a-button{
