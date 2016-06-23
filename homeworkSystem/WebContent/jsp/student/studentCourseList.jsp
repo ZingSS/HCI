@@ -51,8 +51,9 @@
 							<div id="a-course-header">
 								<%-- <s:property value="assistantCourse.id"/> --%>
 								<span id="a-course-id"><s:property
-										value="assistantCourse.courseId" /></span> <span id="a-course-name"><s:property
-										value="assistantCourse.name" /></span>
+										value="assistantCourse.courseId" /></span> 
+								<span id="a-course-name"><s:property value="assistantCourse.name" /></span>
+								
 							</div>
 							<div id="a-course-body">
 								<span><img alt="上课时间" src="../../image/cal-black.png"class="cal-img">
@@ -81,7 +82,9 @@
 						<div class="t-course">
 							<div class="t-course-header">
 								<%-- <span>${ id }</span> --%>
-								<span>${ courseId }</span> <br /> <span class="t-course-name">${ name }</span>
+								<span>${ courseId }</span> <br /> 
+	        					<s:if test="%{name.length()>9}"><span class="t-course-name"><s:property value="name.substring(0,9)"/>...</span></s:if>
+	        					<s:else><span class="t-course-name">${ name }</span></s:else>
 							</div>
 							<div class="t-course-body">
 								<img alt="上课时间" src="../../image/cal-black.png" class="cal-img"><span>${ time }</span>

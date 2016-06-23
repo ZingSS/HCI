@@ -25,8 +25,8 @@
 						<span id="h-title-id">No.<s:property value="homework.id"/></span>
 					</div>
 					<div class="h-title-time">
-						<span><s:property value="homework.studentDDL"/></span>
-						<span><s:property value="homework.assistantDDL"/></span>
+						<span>提交截止：<s:property value="homework.studentDDL"/></span>
+						<span>批改截止：<s:property value="homework.assistantDDL"/></span>
 					</div>
 				</div>
 				<div class="h-title-mid">
@@ -52,14 +52,6 @@
 			<s:if test="%{homework.state == 'commit' && homework.studentDDL > currentTime}"> 
 				<div>学生提交中</div>
 			</s:if>
-			<!-- 批改中 -->
-			<%-- <s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime">
-				
-			</s:elseif>
-			<!-- 教师审批中/已经公布／其它 -->
-			<s:else>
-				
-			</s:else> --%>
 			<s:else>
 						<div id="a-h-excel">
 				<div id="a-h-output">

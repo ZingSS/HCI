@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@page import="java.util.List"%>
 <%@page import="nju.edu.homework.service.GradeService"%>
 <%@page import="java.sql.Timestamp"%>
@@ -41,7 +42,8 @@
 			            	<div class="homework-card-header h-done">
 			            </s:else>
 	        				<span class="homework-id">No.${ homework.id }</span>
-	        				<span class="homework-name">${ homework.name }</span>
+	        				<s:if test="%{homework.name.length()>9}"><span class="homework-name"><s:property value="homework.name.substring(0,9)"/>...</span></s:if>
+	        				<s:else><span class="homework-name">${ homework.name }</span></s:else>
 	        			</div>
 	        			<div class="homework-card-body">
 	        				<s:if test="%{homework.description == ''}">
@@ -55,12 +57,12 @@
 	        			<div class="homework-card-footer">
 	        				<hr/>
 	        				<s:if test="%{homework.studentDDL > currentTime}">
-			                	<span class="h-active-span">距提交截止 2天12小时</span>
+			                	<span class="h-active-span">距提交截止 <% Random r = new Random(); out.print(r.nextInt(10)+1); %>天13小时</span>
 			            	</s:if>
 	        				<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime && homework.state=='commit'}">
 			               		<span class="h-commit-span">待批改</span>
 			            	</s:elseif>
-			            	<s:elseif test="%{homework.assistantDDL > currentTime && homework.state=='approval'}">
+			            	<s:elseif test="%{homework.state=='approval'}">
 			            		<span class="h-commit-span">待审批</span>
 			                </s:elseif>
 			                <s:elseif test="%{homework.state=='pass'}">

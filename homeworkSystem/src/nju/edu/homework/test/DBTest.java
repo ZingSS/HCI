@@ -1,5 +1,6 @@
 package nju.edu.homework.test;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class DBTest {
     // MySQL配置时的用户名
     static String user = "root"; 
     // MySQL配置时的密码
-    static String password = "root";
+    static String password = "123456";
     static Connection conn;
     
     static{
@@ -45,6 +46,7 @@ public class DBTest {
     
     public static void main(String[]args){
     	try {
+    		// 生成学生
 //    	for (int i=141250001;i<=141250120;i++) {
 //    		String name = JWStub.lookupUser(i + "");
 //    		PreparedStatement ps = conn.prepareStatement("insert into user(userId,password,name,role,createdTime) values(?,?,?,?,?)");
@@ -56,8 +58,9 @@ public class DBTest {
 //    		ps.executeUpdate();
 //    	}
     		
-//    	for (int i=143;i<=262;i++) {
-//    		PreparedStatement ps = conn.prepareStatement("insert into course_user values('29', ?)");
+    		
+//    	for (int i=28;i<=142;i++) {
+//    		PreparedStatement ps = conn.prepareStatement("insert into course_user values('20', ?)");
 //    		ps.setInt(1, i);
 //    		ps.executeUpdate();
 //    	}
@@ -85,12 +88,13 @@ public class DBTest {
 //    		ps.executeUpdate();
 //    	}
     	
-    	for (int i=0;i<120;i++) {
-    		PreparedStatement ps = conn.prepareStatement("insert into user_grade values(?,?)");
-    		ps.setInt(1, i + 143);
-    		ps.setInt(2, i + 25);
-    		ps.executeUpdate();
-    	}
+//    	for (int i=0;i<120;i++) {
+//    		PreparedStatement ps = conn.prepareStatement("insert into user_grade values(?,?)");
+//    		ps.setInt(1, i + 143);
+//    		ps.setInt(2, i + 25);
+//    		System.out.println(i);
+//    		ps.executeUpdate();
+//    	}
     	
     		
     	

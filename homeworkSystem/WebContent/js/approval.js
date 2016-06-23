@@ -1,7 +1,7 @@
 window.onload = function(){
 
 	$(".approval-result").on("click", "#pass-approval", function(){
-		var homeworkId = $("#homework-id").text();
+		var homeworkId = $("#homework-id").val();
 		var courseId = $("#courseId").val();
 		$.post(
 			"passApproval.action",
@@ -15,7 +15,7 @@ window.onload = function(){
 	})
 
 	$(".approval-result").on("click", "#failed-approval", function(){
-		var homeworkId = $("#homework-id").text();
+		var homeworkId = $("#homework-id").val();
 		var courseId = $("#courseId").val();
 		$.post(
 			"failedApproval.action",

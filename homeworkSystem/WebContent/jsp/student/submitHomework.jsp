@@ -24,18 +24,17 @@
 					<span id="h-title-name"><s:property value="homework.name"/></span>
 					<span id="h-title-id">No.<s:property value="homework.id"/></span>
 				</div>
-				<div class="h-title-time">
-					<span><s:property value="homework.studentDDL"/></span>
-					<span><s:property value="homework.assistantDDL"/></span>
+				<div class="h-title-time" id="s-h-submit-ddl">
+					<span>提交截止：<s:property value="homework.studentDDL"/></span>
 				</div>
 			</div>
 			<div class="h-title-mid">
 				<s:if test="%{homework.description == ''}">
 					<span class="homework-des">无作业描述</span>
 				</s:if>
-				<s:elseif test="%{homework.description.length()>30}">
+<%-- 				<s:elseif test="%{homework.description.length()>30}">
 					<span class="homework-des"><s:property value="homework.description.substring(0,30)"/>...</span>
-				</s:elseif>
+				</s:elseif> --%>
 				<s:else><span class="homework-des">${ homework.description }</span></s:else>
 			</div>
 			<div class="h-title-bottom">
@@ -67,18 +66,16 @@
 			         		<br/>
 			    		 </form> 
 					</div>
-					<s:if test="%{submit}">
-			         			<span id="submitted">您已经提交过，再次提交将会进行覆盖</span>
-			         		</s:if>
+					<s:if test="%{submit}"><span id="submitted">您已经提交过，再次提交将会进行覆盖</span></s:if>
 				</s:if>
 				<!-- 批改中 -->
 				<s:elseif test="%{homework.studentDDL < currentTime && homework.assistantDDL > currentTime}">
 					<span>批改中</span>
 				</s:elseif>
-				<s:elseif test="%{homework.assistantDDL > currentTime && homework.state=='approval'}">
-					<span class="homework-done">待审批</span>
+				<s:elseif test="%{homework.state=='approval'}">
+					<span class="homework-done">审批中</span>
 				</s:elseif>
-				<!-- 教师审批中/已经公布／其它 -->
+				<!-- 已经公布／ -->
 			    <s:elseif test="%{homework.state=='pass'}">
 			    	<div id="student-grade">
 			    		<div id="s-grade-left">

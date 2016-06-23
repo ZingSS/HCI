@@ -1198,6 +1198,8 @@ $a-course-height: 50px;
     float: right;
     width: 87%;
 
+    @include card-div;
+
     #a-course-header{
       float: left;
       width: 20%;
@@ -1284,7 +1286,7 @@ $a-course-height: 50px;
     background: $course-body-color;
     border-left: 15px solid $light-blue;
 
-    padding: 10px;
+    padding: 10px 20px;
     margin:25px 0 5px;
   }
 
@@ -1306,6 +1308,7 @@ $a-course-height: 50px;
   }
 
   .announce-body{
+    width: 70%;
     span{
       color: $gray-font;
     }
@@ -1753,13 +1756,13 @@ tr.semester-tr td{
 #move-right{
   position: absolute;
   top: 388px;
-  left: 788px;
+  left: 59%;
 }
 
 #move-left{
   position: absolute;
   top: 466px;
-  left: 788px;
+  left: 59%;
 }
 
 
@@ -1948,4 +1951,19 @@ $s-grade-h: 60px;
   text-align: center;
   margin: 5px 0;
   color: #e6524a;
+}
+
+
+#s-h-submit-ddl{
+  line-height: 60px;
+  text-align: center;
+}
+
+#my-awesome-dropzone{
+  width: 90%;
+  height: 230px;
+  line-height: 1;
+  border: 2px dashed #6ab8e6;
+  background: #f7f7f7;
+  margin-bottom: 10px;
 }

@@ -15,8 +15,8 @@
 					<span id="h-title-id">No.<s:property value="homework.id"/></span>
 				</div>
 				<div class="h-title-time">
-					<span><s:property value="homework.studentDDL"/></span>
-					<span><s:property value="homework.assistantDDL"/></span>
+					<span>提交截止：<s:property value="homework.studentDDL"/></span>
+					<span>批改截止：<s:property value="homework.assistantDDL"/></span>
 				</div>
 			</div>
 			<div class="h-title-mid">

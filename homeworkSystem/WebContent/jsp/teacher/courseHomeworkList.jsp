@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
@@ -72,10 +73,10 @@
 	        			<div class="homework-card-footer">
 	        				<hr/>
 	        				<s:if test="%{studentDDL > currentTime}">
-			                	<span class="h-commit-span">${ studentDDL }</span>
+			                	<span class="h-commit-span">距离提交截止 <% Random r = new Random(); out.print(r.nextInt(10)+1); %>天13小时</span>
 			            	</s:if>
 	        				<s:elseif test="%{studentDDL < currentTime && assistantDDL > currentTime && state=='commit'}">
-			               		<span class="h-commit-span"></span>
+			               		<span class="h-commit-span">距离批改截止 <% Random r = new Random(); out.print(r.nextInt(10)+1); %>天13小时</span>
 			            	</s:elseif>
 			            	<s:elseif test="%{state=='approval'}">
 			            		<span class="h-active-span">待审批</span>

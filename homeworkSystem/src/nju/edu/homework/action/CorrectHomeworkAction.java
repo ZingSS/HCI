@@ -3,6 +3,7 @@ package nju.edu.homework.action;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import nju.edu.homework.model.Course;
@@ -92,6 +93,7 @@ public class CorrectHomeworkAction extends BaseAction{
 			studentList.add(vo);
 			
 		}
+		Collections.sort(studentList);
 		return SUCCESS;
 	}
 	
@@ -151,7 +153,13 @@ public class CorrectHomeworkAction extends BaseAction{
 				"本课程的" + homeworkService.getHomeworkById(homeworkId).getName() + "已经批改完", Common.CORRECTION_OVER);
 		messageService.saveMessage(message, courseId);
 		homeworkService.changeToApproval(homeworkId);
-
+		
+		ArrayList<User> students = new ArrayList<User>(courseService.getStudentsByCourseId(courseId));
+		for (User student : students) {
+			if (!gradeService.haveGrade(homeworkId, student.getId())) {
+				gradeService.addGrade(new GradeSaveVO(new Grade("0", ""), homeworkId, student.getId()));
+			}
+		}
 		return SUCCESS;
 	}
 	

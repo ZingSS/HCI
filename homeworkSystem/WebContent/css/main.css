@@ -817,7 +817,12 @@ div#add-h-ddl {
     float: left; }
   #assistant-course #a-course-info {
     float: right;
-    width: 87%; }
+    width: 87%;
+    box-shadow: 1px 1px 1px #b3b3b3;
+    border-right: 1px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7; }
+    #assistant-course #a-course-info:hover {
+      box-shadow: none; }
     #assistant-course #a-course-info #a-course-header {
       float: left;
       width: 20%;
@@ -877,7 +882,7 @@ div#add-h-ddl {
   .announcement .announcement-body {
     background: #F2F2F2;
     border-left: 15px solid #57b5e8;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 25px 0 5px; }
   .announcement .announce-header {
     margin: 0 0 10px 0; }
@@ -889,8 +894,10 @@ div#add-h-ddl {
     .announcement .announce-header .announce-time {
       font-size: 12px;
       color: #aaa; }
-  .announcement .announce-body span {
-    color: #666; }
+  .announcement .announce-body {
+    width: 70%; }
+    .announcement .announce-body span {
+      color: #666; }
 
 .a-button {
   width: 100px;
@@ -1379,12 +1386,12 @@ tr.semester-tr td {
 #move-right {
   position: absolute;
   top: 388px;
-  left: 788px; }
+  left: 59%; }
 
 #move-left {
   position: absolute;
   top: 466px;
-  left: 788px; }
+  left: 59%; }
 
 .changable-td {
   cursor: pointer; }
@@ -1510,5 +1517,17 @@ tr.semester-tr td {
   text-align: center;
   margin: 5px 0;
   color: #e6524a; }
+
+#s-h-submit-ddl {
+  line-height: 60px;
+  text-align: center; }
+
+#my-awesome-dropzone {
+  width: 90%;
+  height: 230px;
+  line-height: 1;
+  border: 2px dashed #6ab8e6;
+  background: #f7f7f7;
+  margin-bottom: 10px; }
 
 /*# sourceMappingURL=main.css.map */

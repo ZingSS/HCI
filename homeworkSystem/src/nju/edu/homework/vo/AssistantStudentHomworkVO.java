@@ -1,6 +1,8 @@
 package nju.edu.homework.vo;
 
-public class AssistantStudentHomworkVO {
+import nju.edu.homework.model.Homework;
+
+public class AssistantStudentHomworkVO implements Comparable<AssistantStudentHomworkVO>{
 	
 	private int id;
 	private String studentId;
@@ -37,6 +39,10 @@ public class AssistantStudentHomworkVO {
 		return comment;
 	}
 	
-	
+	@Override
+	public int compareTo(AssistantStudentHomworkVO o) {
+//		return o.getId()-this.getId();
+		return Integer.parseInt(this.getStudentId())-Integer.parseInt(o.getStudentId());
+	}
 
 }

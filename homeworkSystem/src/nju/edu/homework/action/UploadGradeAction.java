@@ -86,7 +86,7 @@ public class UploadGradeAction extends BaseAction{
 						
 					}
 		            if (aRow.getCell(2) != null) { 	// 这里是成绩
-		            	grade = aRow.getCell(2).getNumericCellValue() + "";
+		            	grade = (int)aRow.getCell(2).getNumericCellValue() + "";
 		            	System.out.println(grade + "  这是得到的学生成绩");
 					}
 		            if (aRow.getCell(3) != null) {

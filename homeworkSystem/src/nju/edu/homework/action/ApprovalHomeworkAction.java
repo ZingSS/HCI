@@ -108,13 +108,13 @@ public class ApprovalHomeworkAction extends BaseAction{
 		List<User> students = new ArrayList<User>(courseService.getStudentsByCourseId(courseId));
 		studentList = new ArrayList<AssistantStudentHomworkVO>();
 		for(User student : students){
-			if (!gradeService.haveGrade(homeworkId, student.getId())) {
-				AssistantStudentHomworkVO vo = new AssistantStudentHomworkVO(student.getId(), 
-						student.getUserId(), student.getName(), false, "", "无");
-				
-				studentList.add(vo);		
-				continue;
-			}
+//			if (!gradeService.haveGrade(homeworkId, student.getId())) {
+//				AssistantStudentHomworkVO vo = new AssistantStudentHomworkVO(student.getId(), 
+//						student.getUserId(), student.getName(), false, "", "无");
+//				
+//				studentList.add(vo);		
+//				continue;
+//			}
 			StudentSubmitGradeVO ssgVo = userService.getStudentSubmitAndGrade(student.getId(), homeworkId);
 			boolean submit = ssgVo.isSubmit();
 			Grade grade = ssgVo.getGrade();

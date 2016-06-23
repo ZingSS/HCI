@@ -1,5 +1,6 @@
 package nju.edu.homework.dao.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,9 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public List<User> getAllUsers() {
-		return baseDao.getAll(User.class);
+		List<User> users = baseDao.getAll(User.class);
+		Collections.sort(users);
+		return users;
 	}
 
 	@Override
