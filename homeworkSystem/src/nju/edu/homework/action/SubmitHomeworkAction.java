@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import nju.edu.homework.model.Course;
@@ -69,6 +70,8 @@ public class SubmitHomeworkAction extends BaseAction{
 	
 	private List<Integer> heights;
 	// -------------------- 显示图表使用 ------------------------
+	
+	private List<Integer> stdentAllGrades;
 	
 	public Timestamp getCurrentTime() {
 		currentTime = new Timestamp(System.currentTimeMillis());
@@ -136,6 +139,16 @@ public class SubmitHomeworkAction extends BaseAction{
 			setHomeworkVO(homeworkVO);
 			
 			setHomeworkGrades(gradeService.getGradesByHomeworkId(homework.getId()));
+			
+			List<Homework> homeworks = courseService.getHomeworkByCourseId(courseId);
+			List<String> allGrades = gradeService.getGradesByStudentIdAndHomeworks(user.getId(), homeworks);
+			List<Integer> iGrades = new ArrayList<Integer>();
+			for (String g : allGrades) {
+				iGrades.add(Integer.parseInt(g));
+			}
+			Collections.sort(iGrades);
+			setStdentAllGrades(iGrades);
+
 		}
 		
 		// TODO 下面的算法效率很低但是我喜欢 by dxh
@@ -387,6 +400,14 @@ public class SubmitHomeworkAction extends BaseAction{
 	
 	public void setStudentList(List<AssistantStudentHomworkVO> studentList) {
 		this.studentList = studentList;
+	}
+
+	public List<Integer> getStdentAllGrades() {
+		return stdentAllGrades;
+	}
+
+	public void setStdentAllGrades(List<Integer> stdentAllGrades) {
+		this.stdentAllGrades = stdentAllGrades;
 	}
 	
 }

@@ -5,6 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" afterPath="$PROJECT_DIR$/.sass-cache/279d696768524de9c6add09840b04177f509aac1/main.scssc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css" afterPath="$PROJECT_DIR$/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/main.css.map" afterPath="$PROJECT_DIR$/css/main.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/approval.js" afterPath="$PROJECT_DIR$/js/approval.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/homework.js" afterPath="$PROJECT_DIR$/js/homework.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" afterPath="$PROJECT_DIR$/jsp/student/correctHomework.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sass/main.scss" afterPath="$PROJECT_DIR$/sass/main.scss" />
     </list>
