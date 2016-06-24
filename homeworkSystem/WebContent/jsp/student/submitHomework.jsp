@@ -151,27 +151,6 @@
 		addRemoveLinks: true,
 	};
 </script>
-<script>
-function fillTable(list) {
-	var data = ""; 
-	data += "<table>"; 
-	data += "<tr>" + 
-	"<th class='h-s-id'>学生学号</th>" + 
-	"<th class='h-s-name'>学生姓名</th>" + 
-	"<th class='h-s-g'>成绩</th>" +
-	"<th class='h-s-c'>点评</th></tr>"; 
-	for (var i = 0; i <list.length; i++) { 
-		data += "<tr class=\"homework-line\">"; 
-		data += "<td class='h-s-id'>" + list[i][0] + "</td>";
-		data += "<td class='h-s-name'>" + list[i][1] + "</td>";
-		data += "<td class='h-s-g'>" + list[i][3] + "</td>";
-		data += "<td class='h-s-c'>" + list[i][4] + "</td>";
-		data += "</tr>"; 
-		} 
-		data += "</table>"; 
-		document.getElementById("homework-scores").innerHTML = data; 
-	}
-</script>
 
 <script>
 var full = ${full};
@@ -193,7 +172,6 @@ var i = 1;
 	i += 1;
 </s:iterator>
 
-fillTable(grades[0]);
 
 var x = [];
 var values = [];
@@ -210,7 +188,57 @@ else {
 		x.push(i);
 	}
 }
+
+
+//下面是自己的成绩变化
+var myValues = new Array();
+var myX = new Array();
+var n = 1;
+<s:iterator value="studentAllGrades" id="i">
+	myX.push("作业" + n);
+	myValues.push(<s:property value="i"/>);
+	n += 1;
+</s:iterator>
 </script>
+
+<script>
+$(function () {
+	$('#homework-scores').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '我的作业'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+        	categories: myX
+        },
+        yAxis: {
+            min: 0,
+            title: {
+            	text: '成绩'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0"></td>' +
+                '<td style="padding:0"><b>{point.y} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        legend: {
+            enabled:false
+         },
+        series: [{
+            name: '作业',
+            data: myValues
+        }]
+    });
+});
 
 <script>
 $(function () {
@@ -220,7 +248,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: ''
+            text: '本次作业'
         },
         subtitle: {
             text: ''
@@ -249,14 +277,8 @@ $(function () {
             },
             series: {        
 	        	cursor: 'pointer',        
-	        	events: {            
-	          	click: function(event) {
-	          		fillTable(grades[event.point.x + 1]);
-	            }   
-	          }   
-	        }
-        	
-        },
+	          } 
+            },
         legend: {
             enabled:false
          },
